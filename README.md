@@ -1,4 +1,11 @@
-# quorastack
+# sumanix-frontend
+#Sumanix: Developer's Platform
+
+### Dev Testing URl
+See [Development Demo](https://tquora.herokuapp.com).
+
+#Branches Conventions
+feat-(issueNumber)
 
 ## Project setup
 ```
@@ -27,10 +34,3 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
-
-#Sumanix: Developer's Platform
-See [Development Demo](https://tquora.herokuapp.com).
-
-#Branches Conventions
-Feature: feat-<issueNum>
-Bug: bug-<issueNum>
