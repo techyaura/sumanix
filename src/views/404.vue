@@ -1,0 +1,40 @@
+<template>
+  <section class="container main-content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="error_404">
+          <div>
+            <h2>404</h2>
+            <h3>Page not Found</h3>
+          </div>
+          <div class="clearfix"></div>
+          <br>
+          <router-link class="button large color margin_0" :to="{name: 'home'}">Home page</router-link>
+        </div>
+      </div>
+      <!-- End main -->
+    </div>
+    <!-- End row -->
+  </section>
+</template>
+
+<script>
+export default {
+  name: 'NotFound',
+  beforeCreate() {
+    this.$vueEventBus.$emit('isLoginPageLanding', true);
+  },
+  beforeRouteEnter: (to, from, next) => {
+    next((vm) => {
+      vm.$vueEventBus.$emit('isLoginPageLanding', true);
+    });
+  },
+  beforeRouteLeave(to, from, next) {
+    this.$vueEventBus.$emit('isLoginPageLanding', false);
+    next();
+  },
+};
+</script>
+
+<style>
+</style>

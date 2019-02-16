@@ -1,0 +1,92 @@
+<template>
+  <div class="col-md-12">
+    <div class="page-content page-content-user-profile">
+      <div class="user-profile-widget">
+        <Spinner
+          :status="spinner.status"
+          :color="spinner.color"
+          :size="spinner.size"
+          :depth="spinner.depth"
+          :rotation="spinner.rotation"
+          :speed="spinner.speed"
+        />
+        <div class="widget widget_social widget_social-custom">
+          <h3 class="widget_title">Tags</h3>
+          <ul>
+            <li class="facebook-fans" v-for="item in tags" v-bind:data="item" v-bind:key="item.tag">
+              <router-link :to="{name: 'tagQuestion', params: {slug: item.tag}}">
+                <strong>
+                  <span>{{item.count}}</span>
+                  <br>
+                  <small>{{item.slug}}</small>
+                </strong>
+              </router-link>
+            </li>
+          </ul>
+        </div>
+        <br>
+      </div>
+      <!-- End user-profile-widget -->
+    </div>
+    <!-- End page-content -->
+  </div>
+</template>
+
+<script>
+import Spinner from '@/components/Spinner.vue';
+import { filterMixin, spinnerMixin, breadcrumbMixin } from '../mixins';
+
+export default {
+  name: 'AppTag',
+  components: {
+    Spinner,
+  },
+  mixins: [filterMixin, spinnerMixin, breadcrumbMixin],
+  created() {
+    document.title = this.title('Tags');
+  },
+  data() {
+    return {
+      tags: [],
+    };
+  },
+  beforeCreate() {
+    this.$vueEventBus.$emit('isLoginPageLanding', true);
+  },
+  beforeRouteEnter: (to, from, next) => {
+    next((vm) => {
+      vm.$vueEventBus.$emit('isLoginPageLanding', true);
+    });
+  },
+  beforeRouteLeave(to, from, next) {
+    this.$vueEventBus.$emit('isLoginPageLanding', false);
+    next();
+  },
+  mounted() {
+    this.getTags();
+  },
+  methods: {
+    getTags() {
+      this.$http.get(`${this.$BASE_URL}api/v1/tag/question`).then((response) => {
+        this.tags = response.data.data;
+        this.spinner.status = false;
+      });
+    },
+  },
+};
+</script>
+
+<style>
+.widget_social-custom ul li {
+  width: 20% !important;
+  padding-right: 10px !important;
+}
+.widget_social li.facebook-fans a strong {
+  background-color: #8a8a8a !important;
+}
+@media only screen and (max-width: 479px) {
+  .widget_social-custom ul li {
+    width: 100% !important;
+  }
+}
+</style>

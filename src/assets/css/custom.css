@@ -1,0 +1,21 @@
+.page-content p {
+    font-size: 15px !important;
+}
+.ti-selected-item {
+    background-color: #8a8a8a !important;
+}
+.header-search-input ::-webkit-input-placeholder {
+    text-align: center;
+}
+ 
+.header-search-input :-moz-placeholder { /* Firefox 18- */
+    text-align: center;  
+}
+ 
+.header-search-input ::-moz-placeholder {  /* Firefox 19+ */
+    text-align: center;  
+}
+ 
+.header-search-input :-ms-input-placeholder {  
+    text-align: center; 
+}

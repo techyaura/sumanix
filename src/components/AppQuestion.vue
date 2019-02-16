@@ -1,0 +1,345 @@
+<template>
+  <div>
+    <!-- <section class="container main-content"> -->
+    <!-- <div class="row"> -->
+    <div class="col-md-9">
+      <div class="tabs-warp question-tab">
+        <ul class="tabs">
+          <li class="tab" v-if="slug">
+            <a
+              href="javascript:void(0)"
+              v-bind:class="{ current: currentFilterFlag === '' }"
+            >{{( slugCapitalize ) + ' Questions'}}</a>
+          </li>
+
+          <li class="tab" v-if="!slug">
+            <a
+              href="javascript:void(0)"
+              v-bind:class="{ current: currentFilterFlag === 'recent' }"
+              v-on:click="getFilteredQuestions('recent')"
+            >Recent Questions</a>
+          </li>
+
+          <li class="tab" v-if="!slug">
+            <a
+              href="javascript:void(0)"
+              v-bind:class="{ current: currentFilterFlag === 'mostViewed' }"
+              v-on:click="getFilteredQuestions('mostViewed')"
+            >Most Viewed</a>
+          </li>
+          <li class="tab" v-if="!slug">
+            <a
+              href="javascript:void(0)"
+              v-bind:class="{ current: currentFilterFlag === 'unanswered' }"
+              v-on:click="getFilteredQuestions('unanswered')"
+            >No Answers</a>
+          </li>
+        </ul>
+        <div class="tab-inner-warp">
+          <div class="tab-inner">
+            <Spinner
+              :status="spinner.status"
+              :color="spinner.color"
+              :size="spinner.size"
+              :depth="spinner.depth"
+              :rotation="spinner.rotation"
+              :speed="spinner.speed"
+            />
+            <article
+              class="question-custom question question-type-normal"
+              v-for="item in questions"
+              v-bind:data="item"
+              v-bind:key="item._id"
+            >
+              <h2>
+                <router-link
+                  :to="{name: 'questionDetail', params: { slug: item.slug || item.name }}"
+                >{{item.name}}</router-link>
+              </h2>
+              <!-- <router-link
+                v-if="isLogin && session && session._id === item.uId"
+                class="question-report"
+                :to="{name: 'questionUpdate', params: { slug: item.slug }}"
+              >Edit</router-link>-->
+              <!-- <a class="question-report" href="#">Report</a> -->
+              <!-- <div class="question-type-main">
+                <i class="icon-question-sign"></i>Question
+              </div>-->
+              <div class="question-author" v-if="item.isAnonymous === true">
+                <span></span>
+                <img alt="anonymous" src="/img/profile/anonymous.svg" title="anonymous">
+                <!-- <a href="javascript:void(0)" original-title="anonymous" class="question-author-img tooltip-n">
+                  <span></span>
+                  <img alt="anonymous" src="/img/profile/anonymous.svg">
+                </a>-->
+              </div>
+              <div class="question-author" v-if="item.isAnonymous === false">
+                <span></span>
+                <img
+                  width="60"
+                  height="60"
+                  :src="'/img/profile/' + item.avatar[0]"
+                  :alt="item.username[0]"
+                  :title="item.username[0]"
+                >
+                <!-- <a href="javascript:void(0)" original-title="anonymous" class="question-author-img tooltip-n">
+                  <span></span>
+                  <img alt="anonymous" src="/img/profile/anonymous.svg">
+                </a>-->
+              </div>
+              <div class="question-inner">
+                <div class="clearfix"></div>
+                <div class="question-details">
+                 <AppClap :question="item"/>
+                  
+                </div>
+                <span class="question-category">
+                  <span class="tagAdjust">
+                    <i class="icon-suitcase"></i>
+                  </span>
+                  <router-link
+                    class="anchor-space"
+                    v-bind:to="{name: 'tagQuestion', params: {slug: tag.slug || tag.name}}"
+                    v-for="tag in item.tags"
+                    v-bind:data="tag"
+                    v-bind:key="tag.slug"
+                  >{{tag.name}}</router-link>
+                </span>
+                <span class="question-comment">
+                  <router-link :to="{name: 'questionDetail', params: { slug: item.slug || item.name }}">
+                    <i class="icon-comment"></i>
+                    {{item.totalAnswers}} Answers
+                  </router-link>
+                </span>
+                <span class="question-view">
+                  <i class="icon-user"></i>
+                  {{item.views}} Views
+                </span>
+                <span class="question-date question-date-custom-tag">
+                  <i class="icon-time"></i>
+                  {{item.activityType? item.activityType + ' ': 'asked '}}
+                  {{timestamp(item)}}
+                  <!-- {{moment().startOf('hour').}} -->
+                </span>
+                <div class="clearfix"></div>
+              </div>
+            </article>
+            <article v-if="!questions.length && isLoaded">
+              <h2>No questions found on the search criteria.</h2>
+            </article>
+            <a
+              v-show="count > questions.length"
+              href="javascript:void(0)"
+              v-on:click="loadMore()"
+              class="load-questions"
+            >
+              <i class="icon-refresh" v-if="isLoading"></i>
+              {{loadingText}}
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- End page-content -->
+    </div>
+  </div>
+  <!-- End wrap -->
+</template>
+
+<style>
+.question-date-custom-tag {
+  margin-left: 10px !important;
+}
+.question h2 {
+  font-size: 15px !important;
+}
+.tagAdjust {
+  float: left;
+}
+.anchor-space {
+  margin-left: 5px;
+  /* border: 1px solid #ccc !important;
+  padding: 2px 5px 2px 5px !important;
+  border-radius: 4px !important;
+  color: #7a27cc !important; */
+}
+/* .question-custom h2 {
+  margin: 0 0 30px 0px !important;
+} */
+/* .question-inner {
+  margin-left: 0px !important;
+} */
+@media only screen and (max-width: 479px) {
+  .question-type-normal.question h2,
+  .question-type-poll.question h2 {
+    padding-top: 0px !important;
+    margin-top: 80px !important;
+  }
+}
+</style>
+
+<script>
+import Spinner from '@/components/Spinner.vue';
+import { filterMixin, spinnerMixin, breadcrumbMixin } from '../mixins';
+import AppClap from '@/components/AppClap.vue';
+
+export default {
+  name: 'AppQuestion',
+  params: ['query'],
+  components: {
+    Spinner,
+    AppClap
+  },
+  mixins: [filterMixin, spinnerMixin, breadcrumbMixin],
+  data() {
+    return {
+      isLoading: false,
+      isLoaded: false,
+      loadingText: 'Load More Questions',
+      count: 0,
+      offset: 1,
+      limit: 40,
+      currentFilterFlag: 'recent',
+      isEditAllow: false,
+      questions: [],
+      slug: this.$route.params.slug,
+      slugCapitalize: '',
+      isEventEmitted: false,
+      queryParams: this.$route.query.q || '',
+    };
+  },
+  methods: {
+    getAnsweredQuestions() {
+      this.isLoading = true;
+      this.loadingText = 'Loading...';
+      let url = `${this.$BASE_URL}api/v1/question/answered?limit=${this.limit}&offset=${
+        this.offset
+      }`;
+      if (this.slug) {
+        url = `${url}&q=${this.slug}`;
+      }
+      if (this.queryParams) {
+        url = `${url}&q=${this.queryParams}`;
+      }
+      if (this.currentFilterFlag) {
+        url = `${url}&flag=${this.currentFilterFlag}`;
+      }
+      this.$http.get(url).then((response) => {
+        const aggregate = response.data.data[0];
+        if (Array.isArray(aggregate.count) && aggregate.count.length) {
+          this.count = aggregate.count[0].count;
+          this.questions = this.questions.concat(aggregate.questions);
+        } else{
+          this.count = 0;
+          this.questions = [];
+        }
+        this.isLoading = false;
+        this.loadingText = 'Load More Questions';
+        this.isLoaded = true;
+        this.spinner.status = false;
+      });
+    },
+    getUnansweredQuestions() {
+      this.isLoading = true;
+      this.loadingText = 'Loading...';
+      let url = `${this.$BASE_URL}api/v1/question/unanswered?limit=${this.limit}&offset=${
+        this.offset
+      }`;
+      if (this.slug) {
+        url = `${url}&q=${this.slug}`;
+      }
+      if (this.queryParams) {
+        url = `${url}&q=${this.queryParams}`;
+      }
+      if (this.currentFilterFlag) {
+        url = `${url}&flag=${this.currentFilterFlag}`;
+      }
+      this.$http.get(url).then((response) => {
+        const aggregate = response.data.data[0];
+        if (Array.isArray(aggregate.count) && aggregate.count.length) {
+          this.count = aggregate.count[0].count;
+          this.questions = this.questions.concat(aggregate.questions);
+        }
+        this.isLoading = false;
+        this.loadingText = 'Load More Questions';
+        this.isLoaded = true;
+        this.spinner.status = false;
+      });
+    },
+    getQuestions() {
+      this.isLoading = true;
+      this.loadingText = 'Loading...';
+      let url = `${this.$BASE_URL}api/v1/question/?limit=${this.limit}&offset=${
+        this.offset
+      }`;
+      if (this.slug) {
+        url = `${url}&q=${this.slug}`;
+      }
+      if (this.queryParams) {
+        url = `${url}&q=${this.queryParams}`;
+      }
+      if (this.currentFilterFlag) {
+        url = `${url}&flag=${this.currentFilterFlag}`;
+      }
+      this.$http.get(url).then((response) => {
+        const aggregate = response.data.data[0];
+        if (Array.isArray(aggregate.count) && aggregate.count.length) {
+          this.count = aggregate.count[0].count;
+          if(aggregate.questions.length){
+            this.questions = this.questions.concat(aggregate.questions);
+          }
+        }
+        this.isLoading = false;
+        this.loadingText = 'Load More Questions';
+        this.isLoaded = true;
+        this.spinner.status = false;
+      });
+    },
+    getFilteredQuestions(flag) {
+      this.isLoaded = false;
+      this.currentFilterFlag = flag;
+      this.offset = 1;
+      this.questions = [];
+      document.title = this.title(`${flag} Questions`);
+      if (flag && ( flag === 'recent' || flag === 'mostViewed')) {
+        this.getQuestions();
+      } else if(flag === 'unanswered'){
+        this.getUnansweredQuestions();
+      }else if(flag === 'answered'){
+        this.getAnsweredQuestions();
+      }     
+    },
+    loadMore() {
+      this.isLoaded = false;
+      this.isLoading = true;
+      this.offset = this.offset + 1;
+      if (currentFilterFlag && ( currentFilterFlag === 'recent' || currentFilterFlag === 'mostViewed')) {
+        this.getQuestions();
+      } else if(this.currentFilterFlag === 'unanswered'){
+        this.getUnansweredQuestions();
+      }else if(flag === 'answered'){
+        this.getAnsweredQuestions();
+      } 
+    },
+  },
+  created() {
+    if (!this.queryParams) {
+      this.$vueEventBus.$emit('isSearchQuery', false);
+    }
+    this.getQuestions();
+    if (this.slug) {
+      this.slugCapitalize = this.capitalize(this.slug);
+      this.currentFilterFlag = '';
+    }
+  },
+  computed: {
+    timestamp() {
+      return (item) => {
+        if (Object.prototype.hasOwnProperty.call(item, 'modifiedAt')) {
+          return this.$moment(item.modifiedAt).fromNow();
+        }
+        return this.$moment(item.updatedAt).fromNow();
+      };
+    },
+  },
+};
+</script>
