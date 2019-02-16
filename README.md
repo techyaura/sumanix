@@ -4,8 +4,10 @@
 ### Dev Testing URl
 See [Development Demo](https://tquora.herokuapp.com).
 
-#Branches Conventions
+###Branches Conventions
+```
 feat-(issueNumber)
+```
 
 ## Project setup
 ```
