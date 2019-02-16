@@ -30,3 +30,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 #Sumanix: Developer's Platform
 See [Development Demo](https://tquora.herokuapp.com).
+
+#Branches Conventions
+Feature: feat-<issueNum>
+Bug: bug-<issueNum>
