@@ -85,12 +85,12 @@
                     <i class="icon-suitcase"></i>
                   </span>
                   <router-link
-                    class="anchor-space"
+                    class="anchor-space q-tags"
                     v-bind:to="{name: 'tagQuestion', params: {slug: tag.slug || tag.name}}"
                     v-for="tag in item.tags"
                     v-bind:data="tag"
                     v-bind:key="tag.slug"
-                  >{{tag.name}}</router-link>
+                  >{{tag.slug || tag.name}}</router-link>
                 </span>
                 <span class="question-comment">
                   <router-link
@@ -139,6 +139,7 @@
 .question-date-custom-tag {
   margin-left: 10px !important;
 }
+
 .question h2 {
   font-size: 15px !important;
 }

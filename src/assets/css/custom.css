@@ -1,21 +1,30 @@
 .page-content p {
-    font-size: 15px !important;
+  font-size: 15px !important;
 }
 .ti-selected-item {
-    background-color: #8a8a8a !important;
+  background-color: #8a8a8a !important;
 }
 .header-search-input ::-webkit-input-placeholder {
-    text-align: center;
+  text-align: center;
 }
- 
-.header-search-input :-moz-placeholder { /* Firefox 18- */
-    text-align: center;  
+
+.header-search-input :-moz-placeholder {
+  /* Firefox 18- */
+  text-align: center;
 }
- 
-.header-search-input ::-moz-placeholder {  /* Firefox 19+ */
-    text-align: center;  
+
+.header-search-input ::-moz-placeholder {
+  /* Firefox 19+ */
+  text-align: center;
 }
- 
-.header-search-input :-ms-input-placeholder {  
-    text-align: center; 
+
+.header-search-input :-ms-input-placeholder {
+  text-align: center;
+}
+a.q-tags {
+  color: #39739d;
+  background-color: #e1ecf4;
+  border-color: #e1ecf4;
+  margin: 0 2px 0;
+  padding: 0 5px;
 }
