@@ -45,7 +45,7 @@
                 <i class="icon-suitcase"></i>
               </span>
               <router-link
-                class="anchor-space"
+                class="anchor-space q-tags"
                 v-for="tag in question.tags"
                 v-bind:data="tag"
                 v-bind:key="tag.name"

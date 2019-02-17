@@ -290,7 +290,11 @@ span.label-description {
   color: black !important;
 }
 .ti-tags li.ti-tag {
-  background-color: #ccc !important;
+  color: #39739d;
+  background-color: #e1ecf4;
+  border-color: #e1ecf4;
+  margin: 0 2px 0;
+  padding: 0 5px;
 }
 .ti-selected-item {
   background-color: #8a8a8a !important;
