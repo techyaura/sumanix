@@ -8,11 +8,11 @@
 </template>
 
 <script>
-import sessionMixin from "../mixins/sessionMixin";
+import sessionMixin from '../mixins/sessionMixin';
 
 export default {
-  name: "AppClapAnswerVue",
-  props: ["answer"],
+  name: 'AppClapAnswerVue',
+  props: ['answer'],
   data() {
     return {
       points: this.answer.points || 0,
@@ -22,24 +22,24 @@ export default {
   },
   mixins: [sessionMixin],
   methods: {
-    clap(e, value) {
+    clap() {
       if (!this.session.isLoggedIn) {
         this.$router.push({
-          name: "login",
-          query: { redirect: `/question/${this.question.slug}` }
+          name: 'login',
+          query: { redirect: `/question/${this.question.slug}` },
         });
         return false;
       }
       const postData = {};
-    //   postData.voteType = 'CLAP';
+      //   postData.voteType = 'CLAP';
       postData.qId = this.questionId;
-      postData.bonusType = "ABonus";
+      postData.bonusType = 'ABonus';
       return this.$http
         .put(
           `${this.$BASE_URL}api/v1/vote/answer/${this.answerId}`,
-          postData
+          postData,
         )
-        .then(response => {
+        .then((response) => {
           this.points = response.data.data;
           // this.checkVote();
         });
@@ -65,8 +65,8 @@ export default {
         }
         return 0;
       };
-    }
-  }
+    },
+  },
 };
 </script>
 

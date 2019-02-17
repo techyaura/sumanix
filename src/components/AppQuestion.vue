@@ -168,39 +168,39 @@
 </style>
 
 <script>
-import Spinner from "@/components/Spinner.vue";
-import { filterMixin, spinnerMixin, breadcrumbMixin } from "../mixins";
-import AppClap from "@/components/AppClap.vue";
+import Spinner from '@/components/Spinner.vue';
+import { filterMixin, spinnerMixin, breadcrumbMixin } from '../mixins';
+import AppClap from '@/components/AppClap.vue';
 
 export default {
-  name: "AppQuestion",
-  params: ["query"],
+  name: 'AppQuestion',
+  params: ['query'],
   components: {
     Spinner,
-    AppClap
+    AppClap,
   },
   mixins: [filterMixin, spinnerMixin, breadcrumbMixin],
   data() {
     return {
       isLoading: false,
       isLoaded: false,
-      loadingText: "Load More Questions",
+      loadingText: 'Load More Questions',
       count: 0,
       offset: 1,
       limit: 40,
-      currentFilterFlag: "recent",
+      currentFilterFlag: 'recent',
       isEditAllow: false,
       questions: [],
       slug: this.$route.params.slug,
-      slugCapitalize: "",
+      slugCapitalize: '',
       isEventEmitted: false,
-      queryParams: this.$route.query.q || ""
+      queryParams: this.$route.query.q || '',
     };
   },
   methods: {
     getAnsweredQuestions() {
       this.isLoading = true;
-      this.loadingText = "Loading...";
+      this.loadingText = 'Loading...';
       let url = `${this.$BASE_URL}api/v1/question/answered?limit=${
         this.limit
       }&offset=${this.offset}`;
@@ -213,7 +213,7 @@ export default {
       if (this.currentFilterFlag) {
         url = `${url}&flag=${this.currentFilterFlag}`;
       }
-      this.$http.get(url).then(response => {
+      this.$http.get(url).then((response) => {
         const aggregate = response.data.data[0];
         if (Array.isArray(aggregate.count) && aggregate.count.length) {
           this.count = aggregate.count[0].count;
@@ -223,14 +223,14 @@ export default {
           this.questions = [];
         }
         this.isLoading = false;
-        this.loadingText = "Load More Questions";
+        this.loadingText = 'Load More Questions';
         this.isLoaded = true;
         this.spinner.status = false;
       });
     },
     getUnansweredQuestions() {
       this.isLoading = true;
-      this.loadingText = "Loading...";
+      this.loadingText = 'Loading...';
       let url = `${this.$BASE_URL}api/v1/question/unanswered?limit=${
         this.limit
       }&offset=${this.offset}`;
@@ -243,21 +243,21 @@ export default {
       if (this.currentFilterFlag) {
         url = `${url}&flag=${this.currentFilterFlag}`;
       }
-      this.$http.get(url).then(response => {
+      this.$http.get(url).then((response) => {
         const aggregate = response.data.data[0];
         if (Array.isArray(aggregate.count) && aggregate.count.length) {
           this.count = aggregate.count[0].count;
           this.questions = this.questions.concat(aggregate.questions);
         }
         this.isLoading = false;
-        this.loadingText = "Load More Questions";
+        this.loadingText = 'Load More Questions';
         this.isLoaded = true;
         this.spinner.status = false;
       });
     },
     getQuestions() {
       this.isLoading = true;
-      this.loadingText = "Loading...";
+      this.loadingText = 'Loading...';
       let url = `${this.$BASE_URL}api/v1/question/?limit=${this.limit}&offset=${
         this.offset
       }`;
@@ -270,7 +270,7 @@ export default {
       if (this.currentFilterFlag) {
         url = `${url}&flag=${this.currentFilterFlag}`;
       }
-      this.$http.get(url).then(response => {
+      this.$http.get(url).then((response) => {
         const aggregate = response.data.data[0];
         if (Array.isArray(aggregate.count) && aggregate.count.length) {
           this.count = aggregate.count[0].count;
@@ -279,7 +279,7 @@ export default {
           }
         }
         this.isLoading = false;
-        this.loadingText = "Load More Questions";
+        this.loadingText = 'Load More Questions';
         this.isLoaded = true;
         this.spinner.status = false;
       });
@@ -290,11 +290,11 @@ export default {
       this.offset = 1;
       this.questions = [];
       document.title = this.title(`${flag} Questions`);
-      if (flag && (flag === "recent" || flag === "mostViewed")) {
+      if (flag && (flag === 'recent' || flag === 'mostViewed')) {
         this.getQuestions();
-      } else if (flag === "unanswered") {
+      } else if (flag === 'unanswered') {
         this.getUnansweredQuestions();
-      } else if (flag === "answered") {
+      } else if (flag === 'answered') {
         this.getAnsweredQuestions();
       }
     },
@@ -303,36 +303,36 @@ export default {
       this.isLoading = true;
       this.offset = this.offset + 1;
       if (
-        currentFilterFlag &&
-        (currentFilterFlag === "recent" || currentFilterFlag === "mostViewed")
+        this.currentFilterFlag
+        && (this.currentFilterFlag === 'recent' || this.currentFilterFlag === 'mostViewed')
       ) {
         this.getQuestions();
-      } else if (this.currentFilterFlag === "unanswered") {
+      } else if (this.currentFilterFlag === 'unanswered') {
         this.getUnansweredQuestions();
-      } else if (flag === "answered") {
+      } else if (this.currentFilterFlag === 'answered') {
         this.getAnsweredQuestions();
       }
-    }
+    },
   },
   created() {
     if (!this.queryParams) {
-      this.$vueEventBus.$emit("isSearchQuery", false);
+      this.$vueEventBus.$emit('isSearchQuery', false);
     }
     this.getQuestions();
     if (this.slug) {
       this.slugCapitalize = this.capitalize(this.slug);
-      this.currentFilterFlag = "";
+      this.currentFilterFlag = '';
     }
   },
   computed: {
     timestamp() {
-      return item => {
-        if (Object.prototype.hasOwnProperty.call(item, "modifiedAt")) {
+      return (item) => {
+        if (Object.prototype.hasOwnProperty.call(item, 'modifiedAt')) {
           return this.$moment(item.modifiedAt).fromNow();
         }
         return this.$moment(item.updatedAt).fromNow();
       };
-    }
-  }
+    },
+  },
 };
 </script>

@@ -87,49 +87,49 @@
 </template>
 
 <script>
-import VueTagsInput from "@johmun/vue-tags-input";
-import { VueEditor } from "vue2-editor";
-import toast from "../services/toast";
-import sidebarMixin from "../mixins/sidebarMixin";
-import Notifiation from "@/components/Message.vue";
+import VueTagsInput from '@johmun/vue-tags-input';
+import { VueEditor } from 'vue2-editor';
+import toast from '../services/toast';
+import sidebarMixin from '../mixins/sidebarMixin';
+import Notifiation from '@/components/Message.vue';
 
 export default {
-  name: "AppAskQuestion",
+  name: 'AppAskQuestion',
   components: {
     VueTagsInput,
     VueEditor,
-    Notifiation
+    Notifiation,
   },
   mixins: [sidebarMixin],
-  props: ["questionData"],
+  props: ['questionData'],
   data() {
     return {
-      err: "",
+      err: '',
       isUpdate: !!this.questionData,
       isSubmit: false,
-      content: "",
+      content: '',
       customToolbar: [
-        ["bold", "italic", "underline"],
+        ['bold', 'italic', 'underline'],
         [{ header: 1 }, { header: 2 }], // custom button values
-        [{ list: "ordered" }, { list: "bullet" }],
-        [{ script: "sub" }, { script: "super" }], // superscript/subscript
-        [{ indent: "-1" }, { indent: "+1" }], // outdent/indent
-        ["image", "code-block"]
+        [{ list: 'ordered' }, { list: 'bullet' }],
+        [{ script: 'sub' }, { script: 'super' }], // superscript/subscript
+        [{ indent: '-1' }, { indent: '+1' }], // outdent/indent
+        ['image', 'code-block'],
       ],
       suggestionsQuestions: [],
-      tag: "",
+      tag: '',
       tags: [],
       autocompleteItems: [],
       debounce: null,
       question: {
-        name: "",
-        description: "",
-        isAnonymous: false
-      }
+        name: '',
+        description: '',
+        isAnonymous: false,
+      },
     };
   },
   watch: {
-    tag: "initItems"
+    tag: 'initItems',
   },
   methods: {
     scrollToTop() {
@@ -144,17 +144,17 @@ export default {
       const url = `${this.$BASE_URL}api/v1/tag?q=${this.tag}`;
       clearTimeout(this.debounce);
       this.debounce = setTimeout(() => {
-        this.$http.get(url).then(response => {
+        this.$http.get(url).then((response) => {
           this.autocompleteItems = response.data.data.map(a => ({
             text: a.tag,
-            _id: a._id
+            _id: a._id,
           }));
         });
       }, 600);
     },
     suggestions($event) {
       if (!$event.target.value.length) {
-        this.closeAllLists;
+        this.closeAllLists();
       }
       if ($event.target.value.length < 2) return;
       const val = $event.target.value;
@@ -166,10 +166,10 @@ export default {
       }
       clearTimeout(this.debounce);
       this.debounce = setTimeout(() => {
-        this.$http.get(url).then(response => {
+        this.$http.get(url).then((response) => {
           this.suggestionsQuestions = response.data.data.map(a => ({
             name: a.name,
-            slug: a.slug
+            slug: a.slug,
           }));
           this.autocomplete(this.suggestionsQuestions);
         });
@@ -178,15 +178,15 @@ export default {
     handleSubmit() {
       const tags = this.tags.map(tag => ({
         name: tag.text,
-        _id: tag._id
+        _id: tag._id,
       }));
       const postData = {
         tags,
         name: this.question.name,
         description: this.content,
-        isAnonymous: this.question.isAnonymous
+        isAnonymous: this.question.isAnonymous,
       };
-      this.err = "";
+      this.err = '';
       this.isSubmit = true;
       if (this.questionData) {
         this.$http
@@ -194,17 +194,17 @@ export default {
             `${this.$BASE_URL}api/v1/question/${this.questionData._id}`,
             postData,
             {
-              errorHandle: false
-            }
+              errorHandle: false,
+            },
           )
-          .then(response => {
+          .then((response) => {
             const { message } = response.data;
             this.isSubmit = false;
             this.reRenderSidebar();
-            this.$router.push("/profile");
+            this.$router.push('/profile');
             toast.success(message);
           })
-          .catch(err => {
+          .catch((err) => {
             this.isSubmit = false;
             this.err = err;
             this.scrollToTop();
@@ -212,16 +212,16 @@ export default {
       } else {
         this.$http
           .post(`${this.$BASE_URL}api/v1/question`, postData, {
-            errorHandle: false
+            errorHandle: false,
           })
-          .then(response => {
+          .then((response) => {
             const { message } = response.data;
             this.isSubmit = false;
             this.reRenderSidebar();
-            this.$router.push("/");
+            this.$router.push('/');
             toast.success(message);
           })
-          .catch(err => {
+          .catch((err) => {
             this.isSubmit = false;
             this.err = err;
             this.scrollToTop();
@@ -231,41 +231,41 @@ export default {
     autocomplete(arr) {
       this.closeAllLists();
       const myInputCustom = this.$refs.myInput;
-      const a = document.createElement("DIV");
-      a.setAttribute("id", `${myInputCustom.id}autocomplete-custom-list`);
-      a.setAttribute("class", "autocomplete-custom-items");
+      const a = document.createElement('DIV');
+      a.setAttribute('id', `${myInputCustom.id}autocomplete-custom-list`);
+      a.setAttribute('class', 'autocomplete-custom-items');
       myInputCustom.parentNode.appendChild(a);
-      for (let i = 0; i < arr.length; i++) {
+      for (let i = 0; i < arr.length; i += 1) {
         const { name, slug } = arr[i];
-        const b = document.createElement("DIV");
+        const b = document.createElement('DIV');
         b.innerHTML = `<a href="/question/${slug}">${name}</a>`;
         a.appendChild(b);
       }
     },
     closeAllLists() {
-      const x = document.getElementsByClassName("autocomplete-custom-items");
-      for (let i = 0; i < x.length; i++) {
+      const x = document.getElementsByClassName('autocomplete-custom-items');
+      for (let i = 0; i < x.length; i += 1) {
         x[i].parentNode.removeChild(x[i]);
       }
-    }
+    },
   },
   created() {
-    this.question.name = this.questionData ? this.questionData.name : "";
-    this.content = this.questionData ? this.questionData.description : "";
+    this.question.name = this.questionData ? this.questionData.name : '';
+    this.content = this.questionData ? this.questionData.description : '';
     this.question.isAnonymous = this.questionData
       ? this.questionData.isAnonymous
       : this.question.isAnonymous;
     if (
-      this.questionData &&
-      this.questionData.tags &&
-      this.questionData.tags.length
+      this.questionData
+      && this.questionData.tags
+      && this.questionData.tags.length
     ) {
       this.tags = this.questionData.tags.map(tag => ({
         text: tag.name,
-        _id: tag._id
+        _id: tag._id,
       }));
     }
-  }
+  },
 };
 </script>
 <style>

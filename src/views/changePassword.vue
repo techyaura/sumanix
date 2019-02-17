@@ -19,11 +19,11 @@
                 Password
                 <span>*</span>
               </label>
-              <input 
+              <input
                 placeholder="*********"
                 autocomplete="off"
-                class="custom-input" 
-                type="password" 
+                class="custom-input"
+                type="password"
                 v-model="user.password">
             </p>
           </div>
@@ -42,64 +42,58 @@
 </template>
 
 <script>
-import Notifiation from "@/components/Message.vue";
-import Spinner from "@/components/Spinner.vue";
-// import VueTagsInput from "@johmun/vue-tags-input";
-import toast from "../services/toast";
-import spinnerMixin from "../mixins/spinnerMixin";
+import Notifiation from '@/components/Message.vue';
+import toast from '../services/toast';
 
 export default {
-  name: "ChangePassword",
+  name: 'ChangePassword',
   components: {
-    Spinner,
-    Notifiation
-    // VueTagsInput
+    Notifiation,
   },
-  mixins: [spinnerMixin],
   beforeCreate() {
-    this.$vueEventBus.$emit("isLoginPageLanding", true);
+    this.$vueEventBus.$emit('isLoginPageLanding', true);
   },
   beforeRouteEnter: (to, from, next) => {
-    next(vm => {
-      vm.$vueEventBus.$emit("isLoginPageLanding", true);
+    next((vm) => {
+      vm.$vueEventBus.$emit('isLoginPageLanding', true);
     });
   },
   beforeRouteLeave(to, from, next) {
-    this.$vueEventBus.$emit("isLoginPageLanding", false);
+    this.$vueEventBus.$emit('isLoginPageLanding', false);
     next();
   },
   data() {
     return {
       isSubmit: false,
-      err: "",
+      err: '',
       user: {
-        password: ""
-      }
+        password: '',
+      },
     };
   },
   methods: {
     handleSubmit() {
       this.isSubmit = true;
-      this.err = "";
+      this.err = '';
       const postData = {};
       if (this.user.password) {
         postData.password = this.user.password;
       }
       this.$http
         .put(`${this.$BASE_URL}api/v1/auth/user/changePassword`, postData, {
-          errorHandle: false
+          errorHandle: false,
         })
-        .then(response => {
+        .then((response) => {
           const { message } = response.data;
           this.isSubmit = false;
           toast.success(message);
-          this.$router.push("/profile");
+          this.$router.push('/profile');
         })
-        .catch(err => {
+        .catch((err) => {
           this.isSubmit = false;
           this.err = err;
         });
-    }
+    },
   },
 };
 </script>
