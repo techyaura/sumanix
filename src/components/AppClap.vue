@@ -2,7 +2,7 @@
   <span v-if="question.points >= 0" class="question-favorite">
     <a href="javascript:void(0);" v-on:click="clap()" title="clap if you like it!">
       <img src="/img/icons/clap.svg" style="width: 30px;">
-      {{votes()}}
+      <span itemprop="upvoteCount">{{votes()}}</span>
     </a>
   </span>
 </template>

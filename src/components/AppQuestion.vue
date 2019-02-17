@@ -1,7 +1,5 @@
 <template>
   <div>
-    <!-- <section class="container main-content"> -->
-    <!-- <div class="row"> -->
     <div class="col-md-9">
       <div class="tabs-warp question-tab">
         <ul class="tabs">
@@ -46,52 +44,41 @@
               :speed="spinner.speed"
             />
             <article
+              itemscope
+              itemtype="http://schema.org/Question"
               class="question-custom question question-type-normal"
               v-for="item in questions"
               v-bind:data="item"
               v-bind:key="item._id"
             >
-              <h2>
+              <h2 itemprop="name">
                 <router-link
                   :to="{name: 'questionDetail', params: { slug: item.slug || item.name }}"
                 >{{item.name}}</router-link>
               </h2>
-              <!-- <router-link
-                v-if="isLogin && session && session._id === item.uId"
-                class="question-report"
-                :to="{name: 'questionUpdate', params: { slug: item.slug }}"
-              >Edit</router-link>-->
-              <!-- <a class="question-report" href="#">Report</a> -->
-              <!-- <div class="question-type-main">
-                <i class="icon-question-sign"></i>Question
-              </div>-->
-              <div class="question-author" v-if="item.isAnonymous === true">
-                <span></span>
-                <img alt="anonymous" src="/img/profile/anonymous.svg" title="anonymous">
-                <!-- <a href="javascript:void(0)" original-title="anonymous" class="question-author-img tooltip-n">
-                  <span></span>
-                  <img alt="anonymous" src="/img/profile/anonymous.svg">
-                </a>-->
+              <div itemscope itemtype="http://schema.org/Person" class="question-author" v-if="item.isAnonymous === true">
+                <img itemprop="image" alt="anonymous" src="/img/profile/anonymous.svg" title="anonymous">
               </div>
-              <div class="question-author" v-if="item.isAnonymous === false">
-                <span></span>
+              <div
+                class="question-author"
+                v-if="item.isAnonymous === false"
+                itemprop="author"
+                itemscope
+                itemtype="http://schema.org/Person"
+              >
                 <img
+                  itemprop="image"
                   width="60"
                   height="60"
                   :src="'/img/profile/' + item.avatar[0]"
                   :alt="item.username[0]"
                   :title="item.username[0]"
                 >
-                <!-- <a href="javascript:void(0)" original-title="anonymous" class="question-author-img tooltip-n">
-                  <span></span>
-                  <img alt="anonymous" src="/img/profile/anonymous.svg">
-                </a>-->
               </div>
               <div class="question-inner">
                 <div class="clearfix"></div>
                 <div class="question-details">
-                 <AppClap :question="item"/>
-                  
+                  <AppClap :question="item"/>
                 </div>
                 <span class="question-category">
                   <span class="tagAdjust">
@@ -106,9 +93,12 @@
                   >{{tag.name}}</router-link>
                 </span>
                 <span class="question-comment">
-                  <router-link :to="{name: 'questionDetail', params: { slug: item.slug || item.name }}">
+                  <router-link
+                    :to="{name: 'questionDetail', params: { slug: item.slug || item.name }}"
+                  >
                     <i class="icon-comment"></i>
-                    {{item.totalAnswers}} Answers
+                    <span itemprop="answerCount">{{item.totalAnswers}}</span>
+                    Answers
                   </router-link>
                 </span>
                 <span class="question-view">
@@ -118,8 +108,10 @@
                 <span class="question-date question-date-custom-tag">
                   <i class="icon-time"></i>
                   {{item.activityType? item.activityType + ' ': 'asked '}}
-                  {{timestamp(item)}}
-                  <!-- {{moment().startOf('hour').}} -->
+                  <time
+                    itemprop="dateCreated"
+                    :datetime="item.modifiedAt"
+                  >{{timestamp(item)}}</time>
                 </span>
                 <div class="clearfix"></div>
               </div>
@@ -139,10 +131,8 @@
           </div>
         </div>
       </div>
-      <!-- End page-content -->
     </div>
   </div>
-  <!-- End wrap -->
 </template>
 
 <style>
@@ -178,13 +168,13 @@
 </style>
 
 <script>
-import Spinner from '@/components/Spinner.vue';
-import { filterMixin, spinnerMixin, breadcrumbMixin } from '../mixins';
-import AppClap from '@/components/AppClap.vue';
+import Spinner from "@/components/Spinner.vue";
+import { filterMixin, spinnerMixin, breadcrumbMixin } from "../mixins";
+import AppClap from "@/components/AppClap.vue";
 
 export default {
-  name: 'AppQuestion',
-  params: ['query'],
+  name: "AppQuestion",
+  params: ["query"],
   components: {
     Spinner,
     AppClap
@@ -194,26 +184,26 @@ export default {
     return {
       isLoading: false,
       isLoaded: false,
-      loadingText: 'Load More Questions',
+      loadingText: "Load More Questions",
       count: 0,
       offset: 1,
       limit: 40,
-      currentFilterFlag: 'recent',
+      currentFilterFlag: "recent",
       isEditAllow: false,
       questions: [],
       slug: this.$route.params.slug,
-      slugCapitalize: '',
+      slugCapitalize: "",
       isEventEmitted: false,
-      queryParams: this.$route.query.q || '',
+      queryParams: this.$route.query.q || ""
     };
   },
   methods: {
     getAnsweredQuestions() {
       this.isLoading = true;
-      this.loadingText = 'Loading...';
-      let url = `${this.$BASE_URL}api/v1/question/answered?limit=${this.limit}&offset=${
-        this.offset
-      }`;
+      this.loadingText = "Loading...";
+      let url = `${this.$BASE_URL}api/v1/question/answered?limit=${
+        this.limit
+      }&offset=${this.offset}`;
       if (this.slug) {
         url = `${url}&q=${this.slug}`;
       }
@@ -223,27 +213,27 @@ export default {
       if (this.currentFilterFlag) {
         url = `${url}&flag=${this.currentFilterFlag}`;
       }
-      this.$http.get(url).then((response) => {
+      this.$http.get(url).then(response => {
         const aggregate = response.data.data[0];
         if (Array.isArray(aggregate.count) && aggregate.count.length) {
           this.count = aggregate.count[0].count;
           this.questions = this.questions.concat(aggregate.questions);
-        } else{
+        } else {
           this.count = 0;
           this.questions = [];
         }
         this.isLoading = false;
-        this.loadingText = 'Load More Questions';
+        this.loadingText = "Load More Questions";
         this.isLoaded = true;
         this.spinner.status = false;
       });
     },
     getUnansweredQuestions() {
       this.isLoading = true;
-      this.loadingText = 'Loading...';
-      let url = `${this.$BASE_URL}api/v1/question/unanswered?limit=${this.limit}&offset=${
-        this.offset
-      }`;
+      this.loadingText = "Loading...";
+      let url = `${this.$BASE_URL}api/v1/question/unanswered?limit=${
+        this.limit
+      }&offset=${this.offset}`;
       if (this.slug) {
         url = `${url}&q=${this.slug}`;
       }
@@ -253,21 +243,21 @@ export default {
       if (this.currentFilterFlag) {
         url = `${url}&flag=${this.currentFilterFlag}`;
       }
-      this.$http.get(url).then((response) => {
+      this.$http.get(url).then(response => {
         const aggregate = response.data.data[0];
         if (Array.isArray(aggregate.count) && aggregate.count.length) {
           this.count = aggregate.count[0].count;
           this.questions = this.questions.concat(aggregate.questions);
         }
         this.isLoading = false;
-        this.loadingText = 'Load More Questions';
+        this.loadingText = "Load More Questions";
         this.isLoaded = true;
         this.spinner.status = false;
       });
     },
     getQuestions() {
       this.isLoading = true;
-      this.loadingText = 'Loading...';
+      this.loadingText = "Loading...";
       let url = `${this.$BASE_URL}api/v1/question/?limit=${this.limit}&offset=${
         this.offset
       }`;
@@ -280,16 +270,16 @@ export default {
       if (this.currentFilterFlag) {
         url = `${url}&flag=${this.currentFilterFlag}`;
       }
-      this.$http.get(url).then((response) => {
+      this.$http.get(url).then(response => {
         const aggregate = response.data.data[0];
         if (Array.isArray(aggregate.count) && aggregate.count.length) {
           this.count = aggregate.count[0].count;
-          if(aggregate.questions.length){
+          if (aggregate.questions.length) {
             this.questions = this.questions.concat(aggregate.questions);
           }
         }
         this.isLoading = false;
-        this.loadingText = 'Load More Questions';
+        this.loadingText = "Load More Questions";
         this.isLoaded = true;
         this.spinner.status = false;
       });
@@ -300,46 +290,49 @@ export default {
       this.offset = 1;
       this.questions = [];
       document.title = this.title(`${flag} Questions`);
-      if (flag && ( flag === 'recent' || flag === 'mostViewed')) {
+      if (flag && (flag === "recent" || flag === "mostViewed")) {
         this.getQuestions();
-      } else if(flag === 'unanswered'){
+      } else if (flag === "unanswered") {
         this.getUnansweredQuestions();
-      }else if(flag === 'answered'){
+      } else if (flag === "answered") {
         this.getAnsweredQuestions();
-      }     
+      }
     },
     loadMore() {
       this.isLoaded = false;
       this.isLoading = true;
       this.offset = this.offset + 1;
-      if (currentFilterFlag && ( currentFilterFlag === 'recent' || currentFilterFlag === 'mostViewed')) {
+      if (
+        currentFilterFlag &&
+        (currentFilterFlag === "recent" || currentFilterFlag === "mostViewed")
+      ) {
         this.getQuestions();
-      } else if(this.currentFilterFlag === 'unanswered'){
+      } else if (this.currentFilterFlag === "unanswered") {
         this.getUnansweredQuestions();
-      }else if(flag === 'answered'){
+      } else if (flag === "answered") {
         this.getAnsweredQuestions();
-      } 
-    },
+      }
+    }
   },
   created() {
     if (!this.queryParams) {
-      this.$vueEventBus.$emit('isSearchQuery', false);
+      this.$vueEventBus.$emit("isSearchQuery", false);
     }
     this.getQuestions();
     if (this.slug) {
       this.slugCapitalize = this.capitalize(this.slug);
-      this.currentFilterFlag = '';
+      this.currentFilterFlag = "";
     }
   },
   computed: {
     timestamp() {
-      return (item) => {
-        if (Object.prototype.hasOwnProperty.call(item, 'modifiedAt')) {
+      return item => {
+        if (Object.prototype.hasOwnProperty.call(item, "modifiedAt")) {
           return this.$moment(item.modifiedAt).fromNow();
         }
         return this.$moment(item.updatedAt).fromNow();
       };
-    },
-  },
+    }
+  }
 };
 </script>

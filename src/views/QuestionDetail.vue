@@ -1,5 +1,6 @@
 <template>
-  <div class="col-md-9 question-detail">
+  <div class="col-md-9 question-detail" itemscope
+      itemtype="http://schema.org/QAPage">
     <Spinner
       :status="spinner.status"
       :color="spinner.color"
@@ -9,10 +10,12 @@
       :speed="spinner.speed"
     />
     <article
+      itemscope
+      itemtype="http://schema.org/Question"
       class="question-custom question single-question question-type-normal"
       v-if="!spinner.status"
     >
-      <h2>
+      <h2 itemprop="name">
         <a href="javascript:void(0)">{{question.name}}</a>
       </h2>
       <a
@@ -29,78 +32,39 @@
       <div class="question-inner">
         <div class="clearfix"></div>
         <div class="question-desc question-desc-custom">
-          <p class="post-content" v-html="question.description">
-            <!-- {{question.description}} -->
-          </p>
+          <p itemprop="text" class="post-content" v-html="question.description"></p>
         </div>
-        <!-- <div class="question-details">
-          <span class="question-answered question-answered-done">
-            <i class="icon-ok"></i>solved
-          </span>
-          <span class="question-favorite">
-            <i class="icon-star"></i>5
-          </span>
-        </div>-->
         <span class="question-category">
           <span class="question-date">
             <i class="icon-time"></i>
-            {{'asked ' + timestamp(question)}}
+            <time
+              itemprop="dateCreated"
+              :datetime="question.modifiedAt"
+            >{{'asked ' + timestamp(question)}}</time>
           </span>
           <span class="tagAdjust">
             <i class="icon-suitcase"></i>
           </span>
           <router-link
+            itemprop="keywords"
             class="anchor-space"
             v-bind:to="{name: 'tagQuestion', params: {slug: tag.slug}}"
             v-for="tag in question.tags"
             v-bind:data="tag"
             v-bind:key="tag.name"
           >{{tag.name}}</router-link>
-          <!-- </span> -->
         </span>
-        <!-- <span class="question-comment">
-          <a href="#">
-            <i class="icon-comment"></i> {{question.totalAnswers}} Answers
-          </a>
-        </span>-->
         <span class="question-view">
           <i class="icon-user"></i>
           {{question.views + ' views'}}
         </span>
-        <!-- <AppQuestionVoteDevote v-if="!spinner.status && isValid" v-bind:question="question"/>-->
-        <span style="float:right"><AppClap :question="question"/> </span>
-        
+        <span style="float:right">
+          <AppClap :question="question"/>
+        </span>
+
         <div class="clearfix"></div>
       </div>
     </article>
-    <!-- <div class="share-tags page-content">
-      <div class="question-tags">
-        <i class="icon-tags"></i>
-        <router-link
-          v-for="item in question.tags"
-          :to="{name: 'tagQuestion', params: {slug: item.name}}"
-        >{{item.name + ' '}}</router-link>
-      </div>
-      <div class="share-inside">
-        <i class="icon-share-alt"></i>Tags
-      </div>
-      <div class="clearfix"></div>
-    </div>-->
-    <!-- End article.post -->
-    <!-- End about-author -->
-    <!-- <div id="related-posts" v-if="recommendations.length">
-      <h2>Related Questions</h2>
-      <ul class="related-posts">
-        <li class="related-item" v-for="item in recommendations">
-          <h3>
-            <router-link :to="{name: 'questionDetail', params: { slug: item.slug }}">
-              <i class="icon-double-angle-right"></i>
-              {{item.name}}
-            </router-link>
-          </h3>
-        </li>
-      </ul>
-    </div>-->
     <div>
       <AppAnswerList v-if="!spinner.status && isValid" v-bind:question="question"/>
     </div>
@@ -112,21 +76,21 @@
 </template>
 
 <script>
-import Spinner from '@/components/Spinner.vue';
-import AppQuestionVoteDevote from '@/components/AppQuestionVoteDevote.vue';
-import AppAnswerList from '@/components/AppAnswerList.vue';
-import AppAnswer from '@/components/AppAnswer.vue';
-import AppClap from '@/components/AppClap.vue';
+import Spinner from "@/components/Spinner.vue";
+import AppQuestionVoteDevote from "@/components/AppQuestionVoteDevote.vue";
+import AppAnswerList from "@/components/AppAnswerList.vue";
+import AppAnswer from "@/components/AppAnswer.vue";
+import AppClap from "@/components/AppClap.vue";
 import {
   spinnerMixin,
   sidebarMixin,
   sessionMixin,
-  breadcrumbMixin,
-} from '../mixins';
+  breadcrumbMixin
+} from "../mixins";
 
 export default {
-  name: 'QuestionDetail',
-  props: ['slug'],
+  name: "QuestionDetail",
+  props: ["slug"],
   components: {
     Spinner,
     AppAnswerList,
@@ -139,19 +103,19 @@ export default {
     return {
       isValid: false,
       question: {
-        totalAnswers: '',
-        views: '',
+        totalAnswers: "",
+        views: ""
       },
-      recommendations: [],
+      recommendations: []
     };
   },
   methods: {
     updateView(slug) {
       this.$http
         .get(`${this.$BASE_URL}api/v1/question/${slug}/views`, {
-          errorHandle: false,
+          errorHandle: false
         })
-        .then((response) => {
+        .then(response => {
           this.views = response.data.data;
         });
     },
@@ -160,30 +124,30 @@ export default {
       this.$http
         .delete(`${this.$BASE_URL}api/v1/question/${questionId}`)
         .then(() => {
-          this.$router.push('/profile');
+          this.$router.push("/profile");
         });
     },
     questionDetail(slug) {
       this.$http
         .get(`${this.$BASE_URL}api/v1/question/${slug}`, { errorHandle: false })
-        .then((response) => {
+        .then(response => {
           this.isValid = true;
           this.question = response.data.data;
           document.title = this.title(`${this.question.name}`);
           this.spinner.status = false;
         })
         .catch(() => {
-          this.$router.push('/404');
+          this.$router.push("/404");
         });
     },
     getRecommendations(slug) {
       this.$http
         .get(`${this.$BASE_URL}api/v1/question/${slug}/recommendations`)
-        .then((response) => {
+        .then(response => {
           this.recommendations = response.data.data;
           this.spinner.status = false;
         });
-    },
+    }
   },
   created() {
     if (this.$route.params.slug) {
@@ -197,8 +161,8 @@ export default {
   computed: {
     timestamp() {
       return item => this.$moment(item.createdAt).fromNow();
-    },
-  },
+    }
+  }
 };
 </script>
 
