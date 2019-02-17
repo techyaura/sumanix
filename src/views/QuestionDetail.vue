@@ -47,7 +47,7 @@
           </span>
           <router-link
             itemprop="keywords"
-            class="anchor-space"
+            class="anchor-space q-tags"
             v-bind:to="{name: 'tagQuestion', params: {slug: tag.slug}}"
             v-for="tag in question.tags"
             v-bind:data="tag"
