@@ -22,9 +22,11 @@
   text-align: center;
 }
 a.q-tags {
-  color: #39739d;
-  background-color: #e1ecf4;
+  color: white;
+  background-color: #ccc;
   border-color: #e1ecf4;
   margin: 0 2px 0;
-  padding: 0 5px;
+  padding: 0 7px;
+  font-size: 14px;
+  border-radius: 4px;
 }

@@ -11,16 +11,16 @@
           :speed="spinner.speed"
         />
         <div class="widget widget_social widget_social-custom">
-          <h3 class="widget_title">Tags</h3>
+          <h3 class="widget_title" style="margin-bottom: 50px;">Tags</h3>
           <ul>
             <li class="facebook-fans" v-for="item in tags" v-bind:data="item" v-bind:key="item.tag">
-              <router-link :to="{name: 'tagQuestion', params: {slug: item.tag}}">
-                <strong>
-                  <span>{{item.count}}</span>
-                  <br>
-                  <small>{{item.slug}}</small>
-                </strong>
+              <router-link class="q-tags" :to="{name: 'tagQuestion', params: {slug: item.tag}}">
+                <!-- <strong> -->
+                  <small> {{item.slug}}</small>
+                <!-- </strong> -->
+
               </router-link>
+              <span class="count">X  {{item.count}}</span>
             </li>
           </ul>
         </div>
@@ -78,11 +78,25 @@ export default {
 
 <style>
 .widget_social-custom ul li {
-  width: 20% !important;
+  /* width: 20% !important;
   padding-right: 10px !important;
+  height: 35px !important; */
+      width: 20% !important;
+    /* padding-right: 10px !important; */
+    height: 50px !important;
+    border-bottom: 1px solid #ccc;
+    margin-left: 40px;
 }
-.widget_social li.facebook-fans a strong {
-  background-color: #8a8a8a !important;
+.widget_social-custom ul li span.count{
+  color: black;
+  padding-top: 5px;
+}
+.widget_social li.facebook-fans a {
+  background-color: #ccc;
+  /* padding-bottom: 10px !important; */
+  float: left;
+  padding: 5px;
+
 }
 @media only screen and (max-width: 479px) {
   .widget_social-custom ul li {
