@@ -31,7 +31,7 @@ a.q-tags {
   border-radius: 4px;
 }
 .profile-sidebar .router-link-exact-active{
-  background-color: #ff7361;
+  background-color:#898989;
 }
 .profile-sidebar .router-link-exact-active:hover{
   color: #ddd;

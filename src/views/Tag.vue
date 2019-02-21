@@ -92,7 +92,7 @@ export default {
   padding-top: 5px;
 }
 .widget_social li.facebook-fans a {
-  background-color: #ccc;
+  background-color: #9a9595;
   /* padding-bottom: 10px !important; */
   float: left;
   padding: 5px;

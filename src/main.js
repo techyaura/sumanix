@@ -11,7 +11,7 @@ import './assets/css/prettyPhoto.css';
 import './assets/css/font-awesome/css/font-awesome.min.css';
 import './assets/css/fontello/css/fontello.css';
 import './assets/css/style.css';
-import './assets/css/skins/skins.css';
+import './assets/css/skins/gray.css';
 import './assets/css/responsive.css';
 import './assets/css/custom.css';
 import requestHandler from './services/requestHandler';
