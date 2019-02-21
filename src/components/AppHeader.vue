@@ -26,7 +26,7 @@
               <router-link v-show="!isLoggedInFlag" to="/login">Log In</router-link>
             </li>
             <li class="anchor-link right-nv-header">
-              <router-link v-show="isLoggedInFlag" :to="'/@' + user.username">Profile</router-link>
+              <router-link v-show="isLoggedInFlag" :to="'/@' + username">Profile</router-link>
             </li>
             <!-- <li class="anchor-link right-nv-header">
               <router-link to="/about">About Us</router-link>
@@ -92,6 +92,7 @@ export default {
     return {
       isLoggedInFlag: this.isLoggedIn || false,
       isHomePageLand: false,
+      username: (this.user) ? this.user.username : '',
       //  profileRoute: `/@${  this.user.username}`,
     };
   },
