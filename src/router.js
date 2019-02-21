@@ -5,6 +5,7 @@ import Home from './views/Home.vue';
 import Register from './views/Register.vue';
 import EmailVerification from './views/EmailVerification.vue';
 import Profile from './views/Profile.vue';
+import Username from './views/Username.vue';
 import ProfileUpdate from './views/ProfileUpdate.vue';
 import QuestionUpdate from './views/QuestionUpdate.vue';
 import AskQuestion from './views/AskQuestion.vue';
@@ -13,6 +14,8 @@ import changePassword from './views/changePassword.vue';
 import Tag from './views/Tag.vue';
 import requireAuth from './services/requireAuth';
 import localStorageService from './services/localStorage';
+import AppMyQuestion from '@/components/AppMyQuestion.vue';
+import AppMyAnswer from '@/components/AppMyAnswer.vue';
 
 Vue.use(Router);
 
@@ -53,23 +56,50 @@ const router = new Router({
       component: EmailVerification,
     },
     {
-      path: '/profile',
-      name: 'profile',
-      component: Profile,
+      path: '/@:username',
+      component: Username,
       beforeEnter: requireAuth,
+      children: [
+        {
+          path: '/',
+          component: Profile,
+        },
+        {
+          path: 'profile/update',
+          component: ProfileUpdate,
+        },
+        {
+          path: 'profile/password',
+          component: changePassword,
+        },
+        {
+          path: 'question',
+          component: AppMyQuestion,
+        },
+        {
+          path: 'answer',
+          component: AppMyAnswer,
+        },
+      ],
     },
-    {
-      path: '/profile/update',
-      name: 'profileUpdate',
-      component: ProfileUpdate,
-      beforeEnter: requireAuth,
-    },
-    {
-      path: '/profile/password',
-      name: 'password',
-      component: changePassword,
-      beforeEnter: requireAuth,
-    },
+    // {
+    //   path: '/profile',
+    //   name: 'profile',
+    //   component: Profile,
+    //   beforeEnter: requireAuth,
+    // },
+    // {
+    //   name: 'profileUpdate',
+    //   path: '/profile/update',
+    //   component: ProfileUpdate,
+    //   beforeEnter: requireAuth,
+    // },
+    // {
+    //   name: 'password',
+    //   path: '/profile/password',
+    //   component: changePassword,
+    //   beforeEnter: requireAuth,
+    // },
     {
       path: '/addQuestion',
       name: 'addQuestion',

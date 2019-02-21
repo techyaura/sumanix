@@ -1,5 +1,6 @@
 <template>
-  <div class="col-md-9">
+<div class="row">
+  <div class="col-md-12">
     <div class="row">
       <div class="user-profile">
         <div class="col-md-12">
@@ -35,6 +36,7 @@
       </div>
     </div>
   </div>
+  </div>
 </template>
 <script>
 import { breadcrumbMixin } from '../mixins';
@@ -44,6 +46,18 @@ export default {
   mixins: [breadcrumbMixin],
   created() {
     document.title = this.title('About Us');
+  },
+  beforeCreate() {
+    this.$vueEventBus.$emit('isLoginPageLanding', true);
+  },
+  beforeRouteEnter: (to, from, next) => {
+    next((vm) => {
+      vm.$vueEventBus.$emit('isLoginPageLanding', true);
+    });
+  },
+  beforeRouteLeave(to, from, next) {
+    this.$vueEventBus.$emit('isLoginPageLanding', false);
+    next();
   },
 };
 </script>

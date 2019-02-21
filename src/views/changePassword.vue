@@ -1,14 +1,7 @@
 <template>
-  <div class="col-md-12">
-    <div class="page-content">
+   <div class="page-content">
       <div class="boxedtitle page-title">
         <h2>Change Password</h2>
-        <router-link
-          class="question-report"
-          :to="{name: 'profileUpdate'}"
-          v-if="!spinner.status"
-          style="background-color: #898989"
-        >Change Password</router-link>
       </div>
       <div class="form-style form-style-4 form-style-4-custom">
         <form @submit.prevent="handleSubmit">
@@ -38,7 +31,6 @@
         </form>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -87,7 +79,7 @@ export default {
           const { message } = response.data;
           this.isSubmit = false;
           toast.success(message);
-          this.$router.push('/profile');
+          // this.$router.push('/profile');
         })
         .catch((err) => {
           this.isSubmit = false;

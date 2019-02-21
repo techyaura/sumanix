@@ -26,7 +26,7 @@
               <router-link v-show="!isLoggedInFlag" to="/login">Log In</router-link>
             </li>
             <li class="anchor-link right-nv-header">
-              <router-link v-show="isLoggedInFlag" to="/profile">Profile</router-link>
+              <router-link v-show="isLoggedInFlag" :to="'/@' + user.username">Profile</router-link>
             </li>
             <!-- <li class="anchor-link right-nv-header">
               <router-link to="/about">About Us</router-link>
@@ -46,7 +46,11 @@
     </div>
 
     <!-- End header-top -->
-    <header id="header" class="index-no-box header_light" v-if="!isHomePageLand  && (isLoggedInFlag || !isLoggedInFlag)"></header>
+    <header
+      id="header"
+      class="index-no-box header_light"
+      v-if="!isHomePageLand  && (isLoggedInFlag || !isLoggedInFlag)"
+    ></header>
     <!-- End header -->
     <div class="section-warp section-warp-custom ask-me" v-if="isHomePageLand && !isLoggedInFlag">
       <div class="container clearfix custom-header-logo">
@@ -88,9 +92,10 @@ export default {
     return {
       isLoggedInFlag: this.isLoggedIn || false,
       isHomePageLand: false,
+      //  profileRoute: `/@${  this.user.username}`,
     };
   },
-  props: ['isLoggedIn'],
+  props: ['isLoggedIn', 'user'],
   beforeCreate() {
     this.$vueEventBus.$on('isLoggedIn', (value) => {
       this.isLoggedInFlag = value;
@@ -190,13 +195,13 @@ li.search-bar input {
   font-size: 20px !important;
 }
 .section-warp-custom {
-    padding: 30px 0 !important;
+  padding: 30px 0 !important;
 }
 .ask-me .col-md-12 {
-    padding-top: 0 !important;
+  padding-top: 0 !important;
 }
 #header-top {
-    height: 65px !important;
+  height: 65px !important;
 }
 @media only screen and (max-width: 479px) {
   li.search-bar {
@@ -206,6 +211,6 @@ li.search-bar input {
   }
   #header-top {
     height: 180px !important;
-}
+  }
 }
 </style>

@@ -1,16 +1,15 @@
 <template>
-  <div class="col-md-12">
     <div class="page-content">
       <div class="boxedtitle page-title">
         <h2>Update Profile</h2>
-        <router-link
+        <!-- <router-link
               class="question-report"
               :to="{name: 'password'}"
               v-if="!spinner.status"
               style="background-color: #898989"
               >
                 Change Password
-              </router-link>
+              </router-link> -->
       </div>
       <Spinner
         :status="spinner.status"
@@ -113,7 +112,6 @@
         </form>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -266,7 +264,7 @@ export default {
           const { message } = response.data;
           this.isSubmit = false;
           toast.success(message);
-          this.$router.push('/profile');
+          // this.$router.push('/profile');
         })
         .catch((err) => {
           this.isSubmit = false;

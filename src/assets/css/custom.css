@@ -30,3 +30,9 @@ a.q-tags {
   font-size: 14px;
   border-radius: 4px;
 }
+.profile-sidebar .router-link-exact-active{
+  background-color: #ff7361;
+}
+.profile-sidebar .router-link-exact-active:hover{
+  color: #ddd;
+}

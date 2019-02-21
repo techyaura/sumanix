@@ -1,8 +1,6 @@
 <template>
-  <div class="page-content page-content-user-profile">
-    <div class="user-profile-widget">
-      <h2>My Questions ({{count}})</h2>
-    </div>
+  <div class="page-content">
+    <div class="boxedtitle page-title"><h2>My Questions ({{count}})</h2></div>
     <Spinner
       :status="spinner.status"
       :color="spinner.color"

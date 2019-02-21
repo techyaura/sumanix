@@ -90,7 +90,7 @@
 import VueTagsInput from '@johmun/vue-tags-input';
 import { VueEditor } from 'vue2-editor';
 import toast from '../services/toast';
-import sidebarMixin from '../mixins/sidebarMixin';
+import { sidebarMixin, sessionMixin } from '../mixins';
 import Notifiation from '@/components/Message.vue';
 
 export default {
@@ -100,7 +100,7 @@ export default {
     VueEditor,
     Notifiation,
   },
-  mixins: [sidebarMixin],
+  mixins: [sidebarMixin, sessionMixin],
   props: ['questionData'],
   data() {
     return {
@@ -201,7 +201,7 @@ export default {
             const { message } = response.data;
             this.isSubmit = false;
             this.reRenderSidebar();
-            this.$router.push('/profile');
+            this.$router.push(`/@${this.session.user.username}/question`);
             toast.success(message);
           })
           .catch((err) => {
