@@ -100,6 +100,7 @@ export default {
   beforeCreate() {
     this.$vueEventBus.$on('isLoggedIn', (value) => {
       this.isLoggedInFlag = value;
+      this.username = localStorageService.getUser().username || '';
       this.$emit('logout', true);
     });
     this.$vueEventBus.$on('isHomePage', (value) => {
