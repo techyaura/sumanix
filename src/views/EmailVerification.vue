@@ -36,7 +36,7 @@ export default {
         localStorage.setItem('user', JSON.stringify(data));
         this.$vueEventBus.$emit('isLoggedIn', true);
         toast.success(message);
-        this.$router.push('/profile');
+        this.$router.push(`/@${username}`);
       })
       .catch(() => {
         this.$router.push('/profile');
