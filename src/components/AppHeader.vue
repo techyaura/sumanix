@@ -21,12 +21,20 @@
             <li class="anchor-link search-bar">
               <AppHeaderSearch></AppHeaderSearch>
             </li>
-            <li class="anchor-link right-nv-header">
-              <a v-show="isLoggedInFlag" href="javascript:void(0)" v-on:click="logout();">Log Out</a>
-              <router-link v-show="!isLoggedInFlag" to="/login">Log In</router-link>
+            <li class="dropdown anchor-link right-nv-header" v-show="!isLoggedInFlag">
+               <router-link to="/login">Log In</router-link>
             </li>
-            <li class="anchor-link right-nv-header">
-              <router-link v-show="isLoggedInFlag" :to="'/@' + username">Profile</router-link>
+            <li class="dropdown anchor-link right-nv-header" v-show="isLoggedInFlag">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);" @click="showDropdown()">{{username}}<span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li @click="showDropdown()">
+                  <router-link :to="'/@' + username">Profile</router-link>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" v-on:click="logout();">Log Out</a>
+                </li>
+              </ul>
             </li>
             <!-- <li class="anchor-link right-nv-header">
               <router-link to="/about">About Us</router-link>
@@ -116,6 +124,7 @@ export default {
   },
   methods: {
     logout() {
+      this.showDropdown();
       localStorageService.destroySession().then(() => {
         this.isLoggedInFlag = false;
         // this.$emit('logout', false);
@@ -132,10 +141,24 @@ export default {
         this.$router.push('/addQuestion');
       }
     },
+    showDropdown() {
+      const element = document.querySelector('.dropdown-menu');
+      element.classList.toggle('dropdown-menu-custom');
+    },
   },
 };
 </script>
 <style scoped>
+.dropdown-menu-custom{
+  display: block
+}
+.dropdown-menu-custom li a{
+  color: #262626;
+}
+.dropdown-menu-custom li:hover{
+  width: 100% !important;
+  background-color: #f5f5f5;
+}
 .header-top-nav li.logoLink {
   font-style: inherit;
   font-size: 20px !important;
