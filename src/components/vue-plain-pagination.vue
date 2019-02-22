@@ -217,5 +217,6 @@ export default {
   .pagination li span.pagination-link--disable{
     margin: 0px !important;
     padding: 3px 11px !important;
+    float: none !important;
   }
 </style>

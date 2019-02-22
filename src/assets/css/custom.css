@@ -36,3 +36,6 @@ a.q-tags {
 .profile-sidebar .router-link-exact-active:hover{
   color: #ddd;
 }
+a {
+  text-decoration: none !important;
+}

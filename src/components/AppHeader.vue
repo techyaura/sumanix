@@ -201,6 +201,9 @@ li.search-bar input {
 .ask-me .col-md-12 {
   padding-top: 0 !important;
 }
+nav ul{
+  margin-bottom: 0px !important;
+}
 #header-top {
   height: 65px !important;
 }

@@ -6,9 +6,11 @@ import router from './router';
 import './registerServiceWorker';
 import './assets/css/base.css';
 import './assets/css/lists.css';
-import './assets/css/bootstrap.min.css';
-import './assets/css/prettyPhoto.css';
+// import './assets/css/bootstrap.min.css';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './assets/css/font-awesome/css/font-awesome.min.css';
+// import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import './assets/css/prettyPhoto.css';
 import './assets/css/fontello/css/fontello.css';
 import './assets/css/style.css';
 import './assets/css/skins/gray.css';
