@@ -209,7 +209,7 @@ export default {
   font-size: 10px;
 }
 li.search-bar {
-  width: 60% !important;
+  width: 55% !important;
   text-align: center !important;
   padding: 0px 42px !important;
 }
