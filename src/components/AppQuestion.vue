@@ -66,7 +66,7 @@
                 itemscope
                 itemtype="http://schema.org/Person"
               >
-                <a :href="'/@' + item.username[0]" >
+                <router-link :to="'/@' + item.username[0]" >
                   <img
                     itemprop="image"
                     width="60"
@@ -75,7 +75,7 @@
                     :alt="item.username[0]"
                     :title="item.username[0]"
                   >
-                </a>
+                </router-link>
               </div>
               <div class="question-inner">
                 <div class="clearfix"></div>
