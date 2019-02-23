@@ -8,7 +8,7 @@
           <div class="form-inputs clearfix">
             <p class="login-text">
               <input type="email" value="Email" placeholder="Email" v-model="user.email">
-              <i class="icon-user"></i>
+              <i class="icon-envelope"></i>
             </p>
             <p class="login-password">
               <input
