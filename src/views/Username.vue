@@ -18,7 +18,7 @@
               <i class="icon-reorder"></i>Profile
               </a>-->
             </li>
-            <li>
+            <li v-if="session && session.user && session.user.username === username">
               <router-link :to="route.update">
                 <i class="icon-reorder"></i>
                 Update Profile
@@ -36,7 +36,7 @@
                 My Answers
               </router-link>
             </li>
-            <li>
+            <li v-if="session && session.user && session.user.username === username">
               <router-link :to="route.password">
                 <i class="icon-link"></i>
                 Change Password
@@ -66,11 +66,13 @@
 // import Spinner from '@/components/Spinner.vue';
 // import AppMyQuestion from '@/components/AppMyQuestion.vue';
 // import AppMyAnswer from '@/components/AppMyAnswer.vue';
-import { breadcrumbMixin, filterMixin, spinnerMixin } from '../mixins';
+import {
+  breadcrumbMixin, filterMixin, spinnerMixin, sessionMixin,
+} from '../mixins';
 
 export default {
   name: 'Username',
-  mixins: [filterMixin, spinnerMixin, breadcrumbMixin],
+  mixins: [filterMixin, spinnerMixin, breadcrumbMixin, sessionMixin],
   data() {
     return {
       user: {},
