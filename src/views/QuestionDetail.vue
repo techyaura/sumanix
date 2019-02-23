@@ -18,7 +18,7 @@
       <h2 itemprop="name">
         <a href="javascript:void(0)">{{question.name}}</a>
       </h2>
-      <a
+      <!-- <a
         class="question-report link-cursor"
         v-on:click="removeQuestion(question._id)"
         v-if="session.isLoggedIn && question.uId === session.user._id"
@@ -28,7 +28,7 @@
         class="question-type-main question-type-main-custom1"
       >
         <router-link :to="{name: 'questionUpdate', params: { slug: question.slug }}">EDIT</router-link>
-      </div>
+      </div> -->
       <div class="question-inner">
         <div class="clearfix"></div>
         <div class="question-desc question-desc-custom">

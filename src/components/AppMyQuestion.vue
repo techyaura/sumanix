@@ -1,6 +1,8 @@
 <template>
   <div class="page-content">
-    <div class="boxedtitle page-title"><h2>My Questions ({{count}})</h2></div>
+    <div class="boxedtitle page-title">
+      <h2>My Questions ({{count}})</h2>
+    </div>
     <Spinner
       :status="spinner.status"
       :color="spinner.color"
@@ -25,14 +27,18 @@
         <a
           class="question-report link-cursor"
           v-if="session.isLoggedIn && session.user && session.user._id === question.uId"
-          v-on:click="removeQuestion(question._id)"
+         @click="showModal(question)"
         >DELETE</a>
+        <AppModal v-show="isModalVisible" @close="closeModal" @action="trigger">
+          <span slot="body">Are you sure to delete this question?</span>
+        </AppModal>
 
         <!-- </div> -->
-        <div class="question-type-main question-type-main-custom" v-if="session.isLoggedIn && session.user && session.user._id === question.uId">
-          <router-link
-            :to="{name: 'questionUpdate', params: { slug: question.slug }}"
-          >EDIT</router-link>
+        <div
+          class="question-type-main question-type-main-custom"
+          v-if="session.isLoggedIn && session.user && session.user._id === question.uId"
+        >
+          <router-link :to="{name: 'questionUpdate', params: { slug: question.slug }}">EDIT</router-link>
         </div>
 
         <div class="question-content">
@@ -60,16 +66,16 @@
           </div>
         </div>
       </article>
-
     </div>
     <div>
       <v-pagination
-        v-if = "count > this.limit"
+        v-if="count > this.limit"
         v-model="currentPage"
         :page-count="pageCount"
         :classes="bootstrapPaginationClasses"
         :labels="customLabels"
-        @change="onChange"></v-pagination>
+        @change="onChange"
+      ></v-pagination>
     </div>
     <br>
   </div>
@@ -81,23 +87,28 @@ import spinnerMixin from '../mixins/spinnerMixin';
 import sessionMixin from '../mixins/sessionMixin';
 import sidebarMixin from '../mixins/sidebarMixin';
 import vPagination from '@/components/vue-plain-pagination.vue';
+import AppModal from '@/components/AppModal.vue';
 
 export default {
   name: 'AppMyQuestion',
   components: {
     Spinner,
     vPagination,
+    AppModal,
   },
   mixins: [spinnerMixin, sessionMixin, sidebarMixin],
   data() {
     return {
+      resourceId: '',
+      isModalVisible: false,
       username: this.$route.params.username,
       questions: [],
       currentPage: 1,
       limit: 10,
       count: 0,
       pageCount: 0,
-      bootstrapPaginationClasses: { // http://getbootstrap.com/docs/4.1/components/pagination/
+      bootstrapPaginationClasses: {
+        // http://getbootstrap.com/docs/4.1/components/pagination/
         ul: 'pagination',
         li: 'page-item',
         liActive: 'active',
@@ -113,21 +124,38 @@ export default {
     };
   },
   methods: {
+    showModal(resource) {
+      this.resourceId = resource._id;
+      this.isModalVisible = true;
+    },
+    closeModal() {
+      this.isModalVisible = false;
+    },
+    trigger() {
+      this.isModalVisible = false;
+      this.removeQuestion();
+    },
     onChange() {
       this.list();
     },
     list() {
-      this.$http.get(`${this.$BASE_URL}api/v1/question/user/${this.username}?offset=${this.currentPage}&limit=${this.limit}`).then((response) => {
-        this.questions = response.data.data;
-        this.count = response.data.count;
-        this.pageCount = Math.ceil(this.count / this.limit);
-        this.spinner.status = false;
-      });
+      this.$http
+        .get(
+          `${this.$BASE_URL}api/v1/question/user/${this.username}?offset=${
+            this.currentPage
+          }&limit=${this.limit}`,
+        )
+        .then((response) => {
+          this.questions = response.data.data;
+          this.count = response.data.count;
+          this.pageCount = Math.ceil(this.count / this.limit);
+          this.spinner.status = false;
+        });
     },
-    removeQuestion(questionId) {
+    removeQuestion() {
       this.spinner.status = true;
       this.$http
-        .delete(`${this.$BASE_URL}api/v1/question/${questionId}`)
+        .delete(`${this.$BASE_URL}api/v1/question/${this.resourceId}`)
         .then(() => {
           this.list();
           this.reRenderSidebar();

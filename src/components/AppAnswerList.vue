@@ -63,15 +63,18 @@
                   </div>
                 </div>
                 <a
+                  class="question-type-main question-type-main-custom1 link-cursor"
+                  @click="showModal(answer)"
+                >DELETE</a>
+                <a
+                  style="cursor:pointer"
                   class="question-report"
                   v-on:click="updateAnswer(answer)"
                   v-if="session.isLoggedIn && answer.user[0]._id === session.user._id"
                 >Edit</a>
-                <a
-                  class="question-type-main question-type-main-custom1 link-cursor"
-                  v-on:click="removeAnswer(answer._id)"
-                  v-if="session.isLoggedIn && answer.user[0]._id === session.user._id"
-                >DELETE</a>
+                <AppModal v-show="isModalVisible" @close="closeModal" @action="trigger">
+                  <span slot="body">Are you sure to delete this answer?</span>
+                </AppModal>
               </div>
               <div class="text custom-text">
                 <p itemprop="text" class="post-content" v-html="answer.name"></p>
@@ -89,20 +92,34 @@ import AppClapAnswer from '@/components/AppClapAnswer.vue';
 import Spinner from '@/components/Spinner.vue';
 import sessionMixin from '../mixins/sessionMixin';
 import spinnerMixin from '../mixins/spinnerMixin';
+import AppModal from '@/components/AppModal.vue';
 
 export default {
   name: 'AppAnswerList',
-  components: { Spinner, AppClapAnswer },
+  components: { Spinner, AppClapAnswer, AppModal },
   mixins: [sessionMixin, spinnerMixin],
   props: ['question'],
   data() {
     return {
+      isModalVisible: false,
+      resourceId: '',
       answers: [],
       session: {},
       spinner: {},
     };
   },
   methods: {
+    showModal(resource) {
+      this.resourceId = resource._id;
+      this.isModalVisible = true;
+    },
+    closeModal() {
+      this.isModalVisible = false;
+    },
+    trigger() {
+      this.isModalVisible = false;
+      this.removeAnswer();
+    },
     list() {
       this.$http
         .get(`${this.$BASE_URL}api/v1/question/${this.question._id}/answer`)
@@ -111,15 +128,16 @@ export default {
           this.spinner.status = false;
         });
     },
-    removeAnswer(answerId) {
+    removeAnswer() {
       this.spinner.status = true;
       this.$http
-        .delete(`${this.$BASE_URL}api/v1/answer/${answerId}`)
+        .delete(`${this.$BASE_URL}api/v1/answer/${this.resourceId}`)
         .then(() => {
           this.list();
         });
     },
     updateAnswer(answer) {
+      window.scrollTo(0, document.body.scrollHeight);
       this.$vueEventBus.$emit('updateAnswer', {
         answerId: answer._id,
         name: answer.name,

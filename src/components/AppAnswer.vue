@@ -7,7 +7,7 @@
       <div id="respond-textarea">
         <p>
           <label class="required" for="comment">
-            Your Answer
+            {{(updatedAnswer.name)? 'Update Answer': 'Your Answer'}}
             <span>*</span>
           </label>
           <vue-editor v-model="content" :editorToolbar="customToolbar"></vue-editor>
