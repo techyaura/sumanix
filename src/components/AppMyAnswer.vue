@@ -92,6 +92,7 @@ export default {
   mixins: [spinnerMixin],
   data() {
     return {
+      username: this.$route.params.username,
       questions: [],
       answers: [],
       currentPage: 1,
@@ -119,7 +120,7 @@ export default {
     },
     list() {
       this.$http
-        .get(`${this.$BASE_URL}api/v1/question/user/answer?offset=${this.currentPage}&limit=${this.limit}`)
+        .get(`${this.$BASE_URL}api/v1/question/user/${this.username}/answer?offset=${this.currentPage}&limit=${this.limit}`)
         .then((response) => {
           if (Array.isArray(response.data.data) && response.data.data.length) {
             const aggregate = response.data.data[0];

@@ -58,7 +58,6 @@ const router = new Router({
     {
       path: '/@:username',
       component: Username,
-      beforeEnter: requireAuth,
       children: [
         {
           path: '/',
@@ -67,10 +66,12 @@ const router = new Router({
         {
           path: 'profile/update',
           component: ProfileUpdate,
+          beforeEnter: requireAuth,
         },
         {
           path: 'profile/password',
           component: changePassword,
+          beforeEnter: requireAuth,
         },
         {
           path: 'question',

@@ -29,9 +29,8 @@
         >DELETE</a>
 
         <!-- </div> -->
-        <div class="question-type-main question-type-main-custom">
+        <div class="question-type-main question-type-main-custom" v-if="session.isLoggedIn && session.user && session.user._id === question.uId">
           <router-link
-            v-if="session.isLoggedIn && session.user && session.user._id === question.uId"
             :to="{name: 'questionUpdate', params: { slug: question.slug }}"
           >EDIT</router-link>
         </div>
@@ -92,6 +91,7 @@ export default {
   mixins: [spinnerMixin, sessionMixin, sidebarMixin],
   data() {
     return {
+      username: this.$route.params.username,
       questions: [],
       currentPage: 1,
       limit: 10,
@@ -117,7 +117,7 @@ export default {
       this.list();
     },
     list() {
-      this.$http.get(`${this.$BASE_URL}api/v1/question/user?offset=${this.currentPage}&limit=${this.limit}`).then((response) => {
+      this.$http.get(`${this.$BASE_URL}api/v1/question/user/${this.username}?offset=${this.currentPage}&limit=${this.limit}`).then((response) => {
         this.questions = response.data.data;
         this.count = response.data.count;
         this.pageCount = Math.ceil(this.count / this.limit);

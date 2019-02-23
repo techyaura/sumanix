@@ -68,7 +68,9 @@ export default {
   mixins: [filterMixin, spinnerMixin, breadcrumbMixin],
   data() {
     return {
-      user: {},
+      username: this.$route.params.username,
+      user: {
+      },
     };
   },
   beforeCreate() {
@@ -85,16 +87,22 @@ export default {
     next();
   },
   methods: {
-    profile() {
-      this.$http.get(`${this.$BASE_URL}api/v1/auth/user`).then((response) => {
-        this.user = response.data.data;
-        document.title = this.title(`User ${this.user.username}`);
-        this.spinner.status = false;
-      });
+    profile(username) {
+      this.$http.get(`${this.$BASE_URL}api/v1/auth/user/${username}`, {
+        errorHandle: false,
+      })
+        .then((response) => {
+          this.user = response.data.data;
+          document.title = this.title(`User ${username}`);
+          this.spinner.status = false;
+        })
+        .catch(() => {
+          this.$router.push('*');
+        });
     },
   },
   created() {
-    this.profile();
+    this.profile(this.username);
   },
 };
 </script>
