@@ -33,9 +33,9 @@
               <i class="icon-star"></i>5
             </span>-->
             <span class="question-category">
-              <span class="tagAdjust">
+              <!-- <span class="tagAdjust">
                 <i class="icon-suitcase"></i>
-              </span>
+              </span> -->
               <router-link
                 class="anchor-space q-tags"
                 v-bind:to="{name: 'tagQuestion', params: {slug: tag.slug || tag.name}}"
@@ -43,10 +43,6 @@
                 v-bind:data="tag"
                 v-bind:key="tag.name"
               >{{tag.name}}</router-link>
-            </span>
-            <span class="question-date">
-              <i class="icon-time"></i>
-              {{$moment(item.createdAt).fromNow()}}
             </span>
             <!-- <span class="question-comment">
               <a href="#">
@@ -59,6 +55,10 @@
             <span class="question-view">
               <i class="icon-user"></i>
               {{item.views + ' views'}}
+            </span>
+            <span class="question-date" style="padding-left: 10px;">
+              <i class="icon-time"></i>
+              {{$moment(item.createdAt).fromNow()}}
             </span>
           </div>
         </div>

@@ -46,7 +46,7 @@
             <article
               itemscope
               itemtype="http://schema.org/Question"
-              class="question-custom question question-type-normal"
+              class="question-custom-home question question-type-normal"
               v-for="item in questions"
               v-bind:data="item"
               v-bind:key="item._id"
@@ -56,7 +56,7 @@
                   :to="{name: 'questionDetail', params: { slug: item.slug || item.name }}"
                 >{{item.name}}</router-link>
               </h2>
-              <div itemscope itemtype="http://schema.org/Person" class="question-author" v-if="item.isAnonymous === true">
+              <!-- <div itemscope itemtype="http://schema.org/Person" class="question-author" v-if="item.isAnonymous === true">
                 <img itemprop="image" alt="anonymous" src="/img/profile/anonymous.svg" title="anonymous">
               </div>
               <div
@@ -76,16 +76,16 @@
                     :title="item.username[0]"
                   >
                 </router-link>
-              </div>
+              </div> -->
               <div class="question-inner">
                 <div class="clearfix"></div>
                 <div class="question-details">
                   <AppClap :question="item"/>
                 </div>
                 <span class="question-category">
-                  <span class="tagAdjust">
+                  <!-- <span class="tagAdjust">
                     <i class="icon-suitcase"></i>
-                  </span>
+                  </span> -->
                   <router-link
                     class="anchor-space q-tags"
                     v-bind:to="{name: 'tagQuestion', params: {slug: tag.slug || tag.name}}"
@@ -114,6 +114,11 @@
                     itemprop="dateCreated"
                     :datetime="item.modifiedAt"
                   >{{timestamp(item)}}</time>
+                  <span itemscope itemtype="http://schema.org/Person">
+                    <router-link :to="'/@' + computeUsername(item)" itemprop="name">
+                      {{computeUsername(item)}}
+                    </router-link>
+                  </span>
                 </span>
                 <div class="clearfix"></div>
               </div>
@@ -137,25 +142,28 @@
   </div>
 </template>
 
-<style>
-.question-date-custom-tag {
+<style scoped>
+.question-custom-home h2,.question-inner {
+  margin-left: 0px !important;
+}
+.question-custom-home .question-date-custom-tag {
   margin-left: 10px !important;
 }
 
-.question h2 {
+.question-custom-home h2 {
   font-size: 15px !important;
 }
-.tagAdjust {
+question-custom-home .tagAdjust {
   float: left;
 }
-.anchor-space {
+question-custom-home .anchor-space {
   margin-left: 5px;
   /* border: 1px solid #ccc !important;
   padding: 2px 5px 2px 5px !important;
   border-radius: 4px !important;
   color: #7a27cc !important; */
 }
-/* .question-custom h2 {
+/* .-home h2 {
   margin: 0 0 30px 0px !important;
 } */
 /* .question-inner {
@@ -334,6 +342,14 @@ export default {
           return this.$moment(item.modifiedAt).fromNow();
         }
         return this.$moment(item.updatedAt).fromNow();
+      };
+    },
+    computeUsername() {
+      return (item) => {
+        if (Array.isArray(item.activityOwner) && item.activityOwner.length) {
+          return item.activityOwner[0];
+        }
+        return item.username[0];
       };
     },
   },

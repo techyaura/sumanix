@@ -8,7 +8,7 @@
       <form @submit.prevent="handleSubmit">
         <Notifiation v-if="err" :err="err"/>
         <div class="form-inputs clearfix">
-          <p>
+          <!-- <p>
             <input
               class="question-full-width no-background"
               type="checkbox"
@@ -18,7 +18,7 @@
             <span
               class="form-description label-description"
             >Do you want to ask question anonymously?</span>
-          </p>
+          </p> -->
           <div class="auto">
             <div class="autocomplete-custom">
               <input
