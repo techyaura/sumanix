@@ -31,14 +31,14 @@
         >
           <div class="comment-body comment-body-answered clearfix">
             <div class="avatar" itemprop="author" itemscope itemtype="http://schema.org/Person">
-              <a :href="'/@' + answer.user[0].username" :title="answer.user[0].username">
+              <router-link :to="'/@' + answer.user[0].username" :title="answer.user[0].username">
                 <img
                   itemprop="image"
                   width="60"
                   height="60"
                   :src="'/img/profile/'+ answer.user[0].avatar"
                 >
-              </a>
+              </router-link>
             </div>
             <AppClapAnswer v-if="!spinner.status" v-bind:answer="answer"/>
             <div class="comment-text">
@@ -49,9 +49,9 @@
                   itemscope
                   itemtype="http://schema.org/Person"
                 >
-                  <a href="javascript:void(0);">
+                  <router-link :to="'/@' + answer.user[0].username">
                     <span itemprop="name">{{answer.user[0].username}}</span>
-                  </a>
+                  </router-link>
                 </div>
                 <div class="comment-meta">
                   <div class="date">
