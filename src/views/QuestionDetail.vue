@@ -42,9 +42,9 @@
               :datetime="question.modifiedAt"
             >{{'asked ' + timestamp(question)}}</time>
           </span>
-          <span class="tagAdjust">
+          <!-- <span class="tagAdjust">
             <i class="icon-suitcase"></i>
-          </span>
+          </span> -->
           <router-link
             itemprop="keywords"
             class="anchor-space q-tags"

@@ -63,6 +63,7 @@
                   </div>
                 </div>
                 <a
+                  v-if="session.isLoggedIn && answer.user[0]._id === session.user._id"
                   class="question-type-main question-type-main-custom1 link-cursor"
                   @click="showModal(answer)"
                 >DELETE</a>
