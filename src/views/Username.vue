@@ -27,13 +27,13 @@
             <li>
               <router-link :to="route.question">
                 <i class="icon-tasks"></i>
-                My Questions
+                  Questions
               </router-link>
             </li>
             <li>
               <router-link :to="route.answer">
                 <i class="icon-table"></i>
-                My Answers
+                  Answers
               </router-link>
             </li>
             <li v-if="session && session.user && session.user.username === username">

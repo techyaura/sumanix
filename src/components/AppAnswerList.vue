@@ -31,12 +31,14 @@
         >
           <div class="comment-body comment-body-answered clearfix">
             <div class="avatar" itemprop="author" itemscope itemtype="http://schema.org/Person">
-              <img
-                itemprop="image"
-                width="60"
-                height="60"
-                :src="'/img/profile/'+ answer.user[0].avatar"
-              >
+              <a :href="'/@' + answer.user[0].username" :title="answer.user[0].username">
+                <img
+                  itemprop="image"
+                  width="60"
+                  height="60"
+                  :src="'/img/profile/'+ answer.user[0].avatar"
+                >
+              </a>
             </div>
             <AppClapAnswer v-if="!spinner.status" v-bind:answer="answer"/>
             <div class="comment-text">

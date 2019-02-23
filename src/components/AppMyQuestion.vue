@@ -29,9 +29,8 @@
         >DELETE</a>
 
         <!-- </div> -->
-        <div class="question-type-main question-type-main-custom">
+        <div class="question-type-main question-type-main-custom" v-if="session.isLoggedIn && session.user && session.user._id === question.uId">
           <router-link
-            v-if="session.isLoggedIn && session.user && session.user._id === question.uId"
             :to="{name: 'questionUpdate', params: { slug: question.slug }}"
           >EDIT</router-link>
         </div>

@@ -66,14 +66,16 @@
                 itemscope
                 itemtype="http://schema.org/Person"
               >
-                <img
-                  itemprop="image"
-                  width="60"
-                  height="60"
-                  :src="'/img/profile/' + item.avatar[0]"
-                  :alt="item.username[0]"
-                  :title="item.username[0]"
-                >
+                <a :href="'/@' + item.username[0]" >
+                  <img
+                    itemprop="image"
+                    width="60"
+                    height="60"
+                    :src="'/img/profile/' + item.avatar[0]"
+                    :alt="item.username[0]"
+                    :title="item.username[0]"
+                  >
+                </a>
               </div>
               <div class="question-inner">
                 <div class="clearfix"></div>
