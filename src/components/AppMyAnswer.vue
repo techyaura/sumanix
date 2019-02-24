@@ -1,6 +1,6 @@
 <template>
-  <div class="page-content">
-    <div class="boxedtitle page-title"><h2>My Answers ({{count}})</h2></div>
+  <div class="page-content t-myanswer">
+    <div class="boxedtitle page-title"><h2>Total Answers ({{count}})</h2></div>
     <Spinner
       :status="spinner.status"
       :color="spinner.color"
@@ -139,3 +139,20 @@ export default {
   },
 };
 </script>
+<style scoped>
+.t-myanswer .question {
+  padding: 10px 20px 10px 20px !important;
+}
+.t-myanswer .boxedtitle.page-title h2 {
+  margin-bottom:0px !important;
+}
+.t-myanswer h3 {
+  font-size: 15px !important;
+}
+@media only screen and (max-width: 479px) {
+  .t-myanswer .user-question h3 {
+    margin-top: 0px !important;
+    padding-top: 0px !important;
+  }
+}
+</style>

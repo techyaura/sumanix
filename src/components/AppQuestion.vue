@@ -173,7 +173,6 @@
   .t-question-home .question-type-normal.question h2,
   .question-type-poll.question h2 {
     padding-top: 0px !important;
-    margin-top: 80px !important;
   }
 }
 </style>
