@@ -107,4 +107,13 @@ export default {
 .t-profile-parent .router-link-exact-active:hover{
   color: #ddd;
 }
+@media only screen and (max-width: 479px) {
+  .t-profile-parent .row{
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+  }
+  .t-profile-parent .col-md-9{
+    float: none !important;
+  }
+}
 </style>

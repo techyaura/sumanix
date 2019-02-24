@@ -242,5 +242,8 @@ export default {
   .t-header #header-top {
     height: 180px !important;
   }
+  .t-header .header-top-nav li a{
+    float: none !important;
+  }
 }
 </style>

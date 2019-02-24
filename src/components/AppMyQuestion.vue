@@ -1,7 +1,7 @@
 <template>
   <div class="page-content t-myquestion">
     <div class="boxedtitle page-title">
-      <h2>My Questions ({{count}})</h2>
+      <h2>Total Questions ({{count}})</h2>
     </div>
     <Spinner
       :status="spinner.status"
@@ -175,9 +175,19 @@ export default {
   margin-right: 70px !important;
   background-color: #cccc !important;
 }
-/* .user-question h3 a {
-  color: black !important;
+.t-myquestion .question {
+  padding: 10px 20px 10px 20px !important;
+}
+.t-myquestion .boxedtitle.page-title h2 {
+  margin-bottom:0px !important;
+}
+.t-myquestion h3 {
   font-size: 15px !important;
-  font-weight: 500 !important;
-} */
+}
+@media only screen and (max-width: 479px) {
+  .t-myquestion .user-question h3 {
+    margin-top: 0px !important;
+    padding-top: 0px !important;
+  }
+}
 </style>
