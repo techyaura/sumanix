@@ -29,6 +29,7 @@ export default {
   },
   methods: {
     handleSubmit() {
+      this.$vueEventBus.$emit('isHomePage', false);
       this.$router.push({ name: 'home', query: { q: this.query } });
     },
   },

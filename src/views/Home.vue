@@ -14,7 +14,7 @@ export default {
   mixins: [sessionMixin, breadcrumbMixin],
   created() {
     document.title = this.title();
-    if (!this.session.isLoggedIn && !this.$route.params.slug) {
+    if (!this.session.isLoggedIn && !this.$route.params.slug && !this.$route.query.q) {
       this.$vueEventBus.$emit('isHomePage', true);
     }
     if (this.$route.query.q) {
