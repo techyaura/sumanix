@@ -46,4 +46,21 @@ export default {
 .header-search-input input[type="text"]{
   line-height: 24px;
 };
+.header-search-input ::-webkit-input-placeholder {
+  text-align: center;
+}
+
+.header-search-input :-moz-placeholder {
+  /* Firefox 18- */
+  text-align: center;
+}
+
+.header-search-input ::-moz-placeholder {
+  /* Firefox 19+ */
+  text-align: center;
+}
+
+.header-search-input :-ms-input-placeholder {
+  text-align: center;
+}
 </style>

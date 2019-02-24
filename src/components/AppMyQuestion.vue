@@ -1,5 +1,5 @@
 <template>
-  <div class="page-content">
+  <div class="page-content t-myquestion">
     <div class="boxedtitle page-title">
       <h2>My Questions ({{count}})</h2>
     </div>
@@ -12,6 +12,9 @@
       :speed="spinner.speed"
     />
     <div class="user-questions">
+      <AppModal v-show="isModalVisible" @close="closeModal" @action="trigger">
+          <span slot="body">Are you sure to delete this question?</span>
+        </AppModal>
       <article
         class="question user-question"
         v-for="question in questions"
@@ -29,18 +32,13 @@
           v-if="session.isLoggedIn && session.user && session.user._id === question.uId"
          @click="showModal(question)"
         >DELETE</a>
-        <AppModal v-show="isModalVisible" @close="closeModal" @action="trigger">
-          <span slot="body">Are you sure to delete this question?</span>
-        </AppModal>
-
         <!-- </div> -->
         <div
-          class="question-type-main question-type-main-custom"
+          class="question-type-main"
           v-if="session.isLoggedIn && session.user && session.user._id === question.uId"
         >
           <router-link :to="{name: 'questionUpdate', params: { slug: question.slug }}">EDIT</router-link>
         </div>
-
         <div class="question-content">
           <div class="question-bottom">
             <span class="question-category">
@@ -172,17 +170,14 @@ export default {
   },
 };
 </script>
-<style>
-.link-cursor {
-  cursor: pointer;
-}
-.question-type-main-custom {
+<style scoped>
+.t-myquestion .question-type-main {
   margin-right: 70px !important;
   background-color: #cccc !important;
 }
-.user-question h3 a {
+/* .user-question h3 a {
   color: black !important;
   font-size: 15px !important;
   font-weight: 500 !important;
-}
+} */
 </style>

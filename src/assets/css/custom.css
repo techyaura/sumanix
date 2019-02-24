@@ -1,25 +1,8 @@
-.page-content p {
-  font-size: 15px !important;
+a {
+  text-decoration: none !important;
 }
-.ti-selected-item {
-  background-color: #8a8a8a !important;
-}
-.header-search-input ::-webkit-input-placeholder {
-  text-align: center;
-}
-
-.header-search-input :-moz-placeholder {
-  /* Firefox 18- */
-  text-align: center;
-}
-
-.header-search-input ::-moz-placeholder {
-  /* Firefox 19+ */
-  text-align: center;
-}
-
-.header-search-input :-ms-input-placeholder {
-  text-align: center;
+a.link-cursor {
+  cursor: pointer;
 }
 a.q-tags {
   color: white;
@@ -29,13 +12,4 @@ a.q-tags {
   padding: 0 7px;
   font-size: 14px;
   border-radius: 4px;
-}
-.profile-sidebar .router-link-exact-active{
-  background-color:#898989;
-}
-.profile-sidebar .router-link-exact-active:hover{
-  color: #ddd;
-}
-a {
-  text-decoration: none !important;
 }

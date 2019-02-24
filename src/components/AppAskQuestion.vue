@@ -1,5 +1,5 @@
 <template>
-  <div class="page-content ask-question">
+  <div class="page-content ask-question t-askquestion">
     <div class="boxedtitle page-title">
       <h2>Ask Question</h2>
     </div>
@@ -269,54 +269,54 @@ export default {
 };
 </script>
 <style>
-div.ti-autocomplete {
+.t-askquestion div.ti-autocomplete {
   position: relative !important;
 }
-span.label-description {
+.t-askquestion span.label-description {
   margin: 0px !important;
   font-size: 13px !important;
 }
-.vue-tags-input {
+.t-askquestion .vue-tags-input {
   max-width: 100% !important;
 }
-.question-full-width {
+.t-askquestion .question-full-width {
   width: 100% !important;
   background: none !important;
 }
-.vue-tags-input input[type="text"] {
+.t-askquestion .vue-tags-input input[type="text"] {
   background: none !important;
 }
-.post-content {
+.t-askquestion .post-content {
   color: black !important;
 }
-.ti-tags li.ti-tag {
+.t-askquestion .ti-tags li.ti-tag {
   color: #39739d;
   background-color: #e1ecf4;
   border-color: #e1ecf4;
   margin: 0 2px 0;
   padding: 0 5px;
 }
-.ti-selected-item {
+.t-askquestion .ti-selected-item {
   background-color: #8a8a8a !important;
 }
-.label-required {
+.t-askquestion .label-required {
   color: red !important;
 }
-#question-submit .form-inputs p {
+.t-askquestion #question-submit .form-inputs p {
   margin-bottom: 15px !important;
 }
-#question-submit .submit {
+.t-askquestion #question-submit .submit {
   background-color: #2f3239 !important;
 }
 
 /*the container must be positioned relative:*/
-.autocomplete-custom {
+.t-askquestion .autocomplete-custom {
   position: relative !important;
   display: inline-block !important;
   width: 100% !important;
 }
 
-.autocomplete-custom-items {
+.t-askquestion .autocomplete-custom-items {
   position: absolute !important;
   border: 1px solid #d4d4d4 !important;
   border-bottom: none !important;
@@ -328,7 +328,7 @@ span.label-description {
   right: 0 !important;
 }
 
-.autocomplete-custom-items div {
+.t-askquestion .autocomplete-custom-items div {
   padding: 10px !important;
   cursor: pointer !important;
   background-color: #fff !important;
@@ -336,12 +336,12 @@ span.label-description {
 }
 
 /*when hovering an item:*/
-.autocomplete-custom-items div:hover {
+.t-askquestion .autocomplete-custom-items div:hover {
   background-color: #e9e9e9 !important;
 }
 
 /*when navigating through the items using the arrow keys:*/
-.autocomplete-custom-active {
+.t-askquestion .autocomplete-custom-active {
   background-color: DodgerBlue !important;
   color: #ffffff !important;
 }

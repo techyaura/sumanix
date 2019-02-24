@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="t-header">
     <div id="header-top">
       <section class="container clearfix">
         <nav class="header-top-nav">
@@ -149,95 +149,97 @@ export default {
 };
 </script>
 <style scoped>
-.dropdown-menu-custom{
+.t-header .dropdown-menu-custom{
   display: block
 }
-.dropdown-menu-custom li a{
+
+.t-header .dropdown-menu-custom li a{
   color: #262626;
 }
-.dropdown-menu-custom li:hover{
+
+.t-header .dropdown-menu-custom li:hover{
   width: 100% !important;
   background-color: #f5f5f5;
 }
-.header-top-nav li.logoLink {
+.t-header .header-top-nav li.logoLink {
   font-style: inherit;
   font-size: 20px !important;
   margin-right: 20px;
 }
 
-.header-top-nav li {
+.t-header .header-top-nav li {
   line-height: 60px !important;
 }
 
-.header-search-panel {
+.t-header .header-search-panel {
   /* float: right; */
   float: none !important;
 }
-.header-search input {
+.t-header .header-search input {
   width: 50% !important;
 }
-.header-top-nav li::after {
+.t-header .header-top-nav li::after {
   content: "";
 }
-.right-auth-panel {
+.t-header .right-auth-panel {
   float: right;
   position: relative;
   top: 10px;
 }
-.right-auth-panel a {
+.t-header .right-auth-panel a {
   color: white;
   float: right;
   position: relative;
   /* top: 10px; */
   font-weight: bolder;
 }
-.anchor-link {
+.t-header .anchor-link {
   cursor: pointer;
   /* margin-left: 100px; */
   font-size: 14px;
 }
-.header-top-nav li.logoLink:hover a {
+.t-header .header-top-nav li.logoLink:hover a {
   color: white;
 }
 /* #header-top {
   border-bottom: 2px solid #ccc;
 } */
-.right-nv-header {
+.t-header .right-nv-header {
   float: right;
 }
-.logo-version-tile {
+.t-header .logo-version-tile {
   font-size: 10px;
 }
-li.search-bar {
+.t-header li.search-bar {
   width: 55% !important;
   text-align: center !important;
   padding: 0px 42px !important;
 }
-li.search-bar input {
+.t-header li.search-bar input {
   text-align: center !important;
 }
-.custom-header-logo .box_icon p {
+.t-header .custom-header-logo .box_icon p {
   font-size: 20px !important;
 }
-.section-warp-custom {
+.t-header .section-warp-custom {
   padding: 30px 0 !important;
 }
-.ask-me .col-md-12 {
+.t-header .ask-me .col-md-12 {
   padding-top: 0 !important;
 }
-nav ul{
+.t-header nav ul{
   margin-bottom: 0px !important;
 }
-#header-top {
+.t-header #header-top {
   height: 65px !important;
 }
 @media only screen and (max-width: 479px) {
-  li.search-bar {
+  .t-header li.search-bar {
     width: 100% !important;
     float: none !important;
     padding: 0px 42px !important;
   }
-  #header-top {
+  .t-header #header-top {
     height: 180px !important;
   }
 }

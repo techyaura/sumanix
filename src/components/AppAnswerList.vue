@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="t-question">
     <Spinner
       :status="spinner.status"
       :color="spinner.color"
@@ -10,7 +10,7 @@
     />
     <div
       id="commentlist"
-      class="page-content page-content-cutom"
+      class="page-content"
       v-if="!spinner.status && answers.length"
     >
       <div class="boxedtitle page-title">
@@ -64,7 +64,7 @@
                 </div>
                 <a
                   v-if="session.isLoggedIn && answer.user[0]._id === session.user._id"
-                  class="question-type-main question-type-main-custom1 link-cursor"
+                  class="question-type-main link-cursor"
                   @click="showModal(answer)"
                 >DELETE</a>
                 <a
@@ -77,7 +77,7 @@
                   <span slot="body">Are you sure to delete this answer?</span>
                 </AppModal>
               </div>
-              <div class="text custom-text">
+              <div class="text">
                 <p itemprop="text" class="post-content" v-html="answer.name"></p>
               </div>
             </div>
@@ -156,18 +156,15 @@ export default {
 };
 </script>
 
-<style>
-.link-cursor {
-  cursor: pointer;
-}
-.question-type-main-custom1 {
+<style scoped>
+.t-question .question-type-main {
   background-color: #cccc !important;
   color: black !important;
 }
-.custom-text p {
+.t-question .text p {
   font-weight: 600 !important;
 }
-.page-content-cutom p {
+.t-question .page-content p {
   font-size: 15px !important;
 }
 </style>

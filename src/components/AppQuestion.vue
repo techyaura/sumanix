@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="t-question-home">
     <div class="col-md-9">
       <div class="tabs-warp question-tab">
         <ul class="tabs">
@@ -143,20 +143,20 @@
 </template>
 
 <style scoped>
-.question-custom-home h2,.question-inner {
+.t-question-home .question-custom-home h2,.question-inner {
   margin-left: 0px !important;
 }
-.question-custom-home .question-date-custom-tag {
+.t-question-home .question-custom-home .question-date-custom-tag {
   margin-left: 10px !important;
 }
 
-.question-custom-home h2 {
+.t-question-home .question-custom-home h2 {
   font-size: 15px !important;
 }
-question-custom-home .tagAdjust {
+.t-question-home question-custom-home .tagAdjust {
   float: left;
 }
-question-custom-home .anchor-space {
+.t-question-home question-custom-home .anchor-space {
   margin-left: 5px;
   /* border: 1px solid #ccc !important;
   padding: 2px 5px 2px 5px !important;
@@ -170,7 +170,7 @@ question-custom-home .anchor-space {
   margin-left: 0px !important;
 } */
 @media only screen and (max-width: 479px) {
-  .question-type-normal.question h2,
+  .t-question-home .question-type-normal.question h2,
   .question-type-poll.question h2 {
     padding-top: 0px !important;
     margin-top: 80px !important;

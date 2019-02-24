@@ -1,5 +1,5 @@
 <template>
-  <aside class="col-md-3 sidebar">
+  <aside class="col-md-3 sidebar t-sidebar">
     <div class="widget widget_tag_cloud">
       <h3 class="widget_title">Tags</h3>
       <Spinner
@@ -105,7 +105,7 @@ export default {
 };
 </script>
 <style>
-.more-tag-link{
+.t-sidebar .more-tag-link{
   background-color: #ccc !important;
 }
 </style>

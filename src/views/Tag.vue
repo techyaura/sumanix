@@ -1,5 +1,5 @@
 <template>
-  <div class="col-md-12">
+  <div class="col-md-12 t-tags">
     <div class="page-content page-content-user-profile">
       <div class="user-profile-widget">
         <Spinner
@@ -10,7 +10,7 @@
           :rotation="spinner.rotation"
           :speed="spinner.speed"
         />
-        <div class="widget widget_social widget_social-custom">
+        <div class="widget widget_social">
           <h3 class="widget_title" style="margin-bottom: 50px;">Tags</h3>
           <ul>
             <li class="facebook-fans" v-for="item in tags" v-bind:data="item" v-bind:key="item.tag">
@@ -77,7 +77,7 @@ export default {
 </script>
 
 <style>
-.widget_social-custom ul li {
+ .t-tags .widget_social ul li {
   /* width: 20% !important;
   padding-right: 10px !important;
   height: 35px !important; */
@@ -87,11 +87,11 @@ export default {
     border-bottom: 1px solid #ccc;
     margin-left: 40px;
 }
-.widget_social-custom ul li span.count{
+ .t-tags .widget_social ul li span.count{
   color: black;
   padding-top: 5px;
 }
-.widget_social li.facebook-fans a {
+.t-tags .widget_social li.facebook-fans a {
   background-color: #9a9595;
   /* padding-bottom: 10px !important; */
   float: left;
@@ -99,7 +99,7 @@ export default {
 
 }
 @media only screen and (max-width: 479px) {
-  .widget_social-custom ul li {
+  .t-tags .widget_social ul li {
     width: 100% !important;
   }
 }

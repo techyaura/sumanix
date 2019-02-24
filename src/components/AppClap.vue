@@ -1,5 +1,5 @@
 <template>
-  <span v-if="question.points >= 0" class="question-favorite">
+  <span v-if="question.points >= 0" class="question-favorite t-clap-question">
     <a href="javascript:void(0);" v-on:click="clap()" title="clap if you like it!">
       <img src="/img/icons/clap.svg" style="width: 30px;">
       <span itemprop="upvoteCount">{{votes()}}</span>
@@ -69,17 +69,17 @@ export default {
 </script>
 
 <style scoped>
-a.disable-link {
+.t-clap-question a.disable-link {
   pointer-events: none;
   cursor: default;
 }
-a.vote {
+.t-clap-question a.vote {
   color: green;
 }
-a.devote {
+.t-clap-question a.devote {
   color: red;
 }
-.single-question-vote-up,
+.t-clap-question .single-question-vote-up,
 .single-question-vote-down {
   font-size: 20px !important;
 }
