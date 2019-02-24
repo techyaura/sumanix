@@ -1,5 +1,5 @@
 <template>
-  <div class="user-profile user-profile-custom">
+  <div class="user-profile">
     <div class="col-md-12">
       <div class="page-content">
         <h2>About User</h2>
@@ -106,16 +106,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.user-profile-custom p {
-  /* color: #848991; */
-  font-size: 16px !important;
-}
-.user-profile-custom .question-report {
-  right: 35px !important;
-}
-.user-question .question-type-main {
-  right: 32px !important;
-}
-</style>

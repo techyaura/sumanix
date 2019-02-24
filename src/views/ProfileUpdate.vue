@@ -1,5 +1,5 @@
 <template>
-    <div class="page-content">
+    <div class="page-content t-profile-update">
       <div class="boxedtitle page-title">
         <h2>Update Profile</h2>
         <!-- <router-link
@@ -19,7 +19,7 @@
         :rotation="spinner.rotation"
         :speed="spinner.speed"
       />
-      <div class="form-style form-style-4 form-style-4-custom" v-if="!spinner.status">
+      <div class="form-style form-style-4" v-if="!spinner.status">
         <form @submit.prevent="handleSubmit">
            <Notifiation v-if="err" :err="err"/>
           <div class="form-inputs clearfix">
@@ -280,17 +280,17 @@ export default {
 </script>
 
 <style scoped>
-.form-style-4-custom .form-inputs p {
+.t-profile-update .form-style-4 .form-inputs p {
   width: 100% !important;
 }
-.form-style-4-custom input.submit {
+.t-profile-update .form-style-4 input.submit {
   width: 21% !important;
   float: none !important;
 }
-.form-style-4-custom .custom-input {
+.t-profile-update .form-style-4 .custom-input {
   color: #756464 !important;
 }
- input.button{
-    background-color: #2f3239 !important;
-  }
+.t-profile-update .form-style-4 input.button{
+  background-color: #2f3239 !important;
+}
 </style>

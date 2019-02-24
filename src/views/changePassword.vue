@@ -1,5 +1,5 @@
 <template>
-   <div class="page-content">
+   <div class="page-content t-password">
       <div class="boxedtitle page-title">
         <h2>Change Password</h2>
       </div>
@@ -15,7 +15,6 @@
               <input
                 placeholder="*********"
                 autocomplete="off"
-                class="custom-input"
                 type="password"
                 v-model="user.password">
             </p>
@@ -91,17 +90,17 @@ export default {
 </script>
 
 <style scoped>
-.form-style-4-custom .form-inputs p {
+.t-password .form-style-4 .form-inputs p {
   width: 100% !important;
 }
-.form-style-4-custom input.submit {
+.t-password .form-style-4 input.submit {
   width: 21% !important;
   float: none !important;
 }
-.form-style-4-custom .custom-input {
+.t-password .form-style-4 input {
   color: #756464 !important;
 }
-input.button {
+.t-password input.button {
   background-color: #2f3239 !important;
 }
 </style>

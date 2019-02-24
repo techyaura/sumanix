@@ -1,5 +1,5 @@
 <template>
-  <div class="col-md-9 question-detail" itemscope
+  <div class="col-md-9 t-question-detail" itemscope
       itemtype="http://schema.org/QAPage">
     <Spinner
       :status="spinner.status"
@@ -12,7 +12,7 @@
     <article
       itemscope
       itemtype="http://schema.org/Question"
-      class="question-custom question single-question question-type-normal"
+      class="question single-question question-type-normal"
       v-if="!spinner.status"
     >
       <h2 itemprop="name">
@@ -31,7 +31,7 @@
       </div> -->
       <div class="question-inner">
         <div class="clearfix"></div>
-        <div class="question-desc question-desc-custom">
+        <div class="question-desc">
           <p itemprop="text" class="post-content" v-html="question.description"></p>
         </div>
         <span class="question-category">
@@ -165,20 +165,14 @@ export default {
 </script>
 
 <style scoped>
-.question-detail .question-custom h2 {
+.t-question-detail .question h2 {
   margin-bottom: 0 !important;
 }
-.link-cursor {
-  cursor: pointer;
-}
-.question-type-main-custom1 {
-  background-color: #cccc !important;
-}
-.question-desc-custom {
+.t-question-detail .question-desc {
   padding-bottom: 0px !important;
 }
 @media only screen and (max-width: 479px) {
-  .single-question.question h2 {
+  .t-question-detail .single-question.question h2 {
     margin-top: 0px !important;
   }
 }

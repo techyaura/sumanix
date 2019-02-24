@@ -1,12 +1,12 @@
 <template>
-  <div class="row">
+  <div class="row t-profile-parent">
     <div class="col-md-9">
       <div class="row">
         <router-view></router-view>
       </div>
     </div>
     <div class="col-md-3">
-      <aside class="sidebar profile-sidebar">
+      <aside class="sidebar">
         <div class="widget widget_menu" style="width: 263px; top: 185px; bottom: auto;">
           <ul>
             <li>
@@ -100,16 +100,11 @@ export default {
   },
 };
 </script>
-
 <style scoped>
-.user-profile-custom p {
-  /* color: #848991; */
-  font-size: 16px !important;
+.t-profile-parent .router-link-exact-active{
+  background-color:#898989;
 }
-.user-profile-custom .question-report {
-  right: 35px !important;
-}
-.user-question .question-type-main {
-  right: 32px !important;
+.t-profile-parent .router-link-exact-active:hover{
+  color: #ddd;
 }
 </style>

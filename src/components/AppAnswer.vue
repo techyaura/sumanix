@@ -1,5 +1,5 @@
 <template>
-  <div id="respond" ref="answerEnd" class="comment-respond page-content clearfix">
+  <div id="respond" ref="answerEnd" class="comment-respond page-content clearfix t-answer">
     <!-- <div class="boxedtitle page-title">
       <h2>Leave a Answer</h2>
     </div>-->
@@ -141,7 +141,7 @@ export default {
 </script>
 
 <style scoped>
-  input.button{
+  .t-answer input.button{
     background-color: #2f3239 !important;
   }
 </style>

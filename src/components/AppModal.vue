@@ -11,7 +11,7 @@ export default {
 </script>
 
 <template>
-   <div class="modal-mask">
+   <div class="modal-mask t-modal-mask">
       <div class="modal-wrapper">
         <div class="modal-container">
 
@@ -41,8 +41,8 @@ export default {
     </div>
 </template>
 
-<style>
-.modal-mask {
+<style scoped>
+.t-modal-mask {
   position: fixed;
   z-index: 9998;
   top: 0;
@@ -54,12 +54,12 @@ export default {
   transition: opacity .3s ease;
 }
 
-.modal-wrapper {
+.t-modal-mask .modal-wrapper {
   display: table-cell;
   vertical-align: middle;
 }
 
-.modal-container {
+.t-modal-mask .modal-container {
   width: 300px;
   margin: 0px auto;
   padding: 20px 30px;
@@ -70,16 +70,16 @@ export default {
   font-family: Helvetica, Arial, sans-serif;
 }
 
-.modal-header h3 {
+.t-modal-mask .modal-header h3 {
   margin-top: 0;
   color: #42b983;
 }
 
-.modal-body {
+.t-modal-mask .modal-body {
   margin: 20px 0;
 }
 
-.modal-default-button {
+.t-modal-mask .modal-default-button {
   float: right;
 }
 
