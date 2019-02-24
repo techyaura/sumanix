@@ -1,5 +1,5 @@
 <template>
-  <div class="t-question">
+  <div class="t-answer-list">
     <Spinner
       :status="spinner.status"
       :color="spinner.color"
@@ -157,14 +157,19 @@ export default {
 </script>
 
 <style scoped>
-.t-question .question-type-main {
+.t-answer-list .question-type-main {
   background-color: #cccc !important;
   color: black !important;
 }
-.t-question .text p {
+.t-answer-list .text p {
   font-weight: 600 !important;
 }
-.t-question .page-content p {
+.t-answer-list .page-content p {
   font-size: 15px !important;
+}
+@media only screen and (max-width: 479px) {
+  .t-answer-list .commentlist li .comment-text {
+    overflow: inherit !important;
+  }
 }
 </style>
