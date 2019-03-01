@@ -31,8 +31,8 @@
       </div> -->
       <div class="question-inner">
         <div class="clearfix"></div>
-        <div class="question-desc">
-          <p itemprop="text" class="post-content" v-html="question.description"></p>
+        <div class="question-desc" itemprop="text" v-html="question.description">
+          <!-- <p itemprop="text" class="post-content" ></p> -->
         </div>
         <span class="question-category">
           <span class="question-date">
@@ -170,6 +170,9 @@ export default {
 }
 .t-question-detail .question-desc {
   padding-bottom: 0px !important;
+}
+.t-question-detail h2 a{
+   color: #6e727b !important;
 }
 @media only screen and (max-width: 479px) {
   .t-question-detail .single-question.question h2 {

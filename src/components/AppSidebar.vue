@@ -105,7 +105,14 @@ export default {
 };
 </script>
 <style>
-.t-sidebar .more-tag-link{
+/* .t-sidebar .more-tag-link{
   background-color: #ccc !important;
+} */
+.t-sidebar .widget_tag_cloud a{
+  color: #38CBCB !important;
+  background-color: white;
+}
+.t-sidebar ul.related-posts li h3 a{
+   color: #6e727b !important;
 }
 </style>

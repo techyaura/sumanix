@@ -76,7 +76,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
  .t-tags .widget_social ul li {
   /* width: 20% !important;
   padding-right: 10px !important;
@@ -92,11 +92,9 @@ export default {
   padding-top: 5px;
 }
 .t-tags .widget_social li.facebook-fans a {
-  background-color: #9a9595;
-  /* padding-bottom: 10px !important; */
+  /* background-color: #9a9595; */
   float: left;
   padding: 5px;
-
 }
 @media only screen and (max-width: 479px) {
   .t-tags .widget_social ul li {

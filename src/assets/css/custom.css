@@ -6,10 +6,14 @@ a.link-cursor {
 }
 a.q-tags {
   color: white;
-  background-color:#9a9595;
+  background-color:#38CBCB;
   border-color: #e1ecf4;
   margin: 0 2px 0;
   padding: 0 7px;
   font-size: 14px;
   border-radius: 4px;
+}
+
+a.q-tags:hover{
+  color: #ddd;
 }

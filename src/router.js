@@ -83,24 +83,6 @@ const router = new Router({
         },
       ],
     },
-    // {
-    //   path: '/profile',
-    //   name: 'profile',
-    //   component: Profile,
-    //   beforeEnter: requireAuth,
-    // },
-    // {
-    //   name: 'profileUpdate',
-    //   path: '/profile/update',
-    //   component: ProfileUpdate,
-    //   beforeEnter: requireAuth,
-    // },
-    // {
-    //   name: 'password',
-    //   path: '/profile/password',
-    //   component: changePassword,
-    //   beforeEnter: requireAuth,
-    // },
     {
       path: '/addQuestion',
       name: 'addQuestion',
@@ -130,21 +112,42 @@ const router = new Router({
       props: route => ({ query: route.query.q }),
     },
     {
-      path: '*',
-      name: '404',
-      component: () => import(/* webpackChunkName: "about" */ './views/404.vue'),
-    },
-    {
       path: '/questions/tagged/:slug',
       name: 'tagQuestion',
       component: Home,
     },
     {
+      path: '/blog',
+      component: () => import(/* webpackChunkName: "about" */ './views/blog/index.vue'),
+      children: [
+        {
+          path: '/',
+          component: () => import(/* webpackChunkName: "about" */ './views/blog/list.vue'),
+        },
+        {
+          path: 'add',
+          component: () => import(/* webpackChunkName: "about" */ './views/blog/add.vue'),
+          beforeEnter: requireAuth,
+        },
+        {
+          path: 'update/:slug',
+          component: () => import(/* webpackChunkName: "about" */ './views/blog/update.vue'),
+        },
+        {
+          path: ':slug',
+          component: () => import(/* webpackChunkName: "about" */ './views/blog/detail.vue'),
+          beforeEnter: requireAuth,
+        },
+      ],
+    },
+    {
+      path: '*',
+      name: '404',
+      component: () => import(/* webpackChunkName: "about" */ './views/404.vue'),
+    },
+    {
       path: '/about',
       name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
     },
     // {

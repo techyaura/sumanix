@@ -107,14 +107,14 @@
                   <i class="icon-user"></i>
                   {{item.views}} Views
                 </span>
-                <span class="question-date question-date-custom-tag">
+                <span class="question-date">
                   <i class="icon-time"></i>
                   {{item.activityType? item.activityType + ' ': 'asked '}}
                   <time
                     itemprop="dateCreated"
                     :datetime="item.modifiedAt"
                   >{{timestamp(item)}}</time>
-                  <span itemscope itemtype="http://schema.org/Person">
+                  <span itemscope itemtype="http://schema.org/Person" class="username">
                     <router-link :to="'/@' + computeUsername(item)" itemprop="name">
                       {{computeUsername(item)}}
                     </router-link>
@@ -156,6 +156,9 @@
 .t-question-home question-custom-home .tagAdjust {
   float: left;
 }
+.t-question-home .question-date span.username a{
+  color: #38CBCB !important;
+}
 .t-question-home question-custom-home .anchor-space {
   margin-left: 5px;
   /* border: 1px solid #ccc !important;
@@ -163,9 +166,9 @@
   border-radius: 4px !important;
   color: #7a27cc !important; */
 }
-/* .-home h2 {
-  margin: 0 0 30px 0px !important;
-} */
+.t-question-home .question h2 a{
+  color: #6e727b !important;
+}
 /* .question-inner {
   margin-left: 0px !important;
 } */
