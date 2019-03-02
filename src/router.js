@@ -117,7 +117,7 @@ const router = new Router({
       component: Home,
     },
     {
-      path: '/blog',
+      path: '/blogs',
       component: () => import(/* webpackChunkName: "about" */ './views/blog/index.vue'),
       children: [
         {

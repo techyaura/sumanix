@@ -2,14 +2,18 @@
   <div>
     <div class="row">
       <div class="col-md-12">
-        <Spinner
-        :status="spinner.status"
-        :color="spinner.color"
-        :size="spinner.size"
-        :depth="spinner.depth"
-        :rotation="spinner.rotation"
-        :speed="spinner.speed"
-      />
+        <article class="post single-post clearfix" v-if="spinner.status">
+          <div class="post-inner">
+            <Spinner
+              :status="spinner.status"
+              :color="spinner.color"
+              :size="spinner.size"
+              :depth="spinner.depth"
+              :rotation="spinner.rotation"
+              :speed="spinner.speed"
+            />
+          </div>
+        </article>
         <article class="post single-post clearfix">
           <div class="post-inner">
             <div class="post-img">
@@ -20,7 +24,8 @@
             <h2 class="post-title">
               <span class="post-type">
                 <i class="icon-film"></i>
-              </span>{{blog.title}}
+              </span>
+              {{blog.title}}
             </h2>
             <div class="post-meta">
               <span class="meta-author">
@@ -28,31 +33,31 @@
                 <a href="#">Administrator</a>
               </span>
               <span class="meta-date">
-                <i class="icon-time"></i>{{timestamp(blog)}}
+                <i class="icon-time"></i>
+                {{timestamp(blog)}}
               </span>
               <span class="meta-categories">
                 <i class="icon-suitcase"></i>
                 <a
-                href="javascript:void()"
-                v-for="tag in blog.tags"
-                v-bind:data="tag"
-                v-bind:key="tag._id"
-              >{{tag.name}}</a>
+                  href="javascript:void()"
+                  v-for="tag in blog.tags"
+                  v-bind:data="tag"
+                  v-bind:key="tag._id"
+                >{{tag.name}}</a>
               </span>
               <!-- <span class="meta-comment">
                 <i class="icon-comments-alt"></i>
                 <a href="#">15 comments</a>
-              </span> -->
+              </span>-->
             </div>
-            <div class="post-content" v-html="blog.description">
-            </div>
+            <div class="post-content" v-html="blog.description"></div>
             <!-- End post-content -->
             <div class="clearfix"></div>
           </div>
           <!-- End post-inner -->
         </article>
         <!-- End article.post -->
-        <div class="share-tags page-content">
+        <!-- <div class="share-tags page-content">
           <div class="post-tags">
             <i class="icon-tags"></i>
             <a href="#">projects</a>,
@@ -166,25 +171,23 @@
             <span class="share-inside-f-arrow"></span>
             <span class="share-inside-l-arrow"></span>
           </div>
-          <!-- End share-inside-warp -->
           <div class="share-inside">
             <i class="icon-share-alt"></i>Share
           </div>
           <div class="clearfix"></div>
-        </div>
+        </div> -->
         <!-- End share-tags -->
-        <div class="about-author clearfix">
+        <!-- <div class="about-author clearfix">
           <div class="author-image">
             <a href="#" original-title="admin" class="tooltip-n">
-              <!-- <img alt src="../ask-me/images/demo/admin.jpg"> -->
             </a>
           </div>
           <div class="author-bio">
             <h4>About the Author</h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra auctor neque. Nullam lobortis, sapien vitae lobortis tristique.
           </div>
-        </div>
+        </div> -->
         <!-- End about-author -->
-        <div id="related-posts">
+        <!-- <div id="related-posts">
           <h2>Related Posts</h2>
           <ul class="related-posts">
             <li class="related-item">
@@ -216,18 +219,21 @@
               </h3>
             </li>
           </ul>
-        </div>
+        </div> -->
         <!-- End related-posts -->
-        <div id="commentlist" class="page-content">
+        <!-- <div id="commentlist" class="page-content">
           <div class="boxedtitle page-title">
             <h2>
               Comments (
               <span class="color">5</span> )
             </h2>
           </div>
-          <VueDisqus shortname="https-www-sumanix-com" :identifier="blogId" v-bind:url="'/' + blogId"></VueDisqus>
-          <!-- End commentlist -->
-        </div>
+          <VueDisqus
+            shortname="https-www-sumanix-com"
+            :identifier="blogId"
+            v-bind:url="'/' + blogId"
+          ></VueDisqus>
+        </div> -->
         <!-- End page-content -->
         <!-- <div id="respond" class="comment-respond page-content clearfix">
           <div class="boxedtitle page-title">
@@ -276,9 +282,8 @@
               >
             </p>
           </form>
-        </div> -->
-
-        <div class="post-next-prev clearfix">
+        </div>-->
+        <!-- <div class="post-next-prev clearfix">
           <p class="prev-post">
             <a href="#">
               <i class="icon-double-angle-left"></i>&nbsp;Prev post
@@ -290,7 +295,7 @@
               <i class="icon-double-angle-right"></i>
             </a>
           </p>
-        </div>
+        </div> -->
         <!-- End post-next-prev -->
       </div>
       <!-- End main -->
@@ -299,9 +304,8 @@
 </template>
 
 <script>
-
 import Spinner from '@/components/Spinner.vue';
-import VueDisqus from 'vue-disqus/src';
+// import VueDisqus from 'vue-disqus/src';
 import { spinnerMixin, breadcrumbMixin } from '../../mixins';
 
 export default {
@@ -314,17 +318,17 @@ export default {
   },
   components: {
     Spinner,
-    VueDisqus,
+    // VueDisqus,
   },
   mixins: [spinnerMixin, breadcrumbMixin],
   methods: {
     getBlogById(blogId) {
       const url = `${this.$BASE_URL}api/v1/admin/blog/${blogId}`;
-      this.$http.get(url)
-        .then((response) => {
-          this.blog = response.data.data;
-          this.spinner.status = false;
-        });
+      this.$http.get(url).then((response) => {
+        this.blog = response.data.data;
+        this.spinner.status = false;
+        document.title = this.title(this.blog.title);
+      });
     },
   },
   created() {
