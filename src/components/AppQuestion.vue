@@ -146,7 +146,7 @@
 .t-question-home .question-custom-home h2,.question-inner {
   margin-left: 0px !important;
 }
-.t-question-home .question-custom-home .question-date-custom-tag {
+.t-question-home .question-custom-home .question-date {
   margin-left: 10px !important;
 }
 
