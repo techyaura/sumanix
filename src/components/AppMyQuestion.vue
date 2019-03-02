@@ -46,12 +46,12 @@
                 <i class="icon-suitcase"></i>
               </span> -->
               <router-link
-                class="anchor-space q-tags"
+                class="anchor-space"
                 v-for="tag in question.tags"
                 v-bind:data="tag"
                 v-bind:key="tag.name"
                 v-bind:to="{name: 'tagQuestion', params: {slug: tag.slug}}"
-              >{{tag.name}}</router-link>
+              ><span class="label label-primary">{{tag.slug || tag.name}}</span></router-link>
             </span>
             <span class="question-view">
               <i class="icon-user"></i>
@@ -174,6 +174,18 @@ export default {
 .t-myquestion .question-type-main {
   margin-right: 70px !important;
   background-color: #cccc !important;
+}
+.t-myquestion .question-type-main a{
+  color: #2f3239 !important;
+}
+.t-myquestion .question-type-main:hover{
+  background-color: #456FF1 !important;
+}
+.t-myquestion h3 a {
+  color: #2f3239 !important;
+}
+.t-myquestion h3 a:hover {
+  color: #456FF1 !important;
 }
 .t-myquestion .question {
   padding: 10px 20px 10px 20px !important;

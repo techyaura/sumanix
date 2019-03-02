@@ -97,10 +97,10 @@ export default {
   width: 21% !important;
   float: none !important;
 }
-.t-password .form-style-4 input {
+/* .t-password .form-style-4 input {
   color: #756464 !important;
-}
-.t-password input.button {
+} */
+/* .t-password input.button {
   background-color: #2f3239 !important;
-}
+} */
 </style>

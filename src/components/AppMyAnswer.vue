@@ -37,12 +37,12 @@
                 <i class="icon-suitcase"></i>
               </span> -->
               <router-link
-                class="anchor-space q-tags"
+                class="anchor-space"
                 v-bind:to="{name: 'tagQuestion', params: {slug: tag.slug || tag.name}}"
                 v-for="tag in item.tags"
                 v-bind:data="tag"
                 v-bind:key="tag.name"
-              >{{tag.name}}</router-link>
+              ><span class="label label-primary">{{tag.slug || tag.name}}</span></router-link>
             </span>
             <!-- <span class="question-comment">
               <a href="#">
@@ -148,6 +148,12 @@ export default {
 }
 .t-myanswer h3 {
   font-size: 15px !important;
+}
+.t-myanswer h3 a {
+  color: #2f3239 !important;
+}
+.t-myanswer h3 a:hover {
+  color: #456FF1 !important;
 }
 @media only screen and (max-width: 479px) {
   .t-myanswer .user-question h3 {

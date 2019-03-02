@@ -104,15 +104,24 @@ export default {
   },
 };
 </script>
-<style>
-/* .t-sidebar .more-tag-link{
+<style scoped>
+.t-sidebar .more-tag-link{
   background-color: #ccc !important;
-} */
-.t-sidebar .widget_tag_cloud a{
-  color: #38CBCB !important;
-  background-color: white;
 }
 .t-sidebar ul.related-posts li h3 a{
    color: #6e727b !important;
+}
+.t-sidebar .widget_tag_cloud a{
+    margin: 0 0 5px 0!important;
+    padding: 2px 6px;
+    font-size: 12px!important;
+    background-color: #456FF1;
+    border-radius: 5px;
+}
+.t-sidebar .related-posts li {
+    margin-bottom: 0px;
+}
+.t-sidebar .widget ul li {
+    padding-bottom: 0px;
 }
 </style>

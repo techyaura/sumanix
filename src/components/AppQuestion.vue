@@ -2,13 +2,13 @@
   <div class="t-question-home">
     <div class="col-md-9">
       <div class="tabs-warp question-tab">
-        <ul class="tabs">
-          <li class="tab" v-if="slug">
+        <ul class="tabs" v-if="!slug">
+          <!-- <li class="tab" v-if="slug">
             <a
               href="javascript:void(0)"
               v-bind:class="{ current: currentFilterFlag === '' }"
             >{{( slugCapitalize ) + ' Questions'}}</a>
-          </li>
+          </li> -->
 
           <li class="tab" v-if="!slug">
             <a
@@ -87,12 +87,12 @@
                     <i class="icon-suitcase"></i>
                   </span> -->
                   <router-link
-                    class="anchor-space q-tags"
+                    class="anchor-space"
                     v-bind:to="{name: 'tagQuestion', params: {slug: tag.slug || tag.name}}"
                     v-for="tag in item.tags"
                     v-bind:data="tag"
                     v-bind:key="tag.slug"
-                  >{{tag.slug || tag.name}}</router-link>
+                  ><span class="label label-primary">{{tag.slug || tag.name}}</span></router-link>
                 </span>
                 <span class="question-comment">
                   <router-link
@@ -114,7 +114,7 @@
                     itemprop="dateCreated"
                     :datetime="item.modifiedAt"
                   >{{timestamp(item)}}</time>
-                  <span itemscope itemtype="http://schema.org/Person" class="username">
+                  <span itemscope itemtype="http://schema.org/Person" class="person">
                     <router-link :to="'/@' + computeUsername(item)" itemprop="name">
                       {{computeUsername(item)}}
                     </router-link>
@@ -166,9 +166,12 @@
   border-radius: 4px !important;
   color: #7a27cc !important; */
 }
-.t-question-home .question h2 a{
-  color: #6e727b !important;
+.t-question-home span.person a{
+  color: #456FF1 !important;
 }
+/* .-home h2 {
+  margin: 0 0 30px 0px !important;
+} */
 /* .question-inner {
   margin-left: 0px !important;
 } */

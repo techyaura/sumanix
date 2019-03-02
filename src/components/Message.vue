@@ -1,5 +1,7 @@
 <template>
-  <div v-if="errorMessage" class="err-essage" ref="error" :style="messageStyle">{{errorMessage}}</div>
+  <div v-if="errorMessage" class="alert alert-danger" role="alert" ref="error" :style="messageStyle">
+     <strong>{{errorMessage}}</strong>
+    </div>
 </template>
 
 <script>
@@ -18,7 +20,7 @@ export default {
     },
     color: {
       type: String,
-      default: '#fff',
+      default: '#a94442',
     },
     borderColor: {
       type: String,
@@ -47,13 +49,3 @@ export default {
   },
 };
 </script>
-<style scoped>
-.err-essage {
-  margin-bottom: 10px;
-  padding: 10px;
-  color: red;
-  border: 1px solid #ccc;
-  font-size: 12px;
-  background-color: #c04848;
-}
-</style>

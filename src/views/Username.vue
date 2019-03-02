@@ -102,7 +102,7 @@ export default {
 </script>
 <style scoped>
 .t-profile-parent .router-link-exact-active{
-  background-color: #38CBCB;
+  background-color:#456FF1;
 }
 .t-profile-parent .router-link-exact-active:hover{
   color: #ddd;

@@ -297,7 +297,7 @@ export default {
   padding: 0 5px;
 }
 .t-askquestion .ti-selected-item {
-  background-color: #8a8a8a !important;
+  background-color: #456FF1 !important;
 }
 .t-askquestion .label-required {
   color: red !important;
@@ -305,9 +305,9 @@ export default {
 .t-askquestion #question-submit .form-inputs p {
   margin-bottom: 15px !important;
 }
-.t-askquestion #question-submit .submit {
+/* .t-askquestion #question-submit .submit {
   background-color: #2f3239 !important;
-}
+} */
 
 /*the container must be positioned relative:*/
 .t-askquestion .autocomplete-custom {
