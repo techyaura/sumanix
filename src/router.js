@@ -1,21 +1,22 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Login from './views/Login.vue';
-import Home from './views/Home.vue';
-import Register from './views/Register.vue';
-import EmailVerification from './views/EmailVerification.vue';
-import Profile from './views/Profile.vue';
-import Username from './views/Username.vue';
-import ProfileUpdate from './views/ProfileUpdate.vue';
-import QuestionUpdate from './views/QuestionUpdate.vue';
-import AskQuestion from './views/AskQuestion.vue';
-import QuestionDetail from './views/QuestionDetail.vue';
-import changePassword from './views/changePassword.vue';
-import Tag from './views/Tag.vue';
 import requireAuth from './services/requireAuth';
 import localStorageService from './services/localStorage';
-import AppMyQuestion from '@/components/AppMyQuestion.vue';
-import AppMyAnswer from '@/components/AppMyAnswer.vue';
+import Home from './views/Home.vue';
+import Username from './views/Username.vue';
+import Profile from './views/Profile.vue';
+import Blog from './views/blog/index.vue';
+// import Login from './views/Login.vue';
+// import Register from './views/Register.vue';
+// import EmailVerification from './views/EmailVerification.vue';
+// import ProfileUpdate from './views/ProfileUpdate.vue';
+// import QuestionUpdate from './views/QuestionUpdate.vue';
+// import AskQuestion from './views/AskQuestion.vue';
+// import QuestionDetail from './views/QuestionDetail.vue';
+// import changePassword from './views/changePassword.vue';
+// import Tag from './views/Tag.vue';
+// import AppMyQuestion from '@/components/AppMyQuestion.vue';
+// import AppMyAnswer from '@/components/AppMyAnswer.vue';
 
 Vue.use(Router);
 
@@ -26,34 +27,34 @@ const router = new Router({
     {
       path: '/login',
       name: 'login',
-      component: Login,
       beforeEnter(to, from, next) {
         if (to.name === 'login' && localStorageService.getToken()) {
           return next(from.path);
         }
         return next();
       },
+      component: () => import(/* webpackChunkName: "lgn" */ './views/Login.vue'),
     },
     {
       path: '/register',
       name: 'register',
-      component: Register,
       beforeEnter(to, from, next) {
         if (to.name === 'register' && localStorageService.getToken()) {
           return next(from.path);
         }
         return next();
       },
+      component: () => import(/* webpackChunkName: "reg" */ './views/Register.vue'),
     },
     {
       path: '/auth/account/user/:username/recover/:hash',
       name: 'resetPassword',
-      component: Login,
+      component: () => import(/* webpackChunkName: "lgn" */ './views/Login.vue'),
     },
     {
       path: '/auth/user/:username/verify/:hash',
       name: 'emailVerification',
-      component: EmailVerification,
+      component: () => import(/* webpackChunkName: "ev" */ './views/EmailVerification.vue'),
     },
     {
       path: '/@:username',
@@ -65,45 +66,45 @@ const router = new Router({
         },
         {
           path: 'profile/update',
-          component: ProfileUpdate,
           beforeEnter: requireAuth,
+          component: () => import(/* webpackChunkName: "pu" */ './views/ProfileUpdate.vue'),
         },
         {
           path: 'profile/password',
-          component: changePassword,
           beforeEnter: requireAuth,
+          component: () => import(/* webpackChunkName: "cp" */ './views/changePassword.vue'),
         },
         {
           path: 'question',
-          component: AppMyQuestion,
+          component: () => import(/* webpackChunkName: "amq" */ './components/AppMyQuestion.vue'),
         },
         {
           path: 'answer',
-          component: AppMyAnswer,
+          component: () => import(/* webpackChunkName: "ama" */ './components/AppMyAnswer.vue'),
         },
       ],
     },
     {
       path: '/addQuestion',
       name: 'addQuestion',
-      component: AskQuestion,
       beforeEnter: requireAuth,
+      component: () => import(/* webpackChunkName: "q" */ './views/AskQuestion.vue'),
     },
     {
       path: '/question/:slug',
       name: 'questionDetail',
-      component: QuestionDetail,
+      component: () => import(/* webpackChunkName: "qd" */ './views/QuestionDetail.vue'),
     },
     {
       path: '/question/update/:slug',
       name: 'questionUpdate',
-      component: QuestionUpdate,
+      component: () => import(/* webpackChunkName: "qu" */ './views/QuestionUpdate.vue'),
       beforeEnter: requireAuth,
     },
     {
       path: '/tags',
       name: 'tag',
-      component: Tag,
+      component: () => import(/* webpackChunkName: "tg" */ './views/Tag.vue'),
     },
     {
       path: '/',
@@ -118,18 +119,18 @@ const router = new Router({
     },
     {
       path: '/blogs',
-      component: () => import(/* webpackChunkName: "about" */ './views/blog/index.vue'),
+      component: Blog,
       children: [
         {
           path: '/',
-          component: () => import(/* webpackChunkName: "about" */ './views/blog/list.vue'),
+          component: () => import(/* webpackChunkName: "bgl" */ './views/blog/list.vue'),
           meta: {
             layout: 'blog',
           },
         },
         {
           path: 'add',
-          component: () => import(/* webpackChunkName: "about" */ './views/blog/add.vue'),
+          component: () => import(/* webpackChunkName: "bga" */ './views/blog/add.vue'),
           meta: {
             layout: 'blog',
           },
@@ -137,7 +138,7 @@ const router = new Router({
         },
         {
           path: 'update/:slug',
-          component: () => import(/* webpackChunkName: "about" */ './views/blog/update.vue'),
+          component: () => import(/* webpackChunkName: "bgu" */ './views/blog/update.vue'),
           beforeEnter: requireAuth,
           meta: {
             layout: 'blog',
@@ -145,7 +146,7 @@ const router = new Router({
         },
         {
           path: ':slug',
-          component: () => import(/* webpackChunkName: "about" */ './views/blog/detail.vue'),
+          component: () => import(/* webpackChunkName: "bgd" */ './views/blog/detail.vue'),
           meta: {
             layout: 'blog',
           },
@@ -155,12 +156,12 @@ const router = new Router({
     {
       path: '*',
       name: '404',
-      component: () => import(/* webpackChunkName: "about" */ './views/404.vue'),
+      component: () => import(/* webpackChunkName: "44" */ './views/404.vue'),
     },
     {
       path: '/about',
       name: 'about',
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
+      component: () => import(/* webpackChunkName: "abt" */ './views/About.vue'),
     },
     // {
     //   path: '/services',
