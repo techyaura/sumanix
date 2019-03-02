@@ -182,7 +182,7 @@ export default {
   background-color: #456FF1 !important;
 }
 .t-myquestion h3 a {
-  color: #2f3239 !important;
+  color: #6e727b !important;
 }
 .t-myquestion h3 a:hover {
   color: #456FF1 !important;

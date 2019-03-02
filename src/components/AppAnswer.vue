@@ -139,9 +139,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-  .t-answer input.button{
-    background-color: #2f3239 !important;
-  }
-</style>

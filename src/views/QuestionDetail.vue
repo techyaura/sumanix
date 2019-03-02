@@ -165,9 +165,6 @@ export default {
 </script>
 
 <style scoped>
-.t-question-detail .question h2 {
-  margin-bottom: 0 !important;
-}
 .t-question-detail .question-desc {
   padding-bottom: 0px !important;
 }

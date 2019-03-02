@@ -153,6 +153,9 @@
 .t-question-home .question-custom-home h2 {
   font-size: 15px !important;
 }
+.t-question-home .question-custom-home h2 a{
+    color: #6e727b !important;
+}
 .t-question-home question-custom-home .tagAdjust {
   float: left;
 }

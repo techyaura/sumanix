@@ -150,7 +150,7 @@ export default {
   font-size: 15px !important;
 }
 .t-myanswer h3 a {
-  color: #2f3239 !important;
+  color: #6e727b !important;
 }
 .t-myanswer h3 a:hover {
   color: #456FF1 !important;
