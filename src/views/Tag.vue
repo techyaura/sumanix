@@ -14,7 +14,7 @@
           <h3 class="widget_title" style="margin-bottom: 50px;">Tags</h3>
           <ul>
             <li class="facebook-fans" v-for="item in tags" v-bind:data="item" v-bind:key="item.tag">
-              <router-link class="q-tags" :to="{name: 'tagQuestion', params: {slug: item.tag}}">
+              <router-link class="" :to="{name: 'tagQuestion', params: {slug: item.tag}}">
                 <!-- <strong> -->
                   <small> {{item.slug}}</small>
                 <!-- </strong> -->
@@ -90,6 +90,7 @@ export default {
  .t-tags .widget_social ul li span.count{
   color: black;
   padding-top: 5px;
+  font-size: 10px;
 }
 .t-tags .widget_social li.facebook-fans a {
   background-color: #456FF1;

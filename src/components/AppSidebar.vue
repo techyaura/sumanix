@@ -111,7 +111,7 @@ export default {
 .t-sidebar .widget_tag_cloud a{
     margin: 0 0 5px 0!important;
     padding: 2px 6px;
-    font-size: 14px!important;
+    font-size: 12px!important;
     background-color: #456FF1;
     border-radius: 5px;
 }

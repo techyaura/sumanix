@@ -37,12 +37,12 @@
                 <i class="icon-suitcase"></i>
               </span> -->
               <router-link
-                class="anchor-space q-tags"
+                class="anchor-space"
                 v-bind:to="{name: 'tagQuestion', params: {slug: tag.slug || tag.name}}"
                 v-for="tag in item.tags"
                 v-bind:data="tag"
                 v-bind:key="tag.name"
-              >{{tag.name}}</router-link>
+              ><span class="label label-primary">{{tag.slug || tag.name}}</span></router-link>
             </span>
             <!-- <span class="question-comment">
               <a href="#">
