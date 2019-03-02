@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="t-blog-detail">
     <div class="row">
       <div class="col-md-12">
         <article class="post single-post clearfix" v-if="spinner.status">

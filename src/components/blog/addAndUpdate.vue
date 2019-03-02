@@ -174,7 +174,7 @@ export default {
           .then((response) => {
             const { message } = response.data;
             this.isSubmit = false;
-            this.$router.push('/blog');
+            this.$router.push('/blogs');
             toast.success(message);
           })
           .catch((err) => {
@@ -191,7 +191,7 @@ export default {
             const { message } = response.data;
             this.isSubmit = false;
             this.reRenderSidebar();
-            this.$router.push('/blog');
+            this.$router.push('/blogs');
             toast.success(message);
           })
           .catch((err) => {
