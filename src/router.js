@@ -123,20 +123,32 @@ const router = new Router({
         {
           path: '/',
           component: () => import(/* webpackChunkName: "about" */ './views/blog/list.vue'),
+          meta: {
+            layout: 'blog',
+          },
         },
         {
           path: 'add',
           component: () => import(/* webpackChunkName: "about" */ './views/blog/add.vue'),
+          meta: {
+            layout: 'blog',
+          },
           beforeEnter: requireAuth,
         },
         {
           path: 'update/:slug',
           component: () => import(/* webpackChunkName: "about" */ './views/blog/update.vue'),
+          beforeEnter: requireAuth,
+          meta: {
+            layout: 'blog',
+          },
         },
         {
           path: ':slug',
           component: () => import(/* webpackChunkName: "about" */ './views/blog/detail.vue'),
-          beforeEnter: requireAuth,
+          meta: {
+            layout: 'blog',
+          },
         },
       ],
     },

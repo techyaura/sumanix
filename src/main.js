@@ -16,6 +16,8 @@ import './assets/css/responsive.css';
 import './assets/css/custom.css';
 import requestHandler from './services/requestHandler';
 import errorResponseHandler from './services/errorHandler';
+import Default from './layouts/default.vue';
+import BlogLayout from './layouts/blog.vue';
 
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -23,6 +25,8 @@ axios.interceptors.request.use(requestHandler, errorResponseHandler);
 
 axios.interceptors.response.use(response => response, errorResponseHandler);
 
+Vue.component('default-layout', Default);
+Vue.component('blog-layout', BlogLayout);
 Vue.config.productionTip = true;
 Vue.prototype.$http = axios;
 Vue.prototype.$moment = moment;
