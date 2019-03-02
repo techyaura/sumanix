@@ -2,13 +2,13 @@
   <div class="t-question-home">
     <div class="col-md-9">
       <div class="tabs-warp question-tab">
-        <ul class="tabs">
-          <li class="tab" v-if="slug">
+        <ul class="tabs" v-if="!slug">
+          <!-- <li class="tab" v-if="slug">
             <a
               href="javascript:void(0)"
               v-bind:class="{ current: currentFilterFlag === '' }"
             >{{( slugCapitalize ) + ' Questions'}}</a>
-          </li>
+          </li> -->
 
           <li class="tab" v-if="!slug">
             <a
