@@ -114,7 +114,7 @@
                     itemprop="dateCreated"
                     :datetime="item.modifiedAt"
                   >{{timestamp(item)}}</time>
-                  <span itemscope itemtype="http://schema.org/Person">
+                  <span itemscope itemtype="http://schema.org/Person" class="person">
                     <router-link :to="'/@' + computeUsername(item)" itemprop="name">
                       {{computeUsername(item)}}
                     </router-link>
@@ -162,6 +162,9 @@
   padding: 2px 5px 2px 5px !important;
   border-radius: 4px !important;
   color: #7a27cc !important; */
+}
+.t-question-home span.person a{
+  color: #456FF1 !important;
 }
 /* .-home h2 {
   margin: 0 0 30px 0px !important;

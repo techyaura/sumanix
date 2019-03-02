@@ -175,6 +175,18 @@ export default {
   margin-right: 70px !important;
   background-color: #cccc !important;
 }
+.t-myquestion .question-type-main a{
+  color: #2f3239 !important;
+}
+.t-myquestion .question-type-main:hover{
+  background-color: #456FF1 !important;
+}
+.t-myquestion h3 a {
+  color: #2f3239 !important;
+}
+.t-myquestion h3 a:hover {
+  color: #456FF1 !important;
+}
 .t-myquestion .question {
   padding: 10px 20px 10px 20px !important;
 }

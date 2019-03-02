@@ -92,7 +92,7 @@ export default {
   padding-top: 5px;
 }
 .t-tags .widget_social li.facebook-fans a {
-  background-color: #9a9595;
+  background-color: #456FF1;
   /* padding-bottom: 10px !important; */
   float: left;
   padding: 5px;

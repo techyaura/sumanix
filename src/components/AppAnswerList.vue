@@ -161,6 +161,9 @@ export default {
   background-color: #cccc !important;
   color: black !important;
 }
+.t-answer-list .question-type-main:hover {
+  background-color: #456FF1 !important;
+}
 .t-answer-list .text p {
   font-weight: 600 !important;
 }

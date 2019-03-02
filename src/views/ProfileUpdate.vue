@@ -290,7 +290,7 @@ export default {
 .t-profile-update .form-style-4 .custom-input {
   color: #756464 !important;
 }
-.t-profile-update .form-style-4 input.button{
+/* .t-profile-update .form-style-4 input.button{
   background-color: #2f3239 !important;
-}
+} */
 </style>

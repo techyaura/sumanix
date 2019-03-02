@@ -12,7 +12,7 @@
             </li>
             <li>
               <a class="anchor-link" v-on:click="onLinkClicked()">
-                <i class="icon-pencil"></i>Ask Question
+                <i class="icon-pencil" style="color: #fff !important;"></i>Ask Question
               </a>
             </li>
             <li class="anchor-link">
@@ -70,7 +70,7 @@
           style="background-color: transparent; border-color: transparent; color: rgb(255, 255, 255);"
         >
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 header-button">
               <h2>Connect, Share & Learn</h2>
               <p>SumaniX is an online community platform for job aspirants & techs developers to learn, share their knowledge, and build their career.</p>
               <div class="clearfix"></div>
@@ -197,6 +197,7 @@ export default {
   cursor: pointer;
   /* margin-left: 100px; */
   font-size: 14px;
+  color: #fff;
 }
 .t-header .header-top-nav li.logoLink:hover a {
   color: white;
@@ -223,6 +224,7 @@ export default {
 }
 .t-header .section-warp-custom {
   padding: 30px 0 !important;
+  background-color: #474c58;
 }
 .t-header .ask-me .col-md-12 {
   padding-top: 0 !important;
@@ -232,7 +234,14 @@ export default {
 }
 .t-header #header-top {
   height: 65px !important;
+  background-color: #474c58;
 }
+ul li a:hover {
+    color: #fff !important;
+}
+/* .header-button a,a:hover{
+  background-color: #898989 !important;
+} */
 @media only screen and (max-width: 479px) {
   .t-header li.search-bar {
     width: 100% !important;

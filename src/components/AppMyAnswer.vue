@@ -149,6 +149,12 @@ export default {
 .t-myanswer h3 {
   font-size: 15px !important;
 }
+.t-myanswer h3 a {
+  color: #2f3239 !important;
+}
+.t-myanswer h3 a:hover {
+  color: #456FF1 !important;
+}
 @media only screen and (max-width: 479px) {
   .t-myanswer .user-question h3 {
     margin-top: 0px !important;

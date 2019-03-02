@@ -104,8 +104,21 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
 .t-sidebar .more-tag-link{
   background-color: #ccc !important;
+}
+.t-sidebar .widget_tag_cloud a{
+    margin: 0 0 5px 0!important;
+    padding: 2px 6px;
+    font-size: 14px!important;
+    background-color: #456FF1;
+    border-radius: 5px;
+}
+.t-sidebar .related-posts li {
+    margin-bottom: 0px;
+}
+.t-sidebar .widget ul li {
+    padding-bottom: 0px;
 }
 </style>
