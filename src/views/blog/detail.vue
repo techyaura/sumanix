@@ -16,11 +16,11 @@
         </article>
         <article class="post single-post clearfix">
           <div class="post-inner">
-            <div class="post-img">
+            <!-- <div class="post-img">
               <a href="single_post.html">
-                <!-- <img src="../ask-me/images/demo/posts/loneliness-1440x900.jpg" alt> -->
+                <img src="../ask-me/images/demo/posts/loneliness-1440x900.jpg" alt>
               </a>
-            </div>
+            </div> -->
             <h2 class="post-title">
               <span class="post-type">
                 <i class="icon-film"></i>
@@ -28,10 +28,10 @@
               {{blog.title}}
             </h2>
             <div class="post-meta">
-              <span class="meta-author">
+              <!-- <span class="meta-author">
                 <i class="icon-user"></i>
                 <a href="#">Administrator</a>
-              </span>
+              </span> -->
               <span class="meta-date">
                 <i class="icon-time"></i>
                 {{timestamp(blog)}}

@@ -13,7 +13,7 @@
         <div class="thumbnail">
           <!-- <img src="..." alt="..."> -->
           <div class="caption">
-            <router-link :to="'/blog/' + item.slug">
+            <router-link :to="'/blogs/' + item.slug">
               <h3>{{item.title}}</h3>
             </router-link>
             <p>

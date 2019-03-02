@@ -27,7 +27,7 @@
                   <router-link to="/">Home</router-link>
                 </li>
                 <li>
-                  <router-link to="/blog">Blogs</router-link>
+                  <router-link to="/blogs">Blogs</router-link>
                 </li>
                 <li>
                    <router-link to="/about">About</router-link>

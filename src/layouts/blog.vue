@@ -6,7 +6,7 @@
           <nav class="header-top-nav">
             <ul>
               <li class="logoLink">
-                <router-link to="/blog">
+                <router-link to="/blogs">
                   SumaniX
                   <!-- <span class="logo-version-tile">v1.0</span> -->
                   <span class="logo-version-tile">Blogs</span>
