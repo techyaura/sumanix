@@ -103,10 +103,11 @@ export default {
 <style scoped>
 .t-profile-parent .router-link-exact-active{
   background-color:#456FF1;
+  color: #fff;
 }
-.t-profile-parent .router-link-exact-active:hover{
+/* .t-profile-parent .router-link-exact-active:hover{
   color: #ddd;
-}
+} */
 @media only screen and (max-width: 479px) {
   .t-profile-parent .row{
     margin-right: 0px !important;
