@@ -286,9 +286,9 @@ export default {
 .t-askquestion .vue-tags-input input[type="text"] {
   background: none !important;
 }
-.t-askquestion .post-content {
+/* .t-askquestion .post-content {
   color: black !important;
-}
+} */
 .t-askquestion .ti-tags li.ti-tag {
   color: #39739d;
   background-color: #e1ecf4;
