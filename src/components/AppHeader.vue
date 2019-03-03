@@ -16,7 +16,7 @@
               </a>
             </li>
             <li class="anchor-link">
-              <router-link to="/tags">Tags</router-link>
+              <router-link to="/interview-questions">Interview Questions</router-link>
             </li>
             <li class="anchor-link search-bar">
               <AppHeaderSearch></AppHeaderSearch>

@@ -1,5 +1,5 @@
 <template>
-  <div class="col-md-12 t-tags">
+  <div class="col-md-12 t-int-tags">
     <div class="page-content page-content-user-profile">
       <div class="user-profile-widget">
         <Spinner
@@ -11,34 +11,50 @@
           :speed="spinner.speed"
         />
         <div class="widget widget_social">
-          <h3 class="widget_title" style="margin-bottom: 50px;">Tags</h3>
-          <ul>
-            <li class="facebook-fans" v-for="item in tags" v-bind:data="item" v-bind:key="item.tag">
-              <router-link class :to="{name: 'tagQuestion', params: {slug: item.slug || item.tag}}">
-                <small>{{item.slug}}</small>
-              </router-link>
-              <span class="count">X {{item.count}}</span>
-            </li>
-          </ul>
+          <h3 class="widget_title" style="margin-bottom: 50px;">Interview Questions</h3>
+
+          <div
+            class="col-sm-6 col-md-4"
+            v-for="item in tags"
+            v-bind:data="item"
+            v-bind:key="item.tag"
+          >
+            <router-link class :to="{name: 'interviewTag', params: {slug: item.slug || item.tag}}">
+              <div class="thumbnail">
+                <!-- <img
+                  :src="'https://via.placeholder.com/300/000000/FFFFFF/?text=' + item.tag"
+                  alt="..."
+                > -->
+                <div class="caption">
+                  <!-- <router-link class="" :to="{name: 'interviewTag', params: {slug: item.slug || item.tag}}"> -->
+                  <h3>{{item.tag | capitalize}}</h3>
+                  <!-- </router-link> -->
+                  <p>
+                    <!-- <a href="#" class="btn btn-primary" role="button">Click here</a> -->
+                    <!-- <a href="#" class="btn btn-default" role="button">Button</a> -->
+                  </p>
+                </div>
+              </div>
+            </router-link>
+          </div>
         </div>
         <br>
       </div>
     </div>
   </div>
 </template>
-
 <script>
 import Spinner from '@/components/Spinner.vue';
-import { filterMixin, spinnerMixin, breadcrumbMixin } from '../mixins';
+import { filterMixin, spinnerMixin, breadcrumbMixin } from '../../mixins';
 
 export default {
-  name: 'AppTag',
+  name: 'InterviewTag',
   components: {
     Spinner,
   },
   mixins: [filterMixin, spinnerMixin, breadcrumbMixin],
   created() {
-    document.title = this.title('Tags');
+    document.title = this.title('Interview Questions');
   },
   data() {
     return {
@@ -72,7 +88,10 @@ export default {
 </script>
 
 <style scoped>
-.t-tags .widget_social ul li {
+.t-int-tags{
+  min-height: 400px;
+}
+.t-int .widget_social ul li {
   /* width: 20% !important;
   padding-right: 10px !important;
   height: 35px !important; */
@@ -82,19 +101,19 @@ export default {
   border-bottom: 1px solid #ccc;
   margin-left: 40px;
 }
-.t-tags .widget_social ul li span.count {
+.t-int .widget_social ul li span.count {
   color: black;
   padding-top: 5px;
   font-size: 10px;
 }
-.t-tags .widget_social li.facebook-fans a {
+.t-int .widget_social li.facebook-fans a {
   background-color: #456ff1;
   /* padding-bottom: 10px !important; */
   float: left;
   padding: 5px;
 }
 @media only screen and (max-width: 479px) {
-  .t-tags .widget_social ul li {
+  .t-int .widget_social ul li {
     width: 100% !important;
   }
 }

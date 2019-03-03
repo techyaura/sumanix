@@ -6,6 +6,7 @@ import Home from './views/Home.vue';
 import Username from './views/Username.vue';
 import Profile from './views/Profile.vue';
 import Blog from './views/blog/index.vue';
+import Interview from './views/interview/index.vue';
 // import Login from './views/Login.vue';
 // import Register from './views/Register.vue';
 // import EmailVerification from './views/EmailVerification.vue';
@@ -150,6 +151,28 @@ const router = new Router({
           meta: {
             layout: 'blog',
           },
+        },
+      ],
+    },
+    {
+      path: '/interview-questions',
+      component: Interview,
+      children: [
+        {
+          path: '/',
+          component: () => import(/* webpackChunkName: "bgl" */ './views/interview/tag.vue'),
+          // meta: {
+          //   layout: 'blog',
+          // },
+        },
+        {
+          path: 'tag/:slug',
+          name: 'interviewTag',
+          component: () => import(/* webpackChunkName: "bgu" */ './views/interview/question.vue'),
+          // beforeEnter: requireAuth,
+          // meta: {
+          //   layout: 'blog',
+          // },
         },
       ],
     },
