@@ -84,14 +84,14 @@ export default {
           const { token, data: user, message } = response.data;
           this.isSubmit = false;
           this.$store
-          .dispatch('auth/saveSession', {
-            token,
-            user,
-          })
-          .then(() => {
-            toast.success(message);
-            this.$router.push(`/@${username}`);
-          });
+            .dispatch('auth/saveSession', {
+              token,
+              user,
+            })
+            .then(() => {
+              toast.success(message);
+              this.$router.push('/');
+            });
         })
         .catch((err) => {
           this.err = err;
