@@ -31,15 +31,19 @@ export default {
         }api/v1/auth/user/verification?username=${username}&hash=${hash}`, { errorHandle: false },
       )
       .then((response) => {
-        const { token, data, message } = response.data;
-        localStorage.setItem('accessToken', JSON.stringify(token));
-        localStorage.setItem('user', JSON.stringify(data));
-        this.$vueEventBus.$emit('isLoggedIn', true);
-        toast.success(message);
-        this.$router.push(`/@${username}`);
+        const { token, data: user, message } = response.data;
+        this.$store
+          .dispatch('auth/saveSession', {
+            token,
+            user,
+          })
+          .then(() => {
+            toast.success(message);
+            this.$router.push(`/@${username}`);
+          });
       })
       .catch(() => {
-        this.$router.push('/profile');
+        this.$router.push('/');
       });
   },
 };
