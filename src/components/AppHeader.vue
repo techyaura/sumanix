@@ -21,15 +21,22 @@
             <li class="anchor-link search-bar">
               <AppHeaderSearch></AppHeaderSearch>
             </li>
-            <li class="dropdown anchor-link right-nv-header" v-show="!isLoggedInFlag">
-               <router-link to="/login">Log In</router-link>
+            <li class="dropdown anchor-link right-nv-header" v-show="!token">
+              <router-link to="/login">Log In</router-link>
             </li>
-            <li class="dropdown anchor-link right-nv-header" v-show="isLoggedInFlag">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);" @click="showDropdown()">{{username}}<span class="caret"></span>
+            <li class="dropdown anchor-link right-nv-header" v-show="token">
+              <a
+                class="dropdown-toggle"
+                data-toggle="dropdown"
+                href="javascript:void(0);"
+                @click="showDropdown()"
+              >
+                {{user.username}}
+                <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
                 <li @click="showDropdown()">
-                  <router-link :to="'/@' + username">Profile</router-link>
+                  <router-link :to="'/@' + user.username">Profile</router-link>
                 </li>
                 <li>
                   <a href="javascript:void(0)" v-on:click="logout();">Log Out</a>
@@ -43,10 +50,10 @@
         </nav>
         <!-- <div class="header-search header-search-panel">
           <div class="right-auth-panel">
-            <router-link v-show="!isLoggedInFlag" to="/login">
+            <router-link v-show="!token" to="/login">
               <i class="icon-user"></i>Login Area
             </router-link>
-            <a href="javascript:void(0)" v-show="isLoggedInFlag" v-on:click="logout();">Log out</a>
+            <a href="javascript:void(0)" v-show="token" v-on:click="logout();">Log out</a>
           </div>
         </div>-->
       </section>
@@ -54,13 +61,9 @@
     </div>
 
     <!-- End header-top -->
-    <header
-      id="header"
-      class="index-no-box header_light"
-      v-if="!isHomePageLand  && (isLoggedInFlag || !isLoggedInFlag)"
-    ></header>
+    <header id="header" class="index-no-box header_light" v-if="!isHomePageLand"></header>
     <!-- End header -->
-    <div class="section-warp section-warp-custom ask-me" v-if="isHomePageLand && !isLoggedInFlag">
+    <div class="section-warp section-warp-custom ask-me" v-if="isHomePageLand && !token">
       <div class="container clearfix custom-header-logo">
         <div
           class="box_icon box_warp box_no_border box_no_background"
@@ -88,7 +91,8 @@
 </template>
 
 <script>
-import localStorageService from '../services/localStorage';
+import { mapGetters } from 'vuex';
+// import localStorageService from '../services/localStorage';
 import AppHeaderSearch from './AppHeaderSearch.vue';
 
 export default {
@@ -96,43 +100,26 @@ export default {
   components: {
     AppHeaderSearch,
   },
-  data() {
-    return {
-      isLoggedInFlag: this.isLoggedIn || false,
-      isHomePageLand: false,
-      username: (this.user) ? this.user.username : '',
-      //  profileRoute: `/@${  this.user.username}`,
-    };
-  },
-  props: ['isLoggedIn', 'user'],
-  beforeCreate() {
-    this.$vueEventBus.$on('isLoggedIn', (value) => {
-      this.isLoggedInFlag = value;
-      this.username = localStorageService.getUser().username || '';
-      this.$emit('logout', true);
-    });
-    this.$vueEventBus.$on('isHomePage', (value) => {
-      this.isHomePageLand = value;
-    });
-  },
-  watch: {
-    isLoggedInFlag(newVal, oldVal) {
-      if (newVal !== oldVal) {
-        this.isLoggedInFlag = newVal;
-      }
-    },
-  },
+  // data() {
+  //   return {
+  //     isHomePageLand: false
+  //   };
+  // },
+  // props: ['isLoggedIn', 'user'],
+  // beforeCreate() {
+  //   this.$vueEventBus.$on("isHomePage", value => {
+  //     this.isHomePageLand = value;
+  //   });
+  // },
   methods: {
     logout() {
       this.showDropdown();
-      localStorageService.destroySession().then(() => {
-        this.isLoggedInFlag = false;
-        // this.$emit('logout', false);
-        this.$router.push('/');
+      this.$store.dispatch('auth/destroySession').then(() => {
+        this.$router.push('/login');
       });
     },
     onLinkClicked() {
-      if (!this.isLoggedInFlag) {
+      if (!this.token) {
         this.$router.push({
           name: 'login',
           query: { redirect: '/addQuestion' },
@@ -146,18 +133,28 @@ export default {
       element.classList.toggle('dropdown-menu-custom');
     },
   },
+  computed: {
+    ...mapGetters({
+      user: 'auth/getUser',
+      token: 'auth/getToken',
+      isHomePageLand: 'app/getHomePageState',
+    }),
+  },
+  created() {
+    this.$store.dispatch('auth/fetchSession');
+  },
 };
 </script>
 <style scoped>
-.t-header .dropdown-menu-custom{
-  display: block
+.t-header .dropdown-menu-custom {
+  display: block;
 }
 
-.t-header .dropdown-menu-custom li a{
+.t-header .dropdown-menu-custom li a {
   color: #262626;
 }
 
-.t-header .dropdown-menu-custom li:hover{
+.t-header .dropdown-menu-custom li:hover {
   width: 100% !important;
   background-color: #f5f5f5;
 }
@@ -229,7 +226,7 @@ export default {
 .t-header .ask-me .col-md-12 {
   padding-top: 0 !important;
 }
-.t-header nav ul{
+.t-header nav ul {
   margin-bottom: 0px !important;
 }
 .t-header #header-top {
@@ -237,7 +234,7 @@ export default {
   background-color: #474c58;
 }
 ul li a:hover {
-    color: #fff !important;
+  color: #fff !important;
 }
 /* .header-button a,a:hover{
   background-color: #898989 !important;
@@ -251,7 +248,7 @@ ul li a:hover {
   .t-header #header-top {
     height: 180px !important;
   }
-  .t-header .header-top-nav li a{
+  .t-header .header-top-nav li a {
     float: none !important;
   }
 }

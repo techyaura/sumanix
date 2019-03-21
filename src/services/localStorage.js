@@ -1,7 +1,7 @@
 class localStorageService {
   static getToken() {
-    if (localStorage.getItem('accessToken')) {
-      return JSON.parse(localStorage.getItem('accessToken'));
+    if (localStorage.getItem('token')) {
+      return JSON.parse(localStorage.getItem('token'));
     }
     return null;
   }

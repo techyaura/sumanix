@@ -22,7 +22,7 @@
       <header id="header" class="index-no-box header_light"></header>
     </div>
     <section class="container main-content" style="min-height: 400px;">
-      <router-view :key="$route.fullPath"></router-view>
+      <slot/>
     </section>
     <AppFooter/>
   </div>

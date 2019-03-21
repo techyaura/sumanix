@@ -1,11 +1,8 @@
 <template>
   <div id="wrap" class="grid_1200">
     <AppHeader/>
-    <section class="container main-content">
+    <section class="container main-content page-left-sidebar">
       <slot/>
-      <div>
-        <AppSidebar/>
-      </div>
     </section>
     <AppFooter/>
   </div>
@@ -14,14 +11,12 @@
 <script>
 import AppFooter from '../components/AppFooter.vue';
 import AppHeader from '../components/AppHeader.vue';
-import AppSidebar from '../components/AppSidebar.vue';
 
 export default {
-  name: 'DefaultLayout',
+  name: 'ProfileLayout',
   components: {
     AppFooter,
     AppHeader,
-    AppSidebar,
   },
 };
 </script>

@@ -26,7 +26,8 @@
               :disabled="isSubmit"
               :value="!isSubmit? 'Log in' : 'Logging In ...'"
               type="submit"
-              class="button color small login-submit submit">
+              class="button color small login-submit submit"
+            >
           </p>
           <div class="rememberme"></div>
         </form>
@@ -71,12 +72,16 @@ export default {
         })
         .then((response) => {
           this.isSubmit = false;
-          const { token, data, message } = response.data;
-          localStorage.setItem('accessToken', JSON.stringify(token));
-          localStorage.setItem('user', JSON.stringify(data));
-          this.$vueEventBus.$emit('isLoggedIn', true);
-          this.$router.push(this.$route.query.redirect || '/');
-          toast.success(message);
+          const { token, data: user, message } = response.data;
+          this.$store
+            .dispatch('auth/saveSession', {
+              token,
+              user,
+            })
+            .then(() => {
+              toast.success(message);
+              this.$router.push(this.$route.query.redirect || '/');
+            });
         })
         .catch((err) => {
           this.isSubmit = false;
