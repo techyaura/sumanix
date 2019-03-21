@@ -81,13 +81,17 @@ export default {
           errorHandle: false,
         })
         .then((response) => {
-          const { token, data, message } = response.data;
+          const { token, data: user, message } = response.data;
           this.isSubmit = false;
-          toast.success(message);
-          localStorage.setItem('accessToken', JSON.stringify(token));
-          localStorage.setItem('user', JSON.stringify(data));
-          this.$vueEventBus.$emit('isLoggedIn', true);
-          this.$router.push('/');
+          this.$store
+          .dispatch('auth/saveSession', {
+            token,
+            user,
+          })
+          .then(() => {
+            toast.success(message);
+            this.$router.push(`/@${username}`);
+          });
         })
         .catch((err) => {
           this.err = err;
