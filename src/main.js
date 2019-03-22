@@ -14,6 +14,7 @@ import './assets/css/style.css';
 import './assets/css/skins/google.css';
 import './assets/css/responsive.css';
 import './assets/css/custom.css';
+import './assets/css/placeholder-loading.css';
 import './plugins/axios';
 import Default from './layouts/default.vue';
 import BlogLayout from './layouts/blog.vue';

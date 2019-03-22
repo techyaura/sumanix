@@ -8,7 +8,7 @@
               href="javascript:void(0)"
               v-bind:class="{ current: currentFilterFlag === '' }"
             >{{( slugCapitalize ) + ' Questions'}}</a>
-          </li> -->
+          </li>-->
 
           <li class="tab" v-if="!slug">
             <a
@@ -35,14 +35,72 @@
         </ul>
         <div class="tab-inner-warp">
           <div class="tab-inner">
-            <Spinner
+            <!-- <Spinner
               :status="spinner.status"
               :color="spinner.color"
               :size="spinner.size"
               :depth="spinner.depth"
               :rotation="spinner.rotation"
               :speed="spinner.speed"
-            />
+            />-->
+            <div v-if="spinner.status">
+              <article>
+                <div class="ph-item">
+                  <div class="ph-col-12">
+                    <div class="ph-row">
+                      <div class="ph-col-12 big"></div>
+                      <div class="ph-col-2"></div>
+                      <div class="ph-col-2 empty"></div>
+                      <div class="ph-col-2"></div>
+                      <div class="ph-col-2 empty"></div>
+                      <div class="ph-col-2"></div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+              <article>
+                <div class="ph-item">
+                  <div class="ph-col-12">
+                    <div class="ph-row">
+                      <div class="ph-col-12 big"></div>
+                      <div class="ph-col-2"></div>
+                      <div class="ph-col-2 empty"></div>
+                      <div class="ph-col-2"></div>
+                      <div class="ph-col-2 empty"></div>
+                      <div class="ph-col-2"></div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+              <article>
+                <div class="ph-item">
+                  <div class="ph-col-12">
+                    <div class="ph-row">
+                      <div class="ph-col-12 big"></div>
+                      <div class="ph-col-2"></div>
+                      <div class="ph-col-2 empty"></div>
+                      <div class="ph-col-2"></div>
+                      <div class="ph-col-2 empty"></div>
+                      <div class="ph-col-2"></div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+              <article>
+                <div class="ph-item">
+                  <div class="ph-col-12">
+                    <div class="ph-row">
+                      <div class="ph-col-12 big"></div>
+                      <div class="ph-col-2"></div>
+                      <div class="ph-col-2 empty"></div>
+                      <div class="ph-col-2"></div>
+                      <div class="ph-col-2 empty"></div>
+                      <div class="ph-col-2"></div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
             <article
               itemscope
               itemtype="http://schema.org/Question"
@@ -76,7 +134,7 @@
                     :title="item.username[0]"
                   >
                 </router-link>
-              </div> -->
+              </div>-->
               <div class="question-inner">
                 <div class="clearfix"></div>
                 <div class="question-details">
@@ -85,14 +143,16 @@
                 <span class="question-category">
                   <!-- <span class="tagAdjust">
                     <i class="icon-suitcase"></i>
-                  </span> -->
+                  </span>-->
                   <router-link
                     class="anchor-space"
                     v-bind:to="{name: 'tagQuestion', params: {slug: tag.slug || tag.name}}"
                     v-for="tag in item.tags"
                     v-bind:data="tag"
                     v-bind:key="tag.slug"
-                  ><span class="label label-primary">{{tag.slug || tag.name}}</span></router-link>
+                  >
+                    <span class="label label-primary">{{tag.slug || tag.name}}</span>
+                  </router-link>
                 </span>
                 <span class="question-comment">
                   <router-link
@@ -115,9 +175,10 @@
                     :datetime="item.modifiedAt"
                   >{{timestamp(item)}}</time>
                   <span itemscope itemtype="http://schema.org/Person" class="person">
-                    <router-link :to="'/@' + computeUsername(item)" itemprop="name">
-                      {{computeUsername(item)}}
-                    </router-link>
+                    <router-link
+                      :to="'/@' + computeUsername(item)"
+                      itemprop="name"
+                    >{{computeUsername(item)}}</router-link>
                   </span>
                 </span>
                 <div class="clearfix"></div>
@@ -143,7 +204,8 @@
 </template>
 
 <style scoped>
-.t-question-home .question-custom-home h2,.question-inner {
+.t-question-home .question-custom-home h2,
+.question-inner {
   margin-left: 0px !important;
 }
 .t-question-home .question-custom-home .question-date {
@@ -153,14 +215,14 @@
 .t-question-home .question-custom-home h2 {
   font-size: 15px !important;
 }
-.t-question-home .question-custom-home h2 a{
-    color: #6e727b !important;
+.t-question-home .question-custom-home h2 a {
+  color: #6e727b !important;
 }
 .t-question-home question-custom-home .tagAdjust {
   float: left;
 }
-.t-question-home .question-date span.username a{
-  color: #38CBCB !important;
+.t-question-home .question-date span.username a {
+  color: #38cbcb !important;
 }
 .t-question-home question-custom-home .anchor-space {
   margin-left: 5px;
@@ -169,8 +231,8 @@
   border-radius: 4px !important;
   color: #7a27cc !important; */
 }
-.t-question-home span.person a{
-  color: #456FF1 !important;
+.t-question-home span.person a {
+  color: #456ff1 !important;
 }
 /* .-home h2 {
   margin: 0 0 30px 0px !important;
@@ -201,6 +263,7 @@ export default {
   mixins: [filterMixin, spinnerMixin, breadcrumbMixin],
   data() {
     return {
+      placeHolder: [1, 2, 3, 4, 5],
       isLoading: false,
       isLoaded: false,
       loadingText: 'Load More Questions',
@@ -323,7 +386,8 @@ export default {
       this.offset = this.offset + 1;
       if (
         this.currentFilterFlag
-        && (this.currentFilterFlag === 'recent' || this.currentFilterFlag === 'mostViewed')
+        && (this.currentFilterFlag === 'recent'
+          || this.currentFilterFlag === 'mostViewed')
       ) {
         this.getQuestions();
       } else if (this.currentFilterFlag === 'unanswered') {
