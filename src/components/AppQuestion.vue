@@ -176,6 +176,7 @@
                   >{{timestamp(item)}}</time>
                   <span itemscope itemtype="http://schema.org/Person" class="person">
                     <router-link
+                      style="padding-left: 10px;"
                       :to="'/@' + computeUsername(item)"
                       itemprop="name"
                     >{{computeUsername(item)}}</router-link>

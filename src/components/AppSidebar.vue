@@ -2,14 +2,48 @@
   <aside class="col-md-3 sidebar t-sidebar">
     <div class="widget widget_tag_cloud">
       <h3 class="widget_title">Tags</h3>
-      <Spinner
+      <!-- <Spinner
         :status="spinner.status"
         :color="spinner.color"
         :size="spinner.size"
         :depth="spinner.depth"
         :rotation="spinner.rotation"
         :speed="spinner.speed"
-      />
+      /> -->
+
+       <div class="ph-item" v-if="spinner.status">
+          <div class="ph-col-3">
+            <div class="ph-row">
+              <div class="ph-col-2"></div>
+              <div class="ph-col-2 empty"></div>
+              <div class="ph-col-2"></div>
+              <div class="ph-col-2 empty"></div>
+              <div class="ph-col-2"></div>
+            </div>
+            <div class="ph-row">
+              <div class="ph-col-2"></div>
+              <div class="ph-col-2 empty"></div>
+              <div class="ph-col-2"></div>
+              <div class="ph-col-2 empty"></div>
+              <div class="ph-col-2"></div>
+            </div>
+            <div class="ph-row">
+              <div class="ph-col-2"></div>
+              <div class="ph-col-2 empty"></div>
+              <div class="ph-col-2"></div>
+              <div class="ph-col-2 empty"></div>
+              <div class="ph-col-2"></div>
+            </div>
+            <div class="ph-row">
+              <div class="ph-col-2"></div>
+              <div class="ph-col-2 empty"></div>
+              <div class="ph-col-2"></div>
+              <div class="ph-col-2 empty"></div>
+              <div class="ph-col-2"></div>
+            </div>
+          </div>
+        </div>
+
       <router-link
         v-for="item in tags"
         v-bind:data="item"

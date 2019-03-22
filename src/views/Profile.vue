@@ -3,22 +3,25 @@
     <div class="col-md-12">
       <div class="page-content">
         <h2>About User</h2>
-        <Spinner
-          :status="spinner.status"
-          :color="spinner.color"
-          :size="spinner.size"
-          :depth="spinner.depth"
-          :rotation="spinner.rotation"
-          :speed="spinner.speed"
-        />
-        <!-- <router-link
-              class="question-report"
-              :to="{name: 'profileUpdate'}"
-              v-if="!spinner.status"
-              style="background-color: #898989"
-              >
-                Update Profile
-        </router-link>-->
+        <div class="ph-item" v-if="spinner.status">
+          <div class="ph-col-2">
+            <div class="ph-avatar"></div>
+          </div>
+          <div>
+            <div class="ph-row">
+              <div class="ph-col-12"></div>
+              <div class="ph-col-4"></div>
+              <div class="ph-col-10 empty"></div>
+              <div class="ph-col-8 big"></div>
+              <div class="ph-col-4 big empty"></div>
+            </div>
+          </div>
+          <div class="ph-col-12">
+            <div class="ph-row">
+              <div class="ph-col-12"></div>
+            </div>
+          </div>
+        </div>
         <div class="user-profile-img" v-if="!spinner.status">
           <img width="60" height="60" :src="'/img/profile/' + user.avatar" :alt="user.avatar">
         </div>
@@ -47,21 +50,21 @@
     </div>
     <div class="col-md-12">
       <AppMyAnswer/>
-    </div> -->
+    </div>-->
     <div class="clearfix"></div>
   </div>
 </template>
 
 <script>
-import Spinner from '@/components/Spinner.vue';
+import Spinner from "@/components/Spinner.vue";
 // import AppMyQuestion from '@/components/AppMyQuestion.vue';
 // import AppMyAnswer from '@/components/AppMyAnswer.vue';
-import { breadcrumbMixin, filterMixin, spinnerMixin } from '../mixins';
+import { breadcrumbMixin, filterMixin, spinnerMixin } from "../mixins";
 
 export default {
-  name: 'Profile',
+  name: "Profile",
   components: {
-    Spinner,
+    Spinner
     // AppMyQuestion,
     // AppMyAnswer,
   },
@@ -69,40 +72,40 @@ export default {
   data() {
     return {
       username: this.$route.params.username,
-      user: {
-      },
+      user: {}
     };
   },
   beforeCreate() {
-    this.$vueEventBus.$emit('isLoginPageLanding', true);
-    this.$vueEventBus.$emit('isProfileSidebar', true);
+    this.$vueEventBus.$emit("isLoginPageLanding", true);
+    this.$vueEventBus.$emit("isProfileSidebar", true);
   },
   beforeRouteEnter: (to, from, next) => {
-    next((vm) => {
-      vm.$vueEventBus.$emit('isLoginPageLanding', true);
+    next(vm => {
+      vm.$vueEventBus.$emit("isLoginPageLanding", true);
     });
   },
   beforeRouteLeave(to, from, next) {
-    this.$vueEventBus.$emit('isLoginPageLanding', false);
+    this.$vueEventBus.$emit("isLoginPageLanding", false);
     next();
   },
   methods: {
     profile(username) {
-      this.$http.get(`${this.$BASE_URL}api/v1/auth/user/${username}`, {
-        errorHandle: false,
-      })
-        .then((response) => {
+      this.$http
+        .get(`${this.$BASE_URL}api/v1/auth/user/${username}`, {
+          errorHandle: false
+        })
+        .then(response => {
           this.user = response.data.data;
           document.title = this.title(`User ${username}`);
           this.spinner.status = false;
         })
         .catch(() => {
-          this.$router.push('*');
+          this.$router.push("*");
         });
-    },
+    }
   },
   created() {
     this.profile(this.username);
-  },
+  }
 };
 </script>

@@ -2,17 +2,63 @@
   <div class="col-md-12 t-int-tags">
     <div class="page-content page-content-user-profile">
       <div class="user-profile-widget">
-        <Spinner
-          :status="spinner.status"
-          :color="spinner.color"
-          :size="spinner.size"
-          :depth="spinner.depth"
-          :rotation="spinner.rotation"
-          :speed="spinner.speed"
-        />
         <div class="widget widget_social">
           <h3 class="widget_title" style="margin-bottom: 50px;">Interview Questions</h3>
-
+          <div v-if="spinner.status">
+            <div class="ph-item">
+              <div class="ph-col-12">
+                <div class="ph-row">
+                  <div class="ph-col-2 big"></div>
+                  <div class="ph-col-2 big empty"></div>
+                  <div class="ph-col-2 big"></div>
+                  <div class="ph-col-2 big empty"></div>
+                  <div class="ph-col-2 big"></div>
+                </div>
+                <div class="ph-row">
+                  <div class="ph-col-2 big"></div>
+                  <div class="ph-col-2 big empty"></div>
+                  <div class="ph-col-2 big"></div>
+                  <div class="ph-col-2 big empty"></div>
+                  <div class="ph-col-2 big"></div>
+                </div>
+                <div class="ph-row">
+                  <div class="ph-col-2 big"></div>
+                  <div class="ph-col-2 big empty"></div>
+                  <div class="ph-col-2 big"></div>
+                  <div class="ph-col-2 big empty"></div>
+                  <div class="ph-col-2 big"></div>
+                </div>
+                <div class="ph-row">
+                  <div class="ph-col-2 big"></div>
+                  <div class="ph-col-2 big empty"></div>
+                  <div class="ph-col-2 big"></div>
+                  <div class="ph-col-2 big empty"></div>
+                  <div class="ph-col-2 big"></div>
+                </div>
+                <div class="ph-row">
+                  <div class="ph-col-2 big"></div>
+                  <div class="ph-col-2 big empty"></div>
+                  <div class="ph-col-2 big"></div>
+                  <div class="ph-col-2 big empty"></div>
+                  <div class="ph-col-2 big"></div>
+                </div>
+                <div class="ph-row">
+                  <div class="ph-col-2 big"></div>
+                  <div class="ph-col-2 big empty"></div>
+                  <div class="ph-col-2 big"></div>
+                  <div class="ph-col-2 big empty"></div>
+                  <div class="ph-col-2 big"></div>
+                </div>
+                <div class="ph-row">
+                  <div class="ph-col-2 big"></div>
+                  <div class="ph-col-2 big empty"></div>
+                  <div class="ph-col-2 big"></div>
+                  <div class="ph-col-2 big empty"></div>
+                  <div class="ph-col-2 big"></div>
+                </div>
+              </div>
+            </div>
+          </div>
           <div
             class="col-sm-6 col-md-4"
             v-for="item in tags"
@@ -24,8 +70,8 @@
                 <!-- <img
                   :src="'https://via.placeholder.com/300/000000/FFFFFF/?text=' + item.tag"
                   alt="..."
-                > -->
-                <div class="caption">
+                >-->
+                <div class="caption" style="background-color: #cccc; text-align: center">
                   <!-- <router-link class="" :to="{name: 'interviewTag', params: {slug: item.slug || item.tag}}"> -->
                   <h3>{{item.tag | capitalize}}</h3>
                   <!-- </router-link> -->
@@ -44,33 +90,33 @@
   </div>
 </template>
 <script>
-import Spinner from '@/components/Spinner.vue';
-import { filterMixin, spinnerMixin, breadcrumbMixin } from '../../mixins';
+import Spinner from "@/components/Spinner.vue";
+import { filterMixin, spinnerMixin, breadcrumbMixin } from "../../mixins";
 
 export default {
-  name: 'InterviewTag',
+  name: "InterviewTag",
   components: {
-    Spinner,
+    Spinner
   },
   mixins: [filterMixin, spinnerMixin, breadcrumbMixin],
   created() {
-    document.title = this.title('Interview Questions');
+    document.title = this.title("Interview Questions");
   },
   data() {
     return {
-      tags: [],
+      tags: []
     };
   },
   beforeCreate() {
-    this.$vueEventBus.$emit('isLoginPageLanding', true);
+    this.$vueEventBus.$emit("isLoginPageLanding", true);
   },
   beforeRouteEnter: (to, from, next) => {
-    next((vm) => {
-      vm.$vueEventBus.$emit('isLoginPageLanding', true);
+    next(vm => {
+      vm.$vueEventBus.$emit("isLoginPageLanding", true);
     });
   },
   beforeRouteLeave(to, from, next) {
-    this.$vueEventBus.$emit('isLoginPageLanding', false);
+    this.$vueEventBus.$emit("isLoginPageLanding", false);
     next();
   },
   mounted() {
@@ -78,17 +124,17 @@ export default {
   },
   methods: {
     getTags() {
-      this.$http.get(`${this.$BASE_URL}api/v1/tag/question`).then((response) => {
+      this.$http.get(`${this.$BASE_URL}api/v1/tag/question`).then(response => {
         this.tags = response.data.data;
         this.spinner.status = false;
       });
-    },
-  },
+    }
+  }
 };
 </script>
 
 <style scoped>
-.t-int-tags{
+.t-int-tags {
   min-height: 400px;
 }
 .t-int .widget_social ul li {
