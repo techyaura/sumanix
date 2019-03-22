@@ -1,18 +1,26 @@
 <template>
   <div class="t-answer-list">
-    <Spinner
-      :status="spinner.status"
-      :color="spinner.color"
-      :size="spinner.size"
-      :depth="spinner.depth"
-      :rotation="spinner.rotation"
-      :speed="spinner.speed"
-    />
-    <div
-      id="commentlist"
-      class="page-content"
-      v-if="!spinner.status && answers.length"
-    >
+    <div class="ph-item" v-if="spinner.status">
+      <div class="ph-col-2">
+        <div class="ph-avatar"></div>
+      </div>
+
+      <div>
+        <div class="ph-row">
+          <div class="ph-col-4"></div>
+          <div class="ph-col-8 empty"></div>
+          <div class="ph-col-6"></div>
+          <div class="ph-col-6 empty"></div>
+          <div class="ph-col-2"></div>
+          <div class="ph-col-10 empty"></div>
+        </div>
+      </div>
+
+      <div class="ph-col-12">
+        <div class="ph-picture"></div>
+      </div>
+    </div>
+    <div id="commentlist" class="page-content" v-if="!spinner.status && answers.length">
       <div class="boxedtitle page-title">
         <h2>
           Answers (
@@ -89,24 +97,24 @@
 </template>
 
 <script>
-import AppClapAnswer from '@/components/AppClapAnswer.vue';
-import Spinner from '@/components/Spinner.vue';
-import sessionMixin from '../mixins/sessionMixin';
-import spinnerMixin from '../mixins/spinnerMixin';
-import AppModal from '@/components/AppModal.vue';
+import AppClapAnswer from "@/components/AppClapAnswer.vue";
+import Spinner from "@/components/Spinner.vue";
+import sessionMixin from "../mixins/sessionMixin";
+import spinnerMixin from "../mixins/spinnerMixin";
+import AppModal from "@/components/AppModal.vue";
 
 export default {
-  name: 'AppAnswerList',
+  name: "AppAnswerList",
   components: { Spinner, AppClapAnswer, AppModal },
   mixins: [sessionMixin, spinnerMixin],
-  props: ['question'],
+  props: ["question"],
   data() {
     return {
       isModalVisible: false,
-      resourceId: '',
+      resourceId: "",
       answers: [],
       session: {},
-      spinner: {},
+      spinner: {}
     };
   },
   methods: {
@@ -124,7 +132,7 @@ export default {
     list() {
       this.$http
         .get(`${this.$BASE_URL}api/v1/question/${this.question._id}/answer`)
-        .then((response) => {
+        .then(response => {
           this.answers = response.data.data;
           this.spinner.status = false;
         });
@@ -139,20 +147,20 @@ export default {
     },
     updateAnswer(answer) {
       window.scrollTo(0, document.body.scrollHeight);
-      this.$vueEventBus.$emit('updateAnswer', {
+      this.$vueEventBus.$emit("updateAnswer", {
         answerId: answer._id,
-        name: answer.name,
+        name: answer.name
       });
-    },
+    }
   },
   created() {
     this.list();
-    this.$vueEventBus.$on('isReRenderAnswerList', (value) => {
+    this.$vueEventBus.$on("isReRenderAnswerList", value => {
       if (value) {
         this.list();
       }
     });
-  },
+  }
 };
 </script>
 
@@ -162,7 +170,7 @@ export default {
   color: black !important;
 }
 .t-answer-list .question-type-main:hover {
-  background-color: #456FF1 !important;
+  background-color: #456ff1 !important;
 }
 .t-answer-list .text p {
   font-weight: 600 !important;

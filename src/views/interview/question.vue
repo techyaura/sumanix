@@ -1,18 +1,37 @@
 <template>
   <div class="col-md-12 t-int-ques">
     <div class="page-content page-content-user-profile">
+      <div class="ph-item" v-if="spinner.status">
+        <div class="ph-col-12">
+          <div class="ph-picture"></div>
+        </div>
+        <div class="ph-col-12">
+          <div class="ph-row">
+            <div class="ph-col-12"></div>
+          </div>
+           <div class="ph-row">
+            <div class="ph-col-12"></div>
+          </div>
+           <div class="ph-row">
+            <div class="ph-col-12"></div>
+          </div>
+        </div>
+      </div>
       <div class="jumbotron" v-if="!spinner.status">
-        <h1>{{tag.name | capitalize}} <span>Interview Questions</span></h1>
+        <h1>
+          {{tag.name | capitalize}}
+          <span>Interview Questions</span>
+        </h1>
       </div>
       <div class="user-profile-widget">
-        <Spinner
+        <!-- <Spinner
           :status="spinner.status"
           :color="spinner.color"
           :size="spinner.size"
           :depth="spinner.depth"
           :rotation="spinner.rotation"
           :speed="spinner.speed"
-        />
+        />-->
         <div class="widget">
           <article
             itemscope
@@ -35,7 +54,7 @@
   </div>
 </template>
 <style scoped>
-.t-int-ques{
+.t-int-ques {
   min-height: 400px;
 }
 .t-int-ques .question-desc {
@@ -61,46 +80,46 @@
 </style>
 
 <script>
-import Spinner from '@/components/Spinner.vue';
-import { filterMixin, spinnerMixin, breadcrumbMixin } from '../../mixins';
+import Spinner from "@/components/Spinner.vue";
+import { filterMixin, spinnerMixin, breadcrumbMixin } from "../../mixins";
 
 export default {
-  name: 'InterviewQuestion',
+  name: "InterviewQuestion",
   components: {
-    Spinner,
+    Spinner
   },
   mixins: [filterMixin, spinnerMixin, breadcrumbMixin],
   data() {
     return {
       questions: [],
       tag: {},
-      slug: this.$route.params.slug,
+      slug: this.$route.params.slug
     };
   },
   methods: {
     getQuestions() {
       const url = `${this.$BASE_URL}api/v1/question/interview/${this.slug}`;
-      this.$http.get(url).then((response) => {
+      this.$http.get(url).then(response => {
         const aggregate = response.data.data;
         this.questions = aggregate.questions;
         this.tag = aggregate.tag;
         this.spinner.status = false;
         document.title = this.title(`${this.tag.name} Interview Questions`);
       });
-    },
+    }
   },
   created() {
     this.getQuestions();
   },
   computed: {
     renderHtml() {
-      return (item) => {
+      return item => {
         if (Array.isArray(item.answer) && item.answer.length) {
           return item.answer[0].name;
         }
-        return '';
+        return "";
       };
-    },
-  },
+    }
+  }
 };
 </script>

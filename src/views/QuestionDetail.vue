@@ -1,14 +1,33 @@
 <template>
-  <div class="col-md-9 t-question-detail" itemscope
-      itemtype="http://schema.org/QAPage">
-    <Spinner
+  <div class="col-md-9 t-question-detail" itemscope itemtype="http://schema.org/QAPage">
+    <!-- <Spinner
       :status="spinner.status"
       :color="spinner.color"
       :size="spinner.size"
       :depth="spinner.depth"
       :rotation="spinner.rotation"
       :speed="spinner.speed"
-    />
+    />-->
+
+    <div class="ph-item" v-if="spinner.status">
+      <div>
+        <div class="ph-row">
+          <div class="ph-col-12"></div>
+        </div>
+      </div>
+
+      <div class="ph-col-12">
+        <div class="ph-picture"></div>
+        <div class="ph-row">
+          <div class="ph-col-2 big"></div>
+          <div class="ph-col-2 big empty"></div>
+          <div class="ph-col-2 big"></div>
+          <div class="ph-col-2 big empty"></div>
+          <div class="ph-col-2 big"></div>
+        </div>
+      </div>
+    </div>
+
     <article
       itemscope
       itemtype="http://schema.org/Question"
@@ -28,7 +47,7 @@
         class="question-type-main question-type-main-custom1"
       >
         <router-link :to="{name: 'questionUpdate', params: { slug: question.slug }}">EDIT</router-link>
-      </div> -->
+      </div>-->
       <div class="question-inner">
         <div class="clearfix"></div>
         <div class="question-desc" itemprop="text" v-html="question.description">
@@ -44,7 +63,7 @@
           </span>
           <!-- <span class="tagAdjust">
             <i class="icon-suitcase"></i>
-          </span> -->
+          </span>-->
           <router-link
             itemprop="keywords"
             class="anchor-space"
@@ -52,7 +71,9 @@
             v-for="tag in question.tags"
             v-bind:data="tag"
             v-bind:key="tag.name"
-          ><span class="label label-primary">{{tag.slug || tag.name}}</span></router-link>
+          >
+            <span class="label label-primary">{{tag.slug || tag.name}}</span>
+          </router-link>
         </span>
         <span class="question-view">
           <i class="icon-user"></i>
@@ -76,44 +97,44 @@
 </template>
 
 <script>
-import Spinner from '@/components/Spinner.vue';
-import AppAnswerList from '@/components/AppAnswerList.vue';
-import AppAnswer from '@/components/AppAnswer.vue';
-import AppClap from '@/components/AppClap.vue';
+import Spinner from "@/components/Spinner.vue";
+import AppAnswerList from "@/components/AppAnswerList.vue";
+import AppAnswer from "@/components/AppAnswer.vue";
+import AppClap from "@/components/AppClap.vue";
 import {
   spinnerMixin,
   sidebarMixin,
   sessionMixin,
-  breadcrumbMixin,
-} from '../mixins';
+  breadcrumbMixin
+} from "../mixins";
 
 export default {
-  name: 'QuestionDetail',
-  props: ['slug'],
+  name: "QuestionDetail",
+  props: ["slug"],
   components: {
     Spinner,
     AppAnswerList,
     AppAnswer,
-    AppClap,
+    AppClap
   },
   mixins: [spinnerMixin, sidebarMixin, sessionMixin, breadcrumbMixin],
   data() {
     return {
       isValid: false,
       question: {
-        totalAnswers: '',
-        views: '',
+        totalAnswers: "",
+        views: ""
       },
-      recommendations: [],
+      recommendations: []
     };
   },
   methods: {
     updateView(slug) {
       this.$http
         .get(`${this.$BASE_URL}api/v1/question/${slug}/views`, {
-          errorHandle: false,
+          errorHandle: false
         })
-        .then((response) => {
+        .then(response => {
           this.views = response.data.data;
         });
     },
@@ -122,30 +143,30 @@ export default {
       this.$http
         .delete(`${this.$BASE_URL}api/v1/question/${questionId}`)
         .then(() => {
-          this.$router.push('/profile');
+          this.$router.push("/profile");
         });
     },
     questionDetail(slug) {
       this.$http
         .get(`${this.$BASE_URL}api/v1/question/${slug}`, { errorHandle: false })
-        .then((response) => {
+        .then(response => {
           this.isValid = true;
           this.question = response.data.data;
           document.title = this.title(`${this.question.name}`);
           this.spinner.status = false;
         })
         .catch(() => {
-          this.$router.push('/404');
+          this.$router.push("/404");
         });
     },
     getRecommendations(slug) {
       this.$http
         .get(`${this.$BASE_URL}api/v1/question/${slug}/recommendations`)
-        .then((response) => {
+        .then(response => {
           this.recommendations = response.data.data;
           this.spinner.status = false;
         });
-    },
+    }
   },
   created() {
     if (this.$route.params.slug) {
@@ -159,8 +180,8 @@ export default {
   computed: {
     timestamp() {
       return item => this.$moment(item.createdAt).fromNow();
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -168,8 +189,8 @@ export default {
 .t-question-detail .question-desc {
   padding-bottom: 0px !important;
 }
-.t-question-detail h2 a{
-   color: #6e727b !important;
+.t-question-detail h2 a {
+  color: #6e727b !important;
 }
 @media only screen and (max-width: 479px) {
   .t-question-detail .single-question.question h2 {
