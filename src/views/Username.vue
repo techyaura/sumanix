@@ -85,19 +85,6 @@ export default {
       username: this.$route.params.username,
     };
   },
-  beforeCreate() {
-    this.$vueEventBus.$emit('isLoginPageLanding', true);
-    this.$vueEventBus.$emit('isProfileSidebar', true);
-  },
-  beforeRouteEnter: (to, from, next) => {
-    next((vm) => {
-      vm.$vueEventBus.$emit('isLoginPageLanding', true);
-    });
-  },
-  beforeRouteLeave(to, from, next) {
-    this.$vueEventBus.$emit('isLoginPageLanding', false);
-    next();
-  },
 };
 </script>
 <style scoped>

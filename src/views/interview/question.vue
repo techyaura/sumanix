@@ -121,7 +121,6 @@ export default {
         () => {
           doc.save(`${this.$route.params.slug || 'sample'}-questions.pdf`);
         });
-        doc.save(`${this.$route.params.slug || 'sample'}-questions.pdf`);
       } else {
         this.$router.push({
           name: 'login',
