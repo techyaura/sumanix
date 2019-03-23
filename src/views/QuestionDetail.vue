@@ -97,44 +97,42 @@
 </template>
 
 <script>
-import Spinner from "@/components/Spinner.vue";
-import AppAnswerList from "@/components/AppAnswerList.vue";
-import AppAnswer from "@/components/AppAnswer.vue";
-import AppClap from "@/components/AppClap.vue";
+import AppAnswerList from '@/components/AppAnswerList.vue';
+import AppAnswer from '@/components/AppAnswer.vue';
+import AppClap from '@/components/AppClap.vue';
 import {
   spinnerMixin,
   sidebarMixin,
   sessionMixin,
-  breadcrumbMixin
-} from "../mixins";
+  breadcrumbMixin,
+} from '../mixins';
 
 export default {
-  name: "QuestionDetail",
-  props: ["slug"],
+  name: 'QuestionDetail',
+  props: ['slug'],
   components: {
-    Spinner,
     AppAnswerList,
     AppAnswer,
-    AppClap
+    AppClap,
   },
   mixins: [spinnerMixin, sidebarMixin, sessionMixin, breadcrumbMixin],
   data() {
     return {
       isValid: false,
       question: {
-        totalAnswers: "",
-        views: ""
+        totalAnswers: '',
+        views: '',
       },
-      recommendations: []
+      recommendations: [],
     };
   },
   methods: {
     updateView(slug) {
       this.$http
         .get(`${this.$BASE_URL}api/v1/question/${slug}/views`, {
-          errorHandle: false
+          errorHandle: false,
         })
-        .then(response => {
+        .then((response) => {
           this.views = response.data.data;
         });
     },
@@ -143,30 +141,30 @@ export default {
       this.$http
         .delete(`${this.$BASE_URL}api/v1/question/${questionId}`)
         .then(() => {
-          this.$router.push("/profile");
+          this.$router.push('/profile');
         });
     },
     questionDetail(slug) {
       this.$http
         .get(`${this.$BASE_URL}api/v1/question/${slug}`, { errorHandle: false })
-        .then(response => {
+        .then((response) => {
           this.isValid = true;
           this.question = response.data.data;
           document.title = this.title(`${this.question.name}`);
           this.spinner.status = false;
         })
         .catch(() => {
-          this.$router.push("/404");
+          this.$router.push('/404');
         });
     },
     getRecommendations(slug) {
       this.$http
         .get(`${this.$BASE_URL}api/v1/question/${slug}/recommendations`)
-        .then(response => {
+        .then((response) => {
           this.recommendations = response.data.data;
           this.spinner.status = false;
         });
-    }
+    },
   },
   created() {
     if (this.$route.params.slug) {
@@ -180,8 +178,8 @@ export default {
   computed: {
     timestamp() {
       return item => this.$moment(item.createdAt).fromNow();
-    }
-  }
+    },
+  },
 };
 </script>
 

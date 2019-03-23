@@ -56,56 +56,35 @@
 </template>
 
 <script>
-import Spinner from "@/components/Spinner.vue";
-// import AppMyQuestion from '@/components/AppMyQuestion.vue';
-// import AppMyAnswer from '@/components/AppMyAnswer.vue';
-import { breadcrumbMixin, filterMixin, spinnerMixin } from "../mixins";
+import { breadcrumbMixin, filterMixin, spinnerMixin } from '../mixins';
 
 export default {
-  name: "Profile",
-  components: {
-    Spinner
-    // AppMyQuestion,
-    // AppMyAnswer,
-  },
+  name: 'Profile',
   mixins: [filterMixin, spinnerMixin, breadcrumbMixin],
   data() {
     return {
       username: this.$route.params.username,
-      user: {}
+      user: {},
     };
-  },
-  beforeCreate() {
-    this.$vueEventBus.$emit("isLoginPageLanding", true);
-    this.$vueEventBus.$emit("isProfileSidebar", true);
-  },
-  beforeRouteEnter: (to, from, next) => {
-    next(vm => {
-      vm.$vueEventBus.$emit("isLoginPageLanding", true);
-    });
-  },
-  beforeRouteLeave(to, from, next) {
-    this.$vueEventBus.$emit("isLoginPageLanding", false);
-    next();
   },
   methods: {
     profile(username) {
       this.$http
         .get(`${this.$BASE_URL}api/v1/auth/user/${username}`, {
-          errorHandle: false
+          errorHandle: false,
         })
-        .then(response => {
+        .then((response) => {
           this.user = response.data.data;
           document.title = this.title(`User ${username}`);
           this.spinner.status = false;
         })
         .catch(() => {
-          this.$router.push("*");
+          this.$router.push('*');
         });
-    }
+    },
   },
   created() {
     this.profile(this.username);
-  }
+  },
 };
 </script>

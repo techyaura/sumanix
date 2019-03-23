@@ -41,18 +41,6 @@ export default {
   components: {
     Notifiation,
   },
-  beforeCreate() {
-    this.$vueEventBus.$emit('isLoginPageLanding', true);
-  },
-  beforeRouteEnter: (to, from, next) => {
-    next((vm) => {
-      vm.$vueEventBus.$emit('isLoginPageLanding', true);
-    });
-  },
-  beforeRouteLeave(to, from, next) {
-    this.$vueEventBus.$emit('isLoginPageLanding', false);
-    next();
-  },
   data() {
     return {
       isSubmit: false,

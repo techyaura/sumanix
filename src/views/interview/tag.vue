@@ -90,46 +90,30 @@
   </div>
 </template>
 <script>
-import Spinner from "@/components/Spinner.vue";
-import { filterMixin, spinnerMixin, breadcrumbMixin } from "../../mixins";
+import { filterMixin, spinnerMixin, breadcrumbMixin } from '../../mixins';
 
 export default {
-  name: "InterviewTag",
-  components: {
-    Spinner
-  },
+  name: 'InterviewTag',
   mixins: [filterMixin, spinnerMixin, breadcrumbMixin],
   created() {
-    document.title = this.title("Interview Questions");
+    document.title = this.title('Interview Questions');
   },
   data() {
     return {
-      tags: []
+      tags: [],
     };
-  },
-  beforeCreate() {
-    this.$vueEventBus.$emit("isLoginPageLanding", true);
-  },
-  beforeRouteEnter: (to, from, next) => {
-    next(vm => {
-      vm.$vueEventBus.$emit("isLoginPageLanding", true);
-    });
-  },
-  beforeRouteLeave(to, from, next) {
-    this.$vueEventBus.$emit("isLoginPageLanding", false);
-    next();
   },
   mounted() {
     this.getTags();
   },
   methods: {
     getTags() {
-      this.$http.get(`${this.$BASE_URL}api/v1/tag/question`).then(response => {
+      this.$http.get(`${this.$BASE_URL}api/v1/tag/question`).then((response) => {
         this.tags = response.data.data;
         this.spinner.status = false;
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

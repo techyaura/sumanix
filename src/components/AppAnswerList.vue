@@ -97,24 +97,23 @@
 </template>
 
 <script>
-import AppClapAnswer from "@/components/AppClapAnswer.vue";
-import Spinner from "@/components/Spinner.vue";
-import sessionMixin from "../mixins/sessionMixin";
-import spinnerMixin from "../mixins/spinnerMixin";
-import AppModal from "@/components/AppModal.vue";
+import AppClapAnswer from '@/components/AppClapAnswer.vue';
+import sessionMixin from '../mixins/sessionMixin';
+import spinnerMixin from '../mixins/spinnerMixin';
+import AppModal from '@/components/AppModal.vue';
 
 export default {
-  name: "AppAnswerList",
-  components: { Spinner, AppClapAnswer, AppModal },
+  name: 'AppAnswerList',
+  components: { AppClapAnswer, AppModal },
   mixins: [sessionMixin, spinnerMixin],
-  props: ["question"],
+  props: ['question'],
   data() {
     return {
       isModalVisible: false,
-      resourceId: "",
+      resourceId: '',
       answers: [],
       session: {},
-      spinner: {}
+      spinner: {},
     };
   },
   methods: {
@@ -132,7 +131,7 @@ export default {
     list() {
       this.$http
         .get(`${this.$BASE_URL}api/v1/question/${this.question._id}/answer`)
-        .then(response => {
+        .then((response) => {
           this.answers = response.data.data;
           this.spinner.status = false;
         });
@@ -147,20 +146,20 @@ export default {
     },
     updateAnswer(answer) {
       window.scrollTo(0, document.body.scrollHeight);
-      this.$vueEventBus.$emit("updateAnswer", {
+      this.$vueEventBus.$emit('updateAnswer', {
         answerId: answer._id,
-        name: answer.name
+        name: answer.name,
       });
-    }
+    },
   },
   created() {
     this.list();
-    this.$vueEventBus.$on("isReRenderAnswerList", value => {
+    this.$vueEventBus.$on('isReRenderAnswerList', (value) => {
       if (value) {
         this.list();
       }
     });
-  }
+  },
 };
 </script>
 

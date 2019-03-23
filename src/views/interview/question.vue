@@ -9,46 +9,50 @@
           <div class="ph-row">
             <div class="ph-col-12"></div>
           </div>
-           <div class="ph-row">
+          <div class="ph-row">
             <div class="ph-col-12"></div>
           </div>
-           <div class="ph-row">
+          <div class="ph-row">
             <div class="ph-col-12"></div>
           </div>
         </div>
       </div>
-      <div class="jumbotron" v-if="!spinner.status">
-        <h1>
-          {{tag.name | capitalize}}
-          <span>Interview Questions</span>
-        </h1>
+      <div>
+        <button
+          v-if="!spinner.status"
+          @click="download"
+          style="margin-bottom: 20px;"
+          type="button"
+          class="btn btn-success"
+        >Download as PDF</button>
+        <div id="editor"></div>
       </div>
-      <div class="user-profile-widget">
-        <!-- <Spinner
-          :status="spinner.status"
-          :color="spinner.color"
-          :size="spinner.size"
-          :depth="spinner.depth"
-          :rotation="spinner.rotation"
-          :speed="spinner.speed"
-        />-->
-        <div class="widget">
-          <article
-            itemscope
-            itemtype="http://schema.org/Question"
-            class="question question-type-normal"
-            v-for="(item, index) in questions"
-            v-bind:data="item"
-            v-bind:key="item._id"
-          >
-            <h2 itemprop="name">{{index + 1 + '. '}} {{item.name}}</h2>
-            <div class="question-inner">
-              <!-- <div class="clearfix"></div> -->
-              <div class="question-desc" v-html="renderHtml(item)"></div>
-            </div>
-          </article>
+      <div ref="content">
+        <div class="jumbotron" v-if="!spinner.status">
+          <h1>
+            {{tag.name | capitalize}}
+            <span>Interview Questions</span>
+          </h1>
         </div>
-        <br>
+        <div class="user-profile-widget">
+          <div class="widget">
+            <article
+              itemscope
+              itemtype="http://schema.org/Question"
+              class="question question-type-normal"
+              v-for="(item, index) in questions"
+              v-bind:data="item"
+              v-bind:key="item._id"
+            >
+              <h2 itemprop="name">{{index + 1 + '. '}} {{item.name}}</h2>
+              <div class="question-inner">
+                <!-- <div class="clearfix"></div> -->
+                <div class="question-desc" v-html="renderHtml(item)"></div>
+              </div>
+            </article>
+          </div>
+          <br>
+        </div>
       </div>
     </div>
   </div>
@@ -80,46 +84,67 @@
 </style>
 
 <script>
-import Spinner from "@/components/Spinner.vue";
-import { filterMixin, spinnerMixin, breadcrumbMixin } from "../../mixins";
+import { mapGetters } from 'vuex';
+import jsPDF from 'jspdf';
+import { filterMixin, spinnerMixin, breadcrumbMixin } from '../../mixins';
 
 export default {
-  name: "InterviewQuestion",
-  components: {
-    Spinner
-  },
+  name: 'InterviewQuestion',
   mixins: [filterMixin, spinnerMixin, breadcrumbMixin],
   data() {
     return {
       questions: [],
       tag: {},
-      slug: this.$route.params.slug
+      slug: this.$route.params.slug,
     };
   },
   methods: {
     getQuestions() {
       const url = `${this.$BASE_URL}api/v1/question/interview/${this.slug}`;
-      this.$http.get(url).then(response => {
+      this.$http.get(url).then((response) => {
         const aggregate = response.data.data;
         this.questions = aggregate.questions;
         this.tag = aggregate.tag;
         this.spinner.status = false;
         document.title = this.title(`${this.tag.name} Interview Questions`);
       });
-    }
+    },
+    download() {
+      if (this.token) {
+        const doc = new jsPDF();
+        let contentHtml = this.$refs.content.innerHTML;
+        // remove image
+        contentHtml = contentHtml.replace(/<img .*?>/g, '');
+        doc.fromHTML(contentHtml, 15, 15, {
+          width: 170,
+        },
+        () => {
+          doc.save(`${this.$route.params.slug || 'sample'}-questions.pdf`);
+        });
+        doc.save(`${this.$route.params.slug || 'sample'}-questions.pdf`);
+      } else {
+        this.$router.push({
+          name: 'login',
+          query: { redirect: `/interview-questions/tag/${this.$route.params.slug}` },
+        });
+      }
+    },
   },
   created() {
     this.getQuestions();
   },
   computed: {
     renderHtml() {
-      return item => {
+      return (item) => {
         if (Array.isArray(item.answer) && item.answer.length) {
           return item.answer[0].name;
         }
-        return "";
+        return '';
       };
-    }
-  }
+    },
+    ...mapGetters({
+      token: 'auth/getToken',
+    }),
+  },
 };
 </script>

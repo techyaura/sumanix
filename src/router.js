@@ -133,6 +133,9 @@ const router = new Router({
       path: '/tags',
       name: 'tag',
       component: () => import(/* webpackChunkName: "tg" */ './views/Tag.vue'),
+      meta: {
+        layout: 'login',
+      },
     },
     {
       path: '/',

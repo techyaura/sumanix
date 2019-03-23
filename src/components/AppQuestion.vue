@@ -250,7 +250,6 @@
 </style>
 
 <script>
-import Spinner from '@/components/Spinner.vue';
 import { filterMixin, spinnerMixin, breadcrumbMixin } from '../mixins';
 import AppClap from '@/components/AppClap.vue';
 
@@ -258,7 +257,6 @@ export default {
   name: 'AppQuestion',
   params: ['query'],
   components: {
-    Spinner,
     AppClap,
   },
   mixins: [filterMixin, spinnerMixin, breadcrumbMixin],
