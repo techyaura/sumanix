@@ -74,6 +74,7 @@
                 <div class="caption" style="background-color: #cccc; text-align: center">
                   <!-- <router-link class="" :to="{name: 'interviewTag', params: {slug: item.slug || item.tag}}"> -->
                   <h3>{{item.tag | capitalize}}</h3>
+                   <span class="count">X {{item.count}}</span>
                   <!-- </router-link> -->
                   <p>
                     <!-- <a href="#" class="btn btn-primary" role="button">Click here</a> -->
