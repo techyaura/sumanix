@@ -56,6 +56,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import { breadcrumbMixin, filterMixin, spinnerMixin } from '../mixins';
 
 export default {
@@ -79,12 +80,23 @@ export default {
           this.spinner.status = false;
         })
         .catch(() => {
-          this.$router.push('*');
+          if (this.token && this.username === this.userData.username) {
+            return this.$store.dispatch('auth/destroySession').then(() => {
+              this.$router.push('/login');
+            });
+          }
+          return this.$router.push('*');
         });
     },
   },
   created() {
     this.profile(this.username);
+  },
+  computed: {
+    ...mapGetters({
+      userData: 'auth/getUser',
+      token: 'auth/getToken',
+    }),
   },
 };
 </script>
