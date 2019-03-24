@@ -11,6 +11,11 @@ const actions = {
       commit('setSession', response);
     });
   },
+  updateUsername({ commit }, data) {
+    return auth.updateUsername(data).then((response) => {
+      commit('setSession', response);
+    });
+  },
   destroySession({ commit }) {
     return auth.destroySession().then((response) => {
       commit('setSession', response);

@@ -1,117 +1,117 @@
 <template>
-    <div class="page-content t-profile-update">
-      <div class="boxedtitle page-title">
-        <h2>Update Profile</h2>
-        <!-- <router-link
+  <div class="page-content t-profile-update">
+    <div class="boxedtitle page-title">
+      <h2>Update Profile</h2>
+      <!-- <router-link
               class="question-report"
               :to="{name: 'password'}"
               v-if="!spinner.status"
               style="background-color: #898989"
               >
                 Change Password
-              </router-link> -->
-      </div>
-      <Spinner
-        :status="spinner.status"
-        :color="spinner.color"
-        :size="spinner.size"
-        :depth="spinner.depth"
-        :rotation="spinner.rotation"
-        :speed="spinner.speed"
-      />
-      <div class="form-style form-style-4" v-if="!spinner.status">
-        <form @submit.prevent="handleSubmit">
-           <Notifiation v-if="err" :err="err"/>
-          <div class="form-inputs clearfix">
-            <p style="width:100% !important">
-              <label class="required">Select Profile Picture</label>
-              <span>
-                <input v-model="user.avatar" type="radio" value="funkyhe.svg" @change="avatar">
-                <span class="user-profile-img">
-                  <img
-                    width="60"
-                    height="60"
-                    src="/img/profile/funkyhe.svg"
-                    value="S"
-                    alt="profile-pic"
-                  >
-                </span>
+      </router-link>-->
+    </div>
+    <Spinner
+      :status="spinner.status"
+      :color="spinner.color"
+      :size="spinner.size"
+      :depth="spinner.depth"
+      :rotation="spinner.rotation"
+      :speed="spinner.speed"
+    />
+    <div class="form-style form-style-4" v-if="!spinner.status">
+      <form @submit.prevent="handleSubmit">
+        <Notifiation v-if="err" :err="err"/>
+        <div class="form-inputs clearfix">
+          <p style="width:100% !important">
+            <label class="required">Select Profile Picture</label>
+            <span>
+              <input v-model="user.avatar" type="radio" value="funkyhe.svg" @change="avatar">
+              <span class="user-profile-img">
+                <img
+                  width="60"
+                  height="60"
+                  src="/img/profile/funkyhe.svg"
+                  value="S"
+                  alt="profile-pic"
+                >
               </span>
-              <span>
-                <input v-model="user.avatar" type="radio" value="buisness.svg" @change="avatar">
-                <span class="user-profile-img">
-                  <img width="60" height="60" src="/img/profile/buisness.svg" alt="profile-pic">
-                </span>
+            </span>
+            <span>
+              <input v-model="user.avatar" type="radio" value="buisness.svg" @change="avatar">
+              <span class="user-profile-img">
+                <img width="60" height="60" src="/img/profile/buisness.svg" alt="profile-pic">
               </span>
-              <span>
-                <input v-model="user.avatar" type="radio" value="cool.svg" @change="avatar">
-                <span class="user-profile-img">
-                  <img width="60" height="60" src="/img/profile/cool.svg" alt="profile-pic">
-                </span>
+            </span>
+            <span>
+              <input v-model="user.avatar" type="radio" value="cool.svg" @change="avatar">
+              <span class="user-profile-img">
+                <img width="60" height="60" src="/img/profile/cool.svg" alt="profile-pic">
               </span>
-              <span>
-                <input v-model="user.avatar" type="radio" value="funkyshe.svg" @change="avatar">
-                <span class="user-profile-img">
-                  <img width="60" height="60" src="/img/profile/funkyshe.svg" alt="profile-pic">
-                </span>
+            </span>
+            <span>
+              <input v-model="user.avatar" type="radio" value="funkyshe.svg" @change="avatar">
+              <span class="user-profile-img">
+                <img width="60" height="60" src="/img/profile/funkyshe.svg" alt="profile-pic">
               </span>
-              <span>
-                <input v-model="user.avatar" type="radio" value="professional.svg" @change="avatar">
-                <span class="user-profile-img">
-                  <img width="60" height="60" src="/img/profile/professional.svg" alt="profile-pic">
-                </span>
+            </span>
+            <span>
+              <input v-model="user.avatar" type="radio" value="professional.svg" @change="avatar">
+              <span class="user-profile-img">
+                <img width="60" height="60" src="/img/profile/professional.svg" alt="profile-pic">
               </span>
-              <span>
-                <input v-model="user.avatar" type="radio" value="stylish.svg" @change="avatar">
-                <span class="user-profile-img">
-                  <img width="60" height="60" src="/img/profile/stylish.svg" alt="profile-pic">
-                </span>
+            </span>
+            <span>
+              <input v-model="user.avatar" type="radio" value="stylish.svg" @change="avatar">
+              <span class="user-profile-img">
+                <img width="60" height="60" src="/img/profile/stylish.svg" alt="profile-pic">
               </span>
-            </p>
-            <p>
-              <label class="required">
-                Username
-                <span>*</span>
-              </label>
-              <input
-                class="custom-input"
-                type="text"
-                v-model="user.username"
-                v-on:keyup="checkUsername"
-              >
-            </p>
-            <p>
-              <label class="required">
-                E-Mail
-                <span>*</span>
-              </label>
-              <input class="custom-input" type="email" v-model="user.email">
-            </p>
-            <p>
-              <label>First Name</label>
-              <input class="custom-input" type="text" v-model="user.firstname">
-            </p>
-            <p>
-              <label>Last Name</label>
-              <input class="custom-input" type="text" v-model="user.lastname">
-            </p>
-
-            <p style="width: 100%;">
-              <label>About Yourself</label>
-              <textarea class="custom-input" cols="58" rows="8" v-model="user.bio"></textarea>
-            </p>
-          </div>
-          <p class="form-submit">
+            </span>
+          </p>
+          <p>
+            <label class="required">
+              Username
+              <span>*</span>
+            </label>
             <input
-              :disabled="isSubmit"
-              type="submit"
-              :value="!isSubmit? 'Save': 'Saving ...'"
-              class="button color small login-submit submit"
+              class="custom-input"
+              type="text"
+              v-model="user.username"
+              v-on:keyup="checkUsername"
             >
           </p>
-        </form>
-      </div>
+          <p>
+            <label class="required">
+              E-Mail
+              <span>*</span>
+            </label>
+            <input class="custom-input" type="email" v-model="user.email">
+          </p>
+          <p>
+            <label>First Name</label>
+            <input class="custom-input" type="text" v-model="user.firstname">
+          </p>
+          <p>
+            <label>Last Name</label>
+            <input class="custom-input" type="text" v-model="user.lastname">
+          </p>
+
+          <p style="width: 100%;">
+            <label>About Yourself</label>
+            <textarea class="custom-input" cols="58" rows="8" v-model="user.bio"></textarea>
+          </p>
+        </div>
+        <p class="form-submit">
+          <input
+            :disabled="isSubmit"
+            type="submit"
+            :value="!isSubmit? 'Save': 'Saving ...'"
+            class="button color small login-submit submit"
+          >
+        </p>
+      </form>
     </div>
+  </div>
 </template>
 
 <script>
@@ -129,18 +129,6 @@ export default {
     // VueTagsInput
   },
   mixins: [spinnerMixin],
-  beforeCreate() {
-    this.$vueEventBus.$emit('isLoginPageLanding', true);
-  },
-  beforeRouteEnter: (to, from, next) => {
-    next((vm) => {
-      vm.$vueEventBus.$emit('isLoginPageLanding', true);
-    });
-  },
-  beforeRouteLeave(to, from, next) {
-    this.$vueEventBus.$emit('isLoginPageLanding', false);
-    next();
-  },
   data() {
     return {
       isSubmit: false,
@@ -261,10 +249,17 @@ export default {
           errorHandle: false,
         })
         .then((response) => {
-          const { message } = response.data;
+          const { message, data } = response.data;
           this.isSubmit = false;
-          toast.success(message);
-          // this.$router.push('/profile');
+          this.$store.dispatch('auth/updateUsername', {
+            type: 'AUTH_UPDATE_USERNAME',
+            payload: {
+              username: data.username,
+            },
+          }).then(() => {
+            toast.success(message);
+            this.$router.push(`/@${data.username}`);
+          });
         })
         .catch((err) => {
           this.isSubmit = false;
