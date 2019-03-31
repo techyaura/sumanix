@@ -10,7 +10,6 @@
   "dependencies": {
     "@johmun/vue-tags-input": "^2.0.0",
     "axios": "^0.18.0",
-    "html2canvas": "^1.0.0-alpha.12",
     "izitoast": "^1.4.0",
     "jspdf": "^1.5.3",
     "moment": "^2.23.0",
