@@ -34,7 +34,7 @@
       class="question single-question question-type-normal"
       v-if="!spinner.status"
     >
-      <h2 itemprop="name">
+      <h2 itemprop="name" style="font-size: 35px;">
         <a href="javascript:void(0)">{{question.name}}</a>
       </h2>
       <!-- <a
@@ -49,11 +49,9 @@
         <router-link style="color: black" :to="{name: 'questionUpdate', params: { slug: question.slug }}">EDIT</router-link>
       </div>
       <div class="question-inner">
+        <div>
         <div class="clearfix"></div>
-        <div class="question-desc" itemprop="text" v-html="question.description">
-          <!-- <p itemprop="text" class="post-content" ></p> -->
-        </div>
-        <span class="question-category">
+         <span class="question-category">
           <span class="question-date">
             <i class="icon-time"></i>
             <time
@@ -82,15 +80,22 @@
         <span style="float:right">
           <AppClap :question="question"/>
         </span>
-
+        </div>
         <div class="clearfix"></div>
+        <br>
+        <hr>
+        <div class="question-desc" itemprop="text" v-html="question.description">
+          <!-- <p itemprop="text" class="post-content" ></p> -->
+        </div>
+       
+       
       </div>
     </article>
     <!-- <div>
       <AppAnswerList v-if="!spinner.status && isValid" v-bind:question="question"/>
-    </div>
+    </div> -->
 
-    <div>
+    <!-- <div>
       <AppAnswer v-if="!spinner.status && isValid" v-bind:question="question"/>
     </div> -->
   </div>

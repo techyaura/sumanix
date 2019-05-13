@@ -102,6 +102,7 @@
               </article>
             </div>
             <article
+              style="min-height: 200px;"
               itemscope
               itemtype="http://schema.org/Question"
               class="question-custom-home question question-type-normal"
@@ -109,7 +110,7 @@
               v-bind:data="item"
               v-bind:key="item._id"
             >
-              <h2 itemprop="name">
+              <h2 itemprop="name" style="font-size: 35px !important; padding-right: 0;">
                 <router-link
                   :to="{name: 'questionDetail', params: { slug: item.slug || item.name }}"
                 >{{item.name}}</router-link>

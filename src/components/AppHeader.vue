@@ -92,10 +92,10 @@
           <div class="row">
             <div class="col-md-12 header-button">
               <h2>Connect, Share & Learn</h2>
-              <p>SumaniX is an online community platform for job aspirants & techs developers to learn, share their knowledge, and build their career.</p>
+              <p>Techyaura is an online community platform for job aspirants & techs developers to learn, share their knowledge, and build their career.</p>
               <div class="clearfix"></div>
-              <router-link to="/about" class="color button dark_button medium">About</router-link>
-              <router-link to="/register" class="color button dark_button medium">Join Now</router-link>
+              <!-- <router-link to="/about" class="color button dark_button medium">About</router-link>
+              <router-link to="/register" class="color button dark_button medium">Join Now</router-link> -->
             </div>
           </div>
           <!-- End row -->

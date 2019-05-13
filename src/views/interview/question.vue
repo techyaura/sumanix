@@ -48,7 +48,7 @@
             <router-link :to="{name: 'questionDetail', params: { slug: item.slug || item.name }}">
 
             
-              <h2 itemprop="name">{{index + 1 + '. '}} {{item.name}}</h2>
+              <h2 itemprop="name" style="font-size: 35px; padding-right: 0;">{{index + 1 + '. '}} {{item.name}}</h2>
               <div class="question-inner">
                 <!-- <div class="clearfix"></div> -->
                 <!-- <div class="question-desc" v-html="renderHtml(item)"></div> -->
