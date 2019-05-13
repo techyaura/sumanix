@@ -206,7 +206,7 @@ a {
   font-size: 20px !important;
 }
  .t-header .section-warp-custom {
-  padding: 30px 0 !important;
+  /* padding: 30px 0 !important; */
   background-color: #474c58;
 }
 
