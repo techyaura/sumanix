@@ -1,15 +1,15 @@
 <template>
   <aside class="col-md-3 sidebar t-sidebar">
-    <div class="widget widget_tag_cloud">
+    <!-- <div class="widget widget_tag_cloud">
       <h3 class="widget_title">Tags</h3>
-      <!-- <Spinner
+      <Spinner
         :status="spinner.status"
         :color="spinner.color"
         :size="spinner.size"
         :depth="spinner.depth"
         :rotation="spinner.rotation"
         :speed="spinner.speed"
-      /> -->
+      />
 
        <div class="ph-item" v-if="spinner.status">
           <div class="ph-col-3">
@@ -51,7 +51,7 @@
         :to="{name: 'tagQuestion', params: {slug: item.slug}}"
       >{{item.slug}}</router-link>
       <router-link class="more-tag-link" v-if ="tags.length === 10" :to="{name: 'tag'}">More ...</router-link>
-    </div>
+    </div> -->
 
     <div class="widget">
       <h3 class="widget_title">Popular Articles</h3>

@@ -142,6 +142,9 @@ const router = new Router({
       name: 'home',
       component: Home,
       props: route => ({ query: route.query.q }),
+      meta: {
+        layout: 'login',
+      },
     },
     {
       path: '/articles/tagged/:slug',

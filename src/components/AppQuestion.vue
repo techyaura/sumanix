@@ -1,6 +1,6 @@
 <template>
   <div class="t-question-home">
-    <div class="col-md-9">
+    <div class="col-md-12">
       <div class="tabs-warp question-tab">
         <ul class="tabs" v-if="!slug">
           <!-- <li class="tab" v-if="slug">
