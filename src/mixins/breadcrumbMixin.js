@@ -6,7 +6,7 @@ const mixin = {
         title = 'Techyaura - Connect, Share & Learn';
         return title;
       }
-      return `${title} - SumaniX`;
+      return `${title} - Techyaura`;
     },
   },
 };

@@ -305,7 +305,7 @@ export default {
           this.questions = [];
         }
         this.isLoading = false;
-        this.loadingText = 'Load More Questions';
+        this.loadingText = 'Load More Articles';
         this.isLoaded = true;
         this.spinner.status = false;
       });
@@ -332,7 +332,7 @@ export default {
           this.questions = this.questions.concat(aggregate.questions);
         }
         this.isLoading = false;
-        this.loadingText = 'Load More Questions';
+        this.loadingText = 'Load More Articles';
         this.isLoaded = true;
         this.spinner.status = false;
       });
@@ -361,7 +361,7 @@ export default {
           }
         }
         this.isLoading = false;
-        this.loadingText = 'Load More Questions';
+        this.loadingText = 'Load More Articles';
         this.isLoaded = true;
         this.spinner.status = false;
       });
@@ -371,7 +371,7 @@ export default {
       this.currentFilterFlag = flag;
       this.offset = 1;
       this.questions = [];
-      document.title = this.title(`${flag} Questions`);
+      document.title = this.title(`${flag} Articles`);
       if (flag && (flag === 'recent' || flag === 'mostViewed')) {
         this.getQuestions();
       } else if (flag === 'unanswered') {

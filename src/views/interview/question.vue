@@ -111,7 +111,7 @@ export default {
         this.questions = aggregate.questions;
         this.tag = aggregate.tag;
         this.spinner.status = false;
-        document.title = this.title(`${this.tag.name} Interview Questions`);
+        document.title = this.title(`${this.tag.name} Articles`);
       });
     },
     download() {
@@ -129,7 +129,7 @@ export default {
       } else {
         this.$router.push({
           name: 'login',
-          query: { redirect: `/interview-questions/tag/${this.$route.params.slug}` },
+          query: { redirect: `/articles/tag/${this.$route.params.slug}` },
         });
       }
     },
