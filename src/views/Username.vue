@@ -24,22 +24,23 @@
                 Update Profile
               </router-link>
             </li>
-            <li>
-              <router-link :to="route.question">
-                <i class="icon-tasks"></i>
-                  Questions
-              </router-link>
-            </li>
-            <li>
+           
+            <!-- <li>
               <router-link :to="route.answer">
                 <i class="icon-table"></i>
                   Answers
               </router-link>
-            </li>
+            </li> -->
             <li v-if="session && session.user && session.user.username === username">
               <router-link :to="route.password">
                 <i class="icon-link"></i>
                 Change Password
+              </router-link>
+            </li>
+             <li>
+              <router-link :to="route.question">
+                <i class="icon-tasks"></i>
+                  Articles
               </router-link>
             </li>
             <!-- <li><a href="#buttons"><i class="icon-link"></i>Change Password</a></li> -->

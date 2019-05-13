@@ -3,7 +3,7 @@ const mixin = {
     title(value) {
       let title = value;
       if (!value) {
-        title = 'SumaniX - Connect, Share & Learn';
+        title = 'Techyaura - Connect, Share & Learn';
         return title;
       }
       return `${title} - SumaniX`;

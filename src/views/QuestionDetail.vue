@@ -41,13 +41,13 @@
         class="question-report link-cursor"
         v-on:click="removeQuestion(question._id)"
         v-if="session.isLoggedIn && question.uId === session.user._id"
-      >DELETE</a>
+      >DELETE</a>-->
       <div
         v-if="session.isLoggedIn && question.uId === session.user._id"
         class="question-type-main question-type-main-custom1"
       >
-        <router-link :to="{name: 'questionUpdate', params: { slug: question.slug }}">EDIT</router-link>
-      </div>-->
+        <router-link style="color: black" :to="{name: 'questionUpdate', params: { slug: question.slug }}">EDIT</router-link>
+      </div>
       <div class="question-inner">
         <div class="clearfix"></div>
         <div class="question-desc" itemprop="text" v-html="question.description">
@@ -59,7 +59,7 @@
             <time
               itemprop="dateCreated"
               :datetime="question.modifiedAt"
-            >{{'asked ' + timestamp(question)}}</time>
+            >{{'posted ' + timestamp(question)}}</time>
           </span>
           <!-- <span class="tagAdjust">
             <i class="icon-suitcase"></i>
@@ -86,13 +86,13 @@
         <div class="clearfix"></div>
       </div>
     </article>
-    <div>
+    <!-- <div>
       <AppAnswerList v-if="!spinner.status && isValid" v-bind:question="question"/>
     </div>
 
     <div>
       <AppAnswer v-if="!spinner.status && isValid" v-bind:question="question"/>
-    </div>
+    </div> -->
   </div>
 </template>
 

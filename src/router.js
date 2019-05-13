@@ -113,18 +113,18 @@ const router = new Router({
       ],
     },
     {
-      path: '/addQuestion',
+      path: '/addArticle',
       name: 'addQuestion',
       beforeEnter: requireAuth,
       component: () => import('./views/AskQuestion.vue'),
     },
     {
-      path: '/question/:slug',
+      path: '/article/:slug',
       name: 'questionDetail',
       component: () => import('./views/QuestionDetail.vue'),
     },
     {
-      path: '/question/update/:slug',
+      path: '/article/update/:slug',
       name: 'questionUpdate',
       component: () => import('./views/QuestionUpdate.vue'),
       beforeEnter: requireAuth,
@@ -144,7 +144,7 @@ const router = new Router({
       props: route => ({ query: route.query.q }),
     },
     {
-      path: '/questions/tagged/:slug',
+      path: '/articles/tagged/:slug',
       name: 'tagQuestion',
       component: Home,
     },
@@ -185,7 +185,7 @@ const router = new Router({
       ],
     },
     {
-      path: '/interview-questions',
+      path: '/articles',
       component: Interview,
       children: [
         {

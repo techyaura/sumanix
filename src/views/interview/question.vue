@@ -17,7 +17,7 @@
           </div>
         </div>
       </div>
-      <div>
+      <!-- <div>
         <button
           v-if="!spinner.status"
           @click="download"
@@ -26,12 +26,12 @@
           class="btn btn-success"
         >Download as PDF</button>
         <div id="editor"></div>
-      </div>
+      </div> -->
       <div ref="content">
         <div class="jumbotron" v-if="!spinner.status">
           <h1>
             {{tag.name | capitalize}}
-            <span>Interview Questions</span>
+            <span style="font-size: 20px">Articles</span>
           </h1>
         </div>
         <div class="user-profile-widget">
@@ -43,12 +43,17 @@
               v-for="(item, index) in questions"
               v-bind:data="item"
               v-bind:key="item._id"
+              
             >
+            <router-link :to="{name: 'questionDetail', params: { slug: item.slug || item.name }}">
+
+            
               <h2 itemprop="name">{{index + 1 + '. '}} {{item.name}}</h2>
               <div class="question-inner">
                 <!-- <div class="clearfix"></div> -->
-                <div class="question-desc" v-html="renderHtml(item)"></div>
+                <!-- <div class="question-desc" v-html="renderHtml(item)"></div> -->
               </div>
+              </router-link>
             </article>
           </div>
           <br>

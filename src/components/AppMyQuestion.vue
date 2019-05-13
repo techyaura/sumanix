@@ -1,7 +1,7 @@
 <template>
   <div class="page-content t-myquestion">
     <div class="boxedtitle page-title">
-      <h2>Total Questions ({{count}})</h2>
+      <h2>Posted Articles ({{count}})</h2>
     </div>
     <Spinner
       :status="spinner.status"
@@ -13,7 +13,7 @@
     />
     <div class="user-questions">
       <AppModal v-show="isModalVisible" @close="closeModal" @action="trigger">
-          <span slot="body">Are you sure to delete this question?</span>
+          <span slot="body">Are you sure to delete this article?</span>
         </AppModal>
       <article
         class="question user-question"
@@ -59,7 +59,7 @@
             </span>
             <span class="question-date" style="padding-left: 10px;">
               <i class="icon-time"></i>
-              {{'asked ' + timestamp(question)}}
+              {{'posted ' + timestamp(question)}}
             </span>
           </div>
         </div>

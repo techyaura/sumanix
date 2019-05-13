@@ -3,7 +3,7 @@
     <div class="page-content page-content-user-profile">
       <div class="user-profile-widget">
         <div class="widget widget_social">
-          <h3 class="widget_title" style="margin-bottom: 50px;">Interview Questions</h3>
+          <h3 class="widget_title" style="margin-bottom: 50px;">TAGS</h3>
           <div v-if="spinner.status">
             <div class="ph-item">
               <div class="ph-col-12">
@@ -97,7 +97,7 @@ export default {
   name: 'InterviewTag',
   mixins: [filterMixin, spinnerMixin, breadcrumbMixin],
   created() {
-    document.title = this.title('Interview Questions');
+    document.title = this.title('Articles Tags');
   },
   data() {
     return {

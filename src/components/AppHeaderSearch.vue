@@ -4,7 +4,7 @@
       <input
         type="text"
         id="question_title"
-        placeholder="Ask any question and you be sure find your answer ?"
+        placeholder="Search Techyaura"
         autocomplete="off"
         v-model="query"
         class="form-control"

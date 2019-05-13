@@ -18,7 +18,8 @@
           </button>
           <!-- <a class="navbar-brand" href="#">Brand</a> -->
           <router-link to="/" class="navbar-brand" href="javascript:void(0)">
-            SumaniX
+            <!-- SumaniX -->
+            Techyura
             <span class="logo-version-tile">v1.0</span>
           </router-link>
         </div>
@@ -32,11 +33,12 @@
           <ul class="nav navbar-nav">
             <li>
               <a class="anchor-link" href="javascript:void(0)" v-on:click="onLinkClicked()">
-                <i class="icon-pencil" style="color: #fff !important;"></i>Ask Question
+                <!-- <i class="icon-pencil" style="color: #fff !important;"></i>Ask Question -->
+                New Article
               </a>
             </li>
             <li>
-              <router-link to="/interview-questions">Interview Questions</router-link>
+              <router-link to="/articles">Tags</router-link>
             </li>
           </ul>
           <app-header-search/>
@@ -137,10 +139,10 @@ export default {
       if (!this.token) {
         this.$router.push({
           name: 'login',
-          query: { redirect: '/addQuestion' },
+          query: { redirect: '/addArticle' },
         });
       } else {
-        this.$router.push('/addQuestion');
+        this.$router.push('/addArticle');
       }
     },
     showDropdown() {

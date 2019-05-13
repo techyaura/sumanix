@@ -15,7 +15,7 @@
               href="javascript:void(0)"
               v-bind:class="{ current: currentFilterFlag === 'recent' }"
               v-on:click="getFilteredQuestions('recent')"
-            >Recent Questions</a>
+            >Recent Articles</a>
           </li>
 
           <li class="tab" v-if="!slug">
@@ -25,13 +25,13 @@
               v-on:click="getFilteredQuestions('mostViewed')"
             >Most Viewed</a>
           </li>
-          <li class="tab" v-if="!slug">
+          <!-- <li class="tab" v-if="!slug">
             <a
               href="javascript:void(0)"
               v-bind:class="{ current: currentFilterFlag === 'unanswered' }"
               v-on:click="getFilteredQuestions('unanswered')"
             >No Answers</a>
-          </li>
+          </li> -->
         </ul>
         <div class="tab-inner-warp">
           <div class="tab-inner">
@@ -158,9 +158,9 @@
                   <router-link
                     :to="{name: 'questionDetail', params: { slug: item.slug || item.name }}"
                   >
-                    <i class="icon-comment"></i>
+                    <!-- <i class="icon-comment"></i>
                     <span itemprop="answerCount">{{item.totalAnswers}}</span>
-                    Answers
+                    Answers -->
                   </router-link>
                 </span>
                 <span class="question-view">
@@ -169,7 +169,8 @@
                 </span>
                 <span class="question-date">
                   <i class="icon-time"></i>
-                  {{item.activityType? item.activityType + ' ': 'asked '}}
+                  <!-- {{item.activityType? item.activityType + ' ': 'posted '}} -->
+                  posted
                   <time
                     itemprop="dateCreated"
                     :datetime="item.modifiedAt"

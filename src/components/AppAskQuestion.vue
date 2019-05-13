@@ -1,7 +1,7 @@
 <template>
   <div class="page-content ask-question t-askquestion">
     <div class="boxedtitle page-title">
-      <h2>Ask Question</h2>
+      <h2>Write an Article</h2>
     </div>
     <p></p>
     <div class="form-style form-style-3" id="question-submit">
@@ -77,7 +77,7 @@
             :disabled="isSubmit"
             type="submit"
             id="publish-question"
-            :value="!isSubmit ? 'Update Your Question' : 'Updating ...'"
+            :value="!isSubmit ? 'Update Your Article' : 'Updating ...'"
             class="button color small submit"
           >
         </p>
