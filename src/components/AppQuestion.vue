@@ -106,12 +106,21 @@
 </template>
 
 <style>
-.question-desc h2, .question-desc span,.question-desc strong {
+.question-inner span.question-category a{
+      background-color: #ccc;
+    margin-right: 7px;
+}
+.question-desc h2,
+.question-desc span,
+.question-desc strong {
   margin: 0 !important;
   font-size: inherit !important;
   color: #848991 !important;
   padding: 0 !important;
   font-weight: normal !important;
+}
+.question-desc pre {
+  display: none;
 }
 </style>
 
@@ -276,7 +285,8 @@ export default {
     truncateStr() {
       return item => {
         if (item) {
-          item = item.replace(/<br>/g, '');
+          item = item.replace(/<br>/g, "");
+          // return this.truncate(item, 500, "<b style='font-size:20px; font-style: italic'> See More...</b>");
           return this.truncate(item, 500, "...");
         }
         return "";
