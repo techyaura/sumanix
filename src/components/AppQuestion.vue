@@ -106,10 +106,11 @@
 </template>
 
 <style>
-.question-inner span.question-category a{
+.t-question-home .question-inner span.question-category a{
       background-color: #ccc;
     margin-right: 7px;
 }
+.t-question-home 
 .question-desc h2,
 .question-desc span,
 .question-desc strong {
@@ -119,7 +120,7 @@
   padding: 0 !important;
   font-weight: normal !important;
 }
-.question-desc pre {
+.t-question-home .question-desc pre {
   display: none;
 }
 </style>

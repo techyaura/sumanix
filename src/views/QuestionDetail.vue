@@ -84,7 +84,7 @@
         <div class="clearfix"></div>
         <br>
         <hr>
-        <div class="question-desc" itemprop="text" v-html="question.description">
+        <div class="question-desc" itemprop="text" v-html="updateLandingHtml(question.description)">
           <!-- <p itemprop="text" class="post-content" ></p> -->
         </div>
        
@@ -183,6 +183,12 @@ export default {
   computed: {
     timestamp() {
       return item => this.$moment(item.createdAt).fromNow();
+    },
+    updateLandingHtml() {
+      return item => {
+          item = item.replace(/<br>/g, "");
+          return item;
+      };
     },
   },
 };
