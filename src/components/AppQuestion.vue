@@ -3,13 +3,6 @@
     <div class="col-md-12">
       <div class="tabs-warp question-tab">
         <ul class="tabs" v-if="!slug">
-          <!-- <li class="tab" v-if="slug">
-            <a
-              href="javascript:void(0)"
-              v-bind:class="{ current: currentFilterFlag === '' }"
-            >{{( slugCapitalize ) + ' Questions'}}</a>
-          </li>-->
-
           <li class="tab" v-if="!slug">
             <a
               href="javascript:void(0)"
@@ -25,107 +18,27 @@
               v-on:click="getFilteredQuestions('mostViewed')"
             >Most Viewed</a>
           </li>
-          <!-- <li class="tab" v-if="!slug">
-            <a
-              href="javascript:void(0)"
-              v-bind:class="{ current: currentFilterFlag === 'unanswered' }"
-              v-on:click="getFilteredQuestions('unanswered')"
-            >No Answers</a>
-          </li> -->
         </ul>
         <div class="tab-inner-warp">
           <div class="tab-inner">
-            <!-- <Spinner
-              :status="spinner.status"
-              :color="spinner.color"
-              :size="spinner.size"
-              :depth="spinner.depth"
-              :rotation="spinner.rotation"
-              :speed="spinner.speed"
-            />-->
-            <div v-if="spinner.status">
-              <article>
-                <div class="ph-item">
-                  <div class="ph-col-12">
-                    <div class="ph-row">
-                      <div class="ph-col-12 big"></div>
-                      <div class="ph-col-2"></div>
-                      <div class="ph-col-2 empty"></div>
-                      <div class="ph-col-2"></div>
-                      <div class="ph-col-2 empty"></div>
-                      <div class="ph-col-2"></div>
-                    </div>
-                  </div>
-                </div>
-              </article>
-              <article>
-                <div class="ph-item">
-                  <div class="ph-col-12">
-                    <div class="ph-row">
-                      <div class="ph-col-12 big"></div>
-                      <div class="ph-col-2"></div>
-                      <div class="ph-col-2 empty"></div>
-                      <div class="ph-col-2"></div>
-                      <div class="ph-col-2 empty"></div>
-                      <div class="ph-col-2"></div>
-                    </div>
-                  </div>
-                </div>
-              </article>
-              <article>
-                <div class="ph-item">
-                  <div class="ph-col-12">
-                    <div class="ph-row">
-                      <div class="ph-col-12 big"></div>
-                      <div class="ph-col-2"></div>
-                      <div class="ph-col-2 empty"></div>
-                      <div class="ph-col-2"></div>
-                      <div class="ph-col-2 empty"></div>
-                      <div class="ph-col-2"></div>
-                    </div>
-                  </div>
-                </div>
-              </article>
-              <article>
-                <div class="ph-item">
-                  <div class="ph-col-12">
-                    <div class="ph-row">
-                      <div class="ph-col-12 big"></div>
-                      <div class="ph-col-2"></div>
-                      <div class="ph-col-2 empty"></div>
-                      <div class="ph-col-2"></div>
-                      <div class="ph-col-2 empty"></div>
-                      <div class="ph-col-2"></div>
-                    </div>
-                  </div>
-                </div>
-              </article>
-            </div>
             <article
-              style="min-height: 200px;"
-              itemscope
-              itemtype="http://schema.org/Question"
-              class="question-custom-home question question-type-normal"
+              class="question question-type-normal"
               v-for="item in questions"
               v-bind:data="item"
               v-bind:key="item._id"
             >
-              <h2 itemprop="name" style="font-size: 35px !important; padding-right: 0;">
+              <h2 itemprop="name" style="    font-weight: 600;">
                 <router-link
+                  style="color: #6e727b"
                   :to="{name: 'questionDetail', params: { slug: item.slug || item.name }}"
                 >{{item.name}}</router-link>
               </h2>
-              <!-- <div itemscope itemtype="http://schema.org/Person" class="question-author" v-if="item.isAnonymous === true">
-                <img itemprop="image" alt="anonymous" src="/img/profile/anonymous.svg" title="anonymous">
-              </div>
-              <div
-                class="question-author"
-                v-if="item.isAnonymous === false"
-                itemprop="author"
-                itemscope
-                itemtype="http://schema.org/Person"
-              >
-                <router-link :to="'/@' + item.username[0]" >
+              <!-- <a class="question-report" href="#">Report</a>
+              <div class="question-type-main">
+                <i class="icon-question-sign"></i>Question
+              </div>-->
+              <div class="question-author">
+                <router-link :to="'/@' + item.username[0]" class="question-author-img tooltip-n">
                   <img
                     itemprop="image"
                     width="60"
@@ -135,60 +48,46 @@
                     :title="item.username[0]"
                   >
                 </router-link>
-              </div>-->
+              </div>
               <div class="question-inner">
                 <div class="clearfix"></div>
-                <div class="question-details">
-                  <AppClap :question="item"/>
-                </div>
+                <p
+                  style="font-size: 15px; font-family: inherit"
+                  class="question-desc"
+                  v-html="truncateStr(item.answers[0] && item.answers[0].name ? item.answers[0].name: '')"
+                ></p>
+                <!-- <div class="question-details">
+                  <span class="question-answered question-answered-done">
+                    <i class="icon-ok"></i>solved
+                  </span>
+                  <span class="question-favorite">
+                    <i class="icon-star"></i>5
+                  </span>
+                </div>-->
                 <span class="question-category">
-                  <!-- <span class="tagAdjust">
-                    <i class="icon-suitcase"></i>
-                  </span>-->
                   <router-link
-                    class="anchor-space"
+                    class="label label-primary"
                     v-bind:to="{name: 'tagQuestion', params: {slug: tag.slug || tag.name}}"
                     v-for="tag in item.tags"
                     v-bind:data="tag"
                     v-bind:key="tag.slug"
-                  >
-                    <span class="label label-primary">{{tag.slug || tag.name}}</span>
-                  </router-link>
-                </span>
-                <span class="question-comment">
-                  <router-link
-                    :to="{name: 'questionDetail', params: { slug: item.slug || item.name }}"
-                  >
-                    <!-- <i class="icon-comment"></i>
-                    <span itemprop="answerCount">{{item.totalAnswers}}</span>
-                    Answers -->
-                  </router-link>
-                </span>
-                <span class="question-view">
-                  <i class="icon-user"></i>
-                  {{item.views}} Views
+                  >{{tag.slug || tag.name}}</router-link>
                 </span>
                 <span class="question-date">
                   <i class="icon-time"></i>
-                  <!-- {{item.activityType? item.activityType + ' ': 'posted '}} -->
-                  posted
-                  <time
-                    itemprop="dateCreated"
-                    :datetime="item.modifiedAt"
-                  >{{timestamp(item)}}</time>
-                  <span itemscope itemtype="http://schema.org/Person" class="person">
-                    <router-link
-                      style="padding-left: 10px;"
-                      :to="'/@' + computeUsername(item)"
-                      itemprop="name"
-                    >{{computeUsername(item)}}</router-link>
-                  </span>
+                  <time itemprop="dateCreated" :datetime="item.modifiedAt">{{timestamp(item)}}</time>
+                </span>
+                <!-- <span class="question-comment">
+                  <a href="#">
+                    <i class="icon-comment"></i>5 Answer
+                  </a>
+                </span>-->
+                <span class="question-view">
+                  <i class="icon-user"></i>
+                  {{item.views}} views
                 </span>
                 <div class="clearfix"></div>
               </div>
-            </article>
-            <article v-if="!questions.length && isLoaded">
-              <h2>No questions found on the search criteria.</h2>
             </article>
             <a
               v-show="count > questions.length"
@@ -206,60 +105,25 @@
   </div>
 </template>
 
-<style scoped>
-.t-question-home .question-custom-home h2,
-.question-inner {
-  margin-left: 0px !important;
-}
-.t-question-home .question-custom-home .question-date {
-  margin-left: 10px !important;
-}
-
-.t-question-home .question-custom-home h2 {
-  font-size: 15px !important;
-}
-.t-question-home .question-custom-home h2 a {
-  color: #6e727b !important;
-}
-.t-question-home question-custom-home .tagAdjust {
-  float: left;
-}
-.t-question-home .question-date span.username a {
-  color: #38cbcb !important;
-}
-.t-question-home question-custom-home .anchor-space {
-  margin-left: 5px;
-  /* border: 1px solid #ccc !important;
-  padding: 2px 5px 2px 5px !important;
-  border-radius: 4px !important;
-  color: #7a27cc !important; */
-}
-.t-question-home span.person a {
-  color: #456ff1 !important;
-}
-/* .-home h2 {
-  margin: 0 0 30px 0px !important;
-} */
-/* .question-inner {
-  margin-left: 0px !important;
-} */
-@media only screen and (max-width: 479px) {
-  .t-question-home .question-type-normal.question h2,
-  .question-type-poll.question h2 {
-    padding-top: 0px !important;
-  }
+<style>
+.question-desc h2, .question-desc span,.question-desc strong {
+  margin: 0 !important;
+  font-size: inherit !important;
+  color: #848991 !important;
+  padding: 0 !important;
+  font-weight: normal !important;
 }
 </style>
 
 <script>
-import { filterMixin, spinnerMixin, breadcrumbMixin } from '../mixins';
-import AppClap from '@/components/AppClap.vue';
+import { filterMixin, spinnerMixin, breadcrumbMixin } from "../mixins";
+import AppClap from "@/components/AppClap.vue";
 
 export default {
-  name: 'AppQuestion',
-  params: ['query'],
+  name: "AppQuestion",
+  params: ["query"],
   components: {
-    AppClap,
+    AppClap
   },
   mixins: [filterMixin, spinnerMixin, breadcrumbMixin],
   data() {
@@ -267,23 +131,23 @@ export default {
       placeHolder: [1, 2, 3, 4, 5],
       isLoading: false,
       isLoaded: false,
-      loadingText: 'Load More Questions',
+      loadingText: "Load More Questions",
       count: 0,
       offset: 1,
       limit: 40,
-      currentFilterFlag: 'recent',
+      currentFilterFlag: "recent",
       isEditAllow: false,
       questions: [],
       slug: this.$route.params.slug,
-      slugCapitalize: '',
+      slugCapitalize: "",
       isEventEmitted: false,
-      queryParams: this.$route.query.q || '',
+      queryParams: this.$route.query.q || ""
     };
   },
   methods: {
     getAnsweredQuestions() {
       this.isLoading = true;
-      this.loadingText = 'Loading...';
+      this.loadingText = "Loading...";
       let url = `${this.$BASE_URL}api/v1/question/answered?limit=${
         this.limit
       }&offset=${this.offset}`;
@@ -296,7 +160,7 @@ export default {
       if (this.currentFilterFlag) {
         url = `${url}&flag=${this.currentFilterFlag}`;
       }
-      this.$http.get(url).then((response) => {
+      this.$http.get(url).then(response => {
         const aggregate = response.data.data[0];
         if (Array.isArray(aggregate.count) && aggregate.count.length) {
           this.count = aggregate.count[0].count;
@@ -306,14 +170,14 @@ export default {
           this.questions = [];
         }
         this.isLoading = false;
-        this.loadingText = 'Load More Articles';
+        this.loadingText = "Load More Articles";
         this.isLoaded = true;
         this.spinner.status = false;
       });
     },
     getUnansweredQuestions() {
       this.isLoading = true;
-      this.loadingText = 'Loading...';
+      this.loadingText = "Loading...";
       let url = `${this.$BASE_URL}api/v1/question/unanswered?limit=${
         this.limit
       }&offset=${this.offset}`;
@@ -326,21 +190,21 @@ export default {
       if (this.currentFilterFlag) {
         url = `${url}&flag=${this.currentFilterFlag}`;
       }
-      this.$http.get(url).then((response) => {
+      this.$http.get(url).then(response => {
         const aggregate = response.data.data[0];
         if (Array.isArray(aggregate.count) && aggregate.count.length) {
           this.count = aggregate.count[0].count;
           this.questions = this.questions.concat(aggregate.questions);
         }
         this.isLoading = false;
-        this.loadingText = 'Load More Articles';
+        this.loadingText = "Load More Articles";
         this.isLoaded = true;
         this.spinner.status = false;
       });
     },
     getQuestions() {
       this.isLoading = true;
-      this.loadingText = 'Loading...';
+      this.loadingText = "Loading...";
       let url = `${this.$BASE_URL}api/v1/question/?limit=${this.limit}&offset=${
         this.offset
       }`;
@@ -353,7 +217,7 @@ export default {
       if (this.currentFilterFlag) {
         url = `${url}&flag=${this.currentFilterFlag}`;
       }
-      this.$http.get(url).then((response) => {
+      this.$http.get(url).then(response => {
         const aggregate = response.data.data[0];
         if (Array.isArray(aggregate.count) && aggregate.count.length) {
           this.count = aggregate.count[0].count;
@@ -362,7 +226,7 @@ export default {
           }
         }
         this.isLoading = false;
-        this.loadingText = 'Load More Articles';
+        this.loadingText = "Load More Articles";
         this.isLoaded = true;
         this.spinner.status = false;
       });
@@ -373,11 +237,11 @@ export default {
       this.offset = 1;
       this.questions = [];
       document.title = this.title(`${flag} Articles`);
-      if (flag && (flag === 'recent' || flag === 'mostViewed')) {
+      if (flag && (flag === "recent" || flag === "mostViewed")) {
         this.getQuestions();
-      } else if (flag === 'unanswered') {
+      } else if (flag === "unanswered") {
         this.getUnansweredQuestions();
-      } else if (flag === 'answered') {
+      } else if (flag === "answered") {
         this.getAnsweredQuestions();
       }
     },
@@ -386,45 +250,54 @@ export default {
       this.isLoading = true;
       this.offset = this.offset + 1;
       if (
-        this.currentFilterFlag
-        && (this.currentFilterFlag === 'recent'
-          || this.currentFilterFlag === 'mostViewed')
+        this.currentFilterFlag &&
+        (this.currentFilterFlag === "recent" ||
+          this.currentFilterFlag === "mostViewed")
       ) {
         this.getQuestions();
-      } else if (this.currentFilterFlag === 'unanswered') {
+      } else if (this.currentFilterFlag === "unanswered") {
         this.getUnansweredQuestions();
-      } else if (this.currentFilterFlag === 'answered') {
+      } else if (this.currentFilterFlag === "answered") {
         this.getAnsweredQuestions();
       }
-    },
+    }
   },
   created() {
     if (!this.queryParams) {
-      this.$vueEventBus.$emit('isSearchQuery', false);
+      this.$vueEventBus.$emit("isSearchQuery", false);
     }
     this.getQuestions();
     if (this.slug) {
       this.slugCapitalize = this.capitalize(this.slug);
-      this.currentFilterFlag = '';
+      this.currentFilterFlag = "";
     }
   },
   computed: {
+    truncateStr() {
+      return item => {
+        if (item) {
+          item = item.replace(/<br>/g, '');
+          return this.truncate(item, 500, "...");
+        }
+        return "";
+      };
+    },
     timestamp() {
-      return (item) => {
-        if (Object.prototype.hasOwnProperty.call(item, 'modifiedAt')) {
+      return item => {
+        if (Object.prototype.hasOwnProperty.call(item, "modifiedAt")) {
           return this.$moment(item.modifiedAt).fromNow();
         }
         return this.$moment(item.updatedAt).fromNow();
       };
     },
     computeUsername() {
-      return (item) => {
+      return item => {
         if (Array.isArray(item.activityOwner) && item.activityOwner.length) {
           return item.activityOwner[0];
         }
         return item.username[0];
       };
-    },
-  },
+    }
+  }
 };
 </script>
