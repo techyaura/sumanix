@@ -19,7 +19,7 @@
           <!-- <a class="navbar-brand" href="#">Brand</a> -->
           <router-link to="/" class="navbar-brand" href="javascript:void(0)">
             <!-- SumaniX -->
-            Techyura
+            SumaniX Blogs
             <span class="logo-version-tile">v1.0</span>
           </router-link>
         </div>
@@ -31,12 +31,11 @@
           ref="mobileNavTarget"
         >
           <ul class="nav navbar-nav">
-            <li>
+            <!-- <li>
               <a class="anchor-link" href="javascript:void(0)" v-on:click="onLinkClicked()">
-                <!-- <i class="icon-pencil" style="color: #fff !important;"></i>Ask Question -->
                 New Article
               </a>
-            </li>
+            </li> -->
             <li>
               <router-link to="/articles">Tags</router-link>
             </li>
@@ -48,9 +47,9 @@
           </div>
           </form>-->
           <ul class="nav navbar-nav navbar-right">
-            <li v-show="!token">
+            <!-- <li v-show="!token">
               <router-link to="/login">Log In</router-link>
-            </li>
+            </li> -->
             <li class="dropdown" v-show="token">
               <a
                 href="javascript:void(0)"
@@ -92,7 +91,7 @@
           <div class="row">
             <div class="col-md-12 header-button">
               <h2>Connect, Share & Learn</h2>
-              <p>Techyaura is an online community platform for job aspirants & techs developers to learn, share their knowledge, and build their career.</p>
+              <!-- <p>Sumaxi is an online community platform for job aspirants & techs developers to learn, share their knowledge, and build their career.</p> -->
               <div class="clearfix"></div>
               <!-- <router-link to="/about" class="color button dark_button medium">About</router-link>
               <router-link to="/register" class="color button dark_button medium">Join Now</router-link> -->

@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.46008463c378f3034a3bf5d9a3bfd383.js"
+  "/precache-manifest.07a1adc1844000758827c50836f3eff6.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "sumanix"});
