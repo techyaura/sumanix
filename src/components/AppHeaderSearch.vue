@@ -4,7 +4,7 @@
       <input
         type="text"
         id="question_title"
-        placeholder="Search Techyaura"
+        placeholder="Search Sumanix Blogs"
         autocomplete="off"
         v-model="query"
         class="form-control"
