@@ -31,11 +31,11 @@
           ref="mobileNavTarget"
         >
           <ul class="nav navbar-nav">
-            <!-- <li>
+            <li>
               <a class="anchor-link" href="javascript:void(0)" v-on:click="onLinkClicked()">
                 New Article
               </a>
-            </li> -->
+            </li>
             <li>
               <router-link to="/articles">Tags</router-link>
             </li>
@@ -47,9 +47,9 @@
           </div>
           </form>-->
           <ul class="nav navbar-nav navbar-right">
-            <!-- <li v-show="!token">
+            <li v-show="!token">
               <router-link to="/login">Log In</router-link>
-            </li> -->
+            </li>
             <li class="dropdown" v-show="token">
               <a
                 href="javascript:void(0)"

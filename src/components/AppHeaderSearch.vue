@@ -68,7 +68,7 @@ export default {
 .navbar-form {
   margin-top: 0px;
   margin-bottom: 0px;
-  width: 65%;
+  width: 55%;
   padding-top: 7px !important;
   border-top: 0;
   border-bottom: 0;
@@ -84,7 +84,7 @@ export default {
 @media (max-width: 425px) {
   .navbar-form {
     width: 100%;
-     margin-bottom: 0px !important;
+    margin-bottom: 0px !important;
   }
 }
 
