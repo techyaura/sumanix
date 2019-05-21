@@ -130,7 +130,7 @@ const router = new Router({
       beforeEnter: requireAuth,
     },
     {
-      path: '/tags',
+      path: '/articles',
       name: 'tag',
       component: () => import('./views/Tag.vue'),
       meta: {
@@ -187,27 +187,27 @@ const router = new Router({
         },
       ],
     },
-    {
-      path: '/articles',
-      component: Interview,
-      children: [
-        {
-          path: '/',
-          component: () => import('./views/interview/tag.vue'),
-          meta: {
-            layout: 'login',
-          },
-        },
-        {
-          path: 'tag/:slug',
-          name: 'interviewTag',
-          component: () => import('./views/interview/question.vue'),
-          meta: {
-            layout: 'login',
-          },
-        },
-      ],
-    },
+    // {
+    //   path: '/articles',
+    //   component: Interview,
+    //   children: [
+    //     {
+    //       path: '/',
+    //       component: () => import('./views/interview/tag.vue'),
+    //       meta: {
+    //         layout: 'login',
+    //       },
+    //     },
+    //     {
+    //       path: 'tag/:slug',
+    //       name: 'interviewTag',
+    //       component: () => import('./views/interview/question.vue'),
+    //       meta: {
+    //         layout: 'login',
+    //       },
+    //     },
+    //   ],
+    // },
     {
       path: '*',
       name: '404',
