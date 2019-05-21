@@ -87,8 +87,8 @@
         <div class="question-desc" itemprop="text" v-html="updateLandingHtml(question.description)">
           <!-- <p itemprop="text" class="post-content" ></p> -->
         </div>
-       
-       
+
+
       </div>
     </article>
     <!-- <div>
@@ -185,9 +185,9 @@ export default {
       return item => this.$moment(item.createdAt).fromNow();
     },
     updateLandingHtml() {
-      return item => {
-          item = item.replace(/<br>/g, "");
-          return item;
+      return (item) => {
+        item = item.replace(/<br>/g, '');
+        return item;
       };
     },
   },

@@ -43,11 +43,11 @@
               v-for="(item, index) in questions"
               v-bind:data="item"
               v-bind:key="item._id"
-              
+
             >
             <router-link :to="{name: 'questionDetail', params: { slug: item.slug || item.name }}">
 
-            
+
               <h2 itemprop="name" style="font-size: 35px; padding-right: 0;color: #697492; min-height: 150px;">{{index + 1 + '. '}} {{item.name}}</h2>
               <div class="question-inner">
                 <!-- <div class="clearfix"></div> -->
