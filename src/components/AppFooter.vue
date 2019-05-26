@@ -26,12 +26,12 @@
                 <li>
                   <router-link to="/">Home</router-link>
                 </li>
-                <li>
+                <!-- <li>
                   <router-link to="/blogs">Blogs</router-link>
-                </li>
-                <li>
+                </li> -->
+                <!-- <li>
                    <router-link to="/about">About</router-link>
-                </li>
+                </li> -->
                 <li>
                   <a href="https://github.com/sumanixinc/sumanix.com/issues/1"  target="_blank">Feedback</a>
                 </li>
