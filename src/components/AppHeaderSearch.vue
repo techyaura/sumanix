@@ -1,15 +1,14 @@
 <template>
-  <form class="navbar-form navbar-left" @submit.prevent="handleSubmit">
-    <div class="form-group">
+  <form class="form-style form-style-2 header-search-input" @submit.prevent="handleSubmit">
+    <p style="padding-top:12px;">
       <input
         type="text"
         id="question_title"
-        placeholder="Search Sumanix Blogs"
+        placeholder="Ask any question and you be sure find your answer ?"
         autocomplete="off"
         v-model="query"
-        class="form-control"
       >
-    </div>
+    </p>
   </form>
 </template>
 
@@ -37,16 +36,17 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 /* .grid_1200 .ask-me .col-md-12 p input {
   margin-top: 0px !important;
 } */
-.navbar-form input[type="text"] {
+.header-search-input input[type="text"]{
   background: #ffff !important;
-  /* line-height: 24px;
-  margin-bottom: 0px; */
+  /* padding: 9px !important;  */
 }
-
+.header-search-input input[type="text"]{
+  line-height: 24px;
+};
 .header-search-input ::-webkit-input-placeholder {
   text-align: center;
 }
@@ -63,37 +63,5 @@ export default {
 
 .header-search-input :-ms-input-placeholder {
   text-align: center;
-}
-
-.navbar-form {
-  margin-top: 0px;
-  margin-bottom: 0px;
-  width: 55%;
-  padding-top: 7px !important;
-  border-top: 0;
-  border-bottom: 0;
-}
- .navbar-form .form-group {
-  width: 100%;
-}
-.navbar-form .form-group input {
-  width: 75%;
-  margin-bottom: 7px !important;
-}
-
-@media (max-width: 425px) {
-  .navbar-form {
-    width: 100%;
-    margin-bottom: 0px !important;
-  }
-}
-
-@media only screen and (min-width: 426px) and (max-width: 768px) {
-  .navbar-form {
-    width: 20%;
-  }
-  /* .navbar-form .form-group input {
-    margin-bottom: 0px !important;
-  } */
 }
 </style>

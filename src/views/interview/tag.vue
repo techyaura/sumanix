@@ -65,7 +65,7 @@
             v-bind:data="item"
             v-bind:key="item.tag"
           >
-            <router-link class :to="{name: 'interviewTag', params: {slug: item.slug || item.tag}}">
+            <router-link class :to="{name: 'tagQuestion', params: {slug: item.slug || item.tag}}">
               <div class="thumbnail">
                 <!-- <img
                   :src="'https://via.placeholder.com/300/000000/FFFFFF/?text=' + item.tag"

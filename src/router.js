@@ -113,24 +113,24 @@ const router = new Router({
       ],
     },
     {
-      path: '/addArticle',
+      path: '/addQuestion',
       name: 'addQuestion',
       beforeEnter: requireAuth,
       component: () => import('./views/AskQuestion.vue'),
     },
     {
-      path: '/article/:slug',
+      path: '/question/:slug',
       name: 'questionDetail',
       component: () => import('./views/QuestionDetail.vue'),
     },
     {
-      path: '/article/update/:slug',
+      path: '/question/update/:slug',
       name: 'questionUpdate',
       component: () => import('./views/QuestionUpdate.vue'),
       beforeEnter: requireAuth,
     },
     {
-      path: '/articles',
+      path: '/tags',
       name: 'tag',
       component: () => import('./views/Tag.vue'),
       meta: {
@@ -142,12 +142,9 @@ const router = new Router({
       name: 'home',
       component: Home,
       props: route => ({ query: route.query.q }),
-      meta: {
-        layout: 'login',
-      },
     },
     {
-      path: '/articles/tagged/:slug',
+      path: '/questions/tagged/:slug',
       name: 'tagQuestion',
       component: Home,
     },
@@ -187,27 +184,27 @@ const router = new Router({
         },
       ],
     },
-    // {
-    //   path: '/articles',
-    //   component: Interview,
-    //   children: [
-    //     {
-    //       path: '/',
-    //       component: () => import('./views/interview/tag.vue'),
-    //       meta: {
-    //         layout: 'login',
-    //       },
-    //     },
-    //     {
-    //       path: 'tag/:slug',
-    //       name: 'interviewTag',
-    //       component: () => import('./views/interview/question.vue'),
-    //       meta: {
-    //         layout: 'login',
-    //       },
-    //     },
-    //   ],
-    // },
+    {
+      path: '/interview-questions',
+      component: Interview,
+      children: [
+        {
+          path: '/',
+          component: () => import('./views/interview/tag.vue'),
+          meta: {
+            layout: 'login',
+          },
+        },
+        {
+          path: 'tag/:slug',
+          name: 'interviewTag',
+          component: () => import('./views/interview/question.vue'),
+          meta: {
+            layout: 'login',
+          },
+        },
+      ],
+    },
     {
       path: '*',
       name: '404',

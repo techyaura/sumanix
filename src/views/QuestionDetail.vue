@@ -34,30 +34,32 @@
       class="question single-question question-type-normal"
       v-if="!spinner.status"
     >
-      <h2 itemprop="name" style="font-size: 35px;">
+      <h2 itemprop="name">
         <a href="javascript:void(0)">{{question.name}}</a>
       </h2>
       <!-- <a
         class="question-report link-cursor"
         v-on:click="removeQuestion(question._id)"
         v-if="session.isLoggedIn && question.uId === session.user._id"
-      >DELETE</a>-->
+      >DELETE</a>
       <div
         v-if="session.isLoggedIn && question.uId === session.user._id"
         class="question-type-main question-type-main-custom1"
       >
-        <router-link style="color: black" :to="{name: 'questionUpdate', params: { slug: question.slug }}">EDIT</router-link>
-      </div>
+        <router-link :to="{name: 'questionUpdate', params: { slug: question.slug }}">EDIT</router-link>
+      </div>-->
       <div class="question-inner">
-        <div>
         <div class="clearfix"></div>
-         <span class="question-category">
+        <div class="question-desc" itemprop="text" v-html="question.description">
+          <!-- <p itemprop="text" class="post-content" ></p> -->
+        </div>
+        <span class="question-category">
           <span class="question-date">
             <i class="icon-time"></i>
             <time
               itemprop="dateCreated"
               :datetime="question.modifiedAt"
-            >{{'posted ' + timestamp(question)}}</time>
+            >{{'asked ' + timestamp(question)}}</time>
           </span>
           <!-- <span class="tagAdjust">
             <i class="icon-suitcase"></i>
@@ -80,24 +82,17 @@
         <span style="float:right">
           <AppClap :question="question"/>
         </span>
-        </div>
+
         <div class="clearfix"></div>
-        <br>
-        <hr>
-        <div class="question-desc" itemprop="text" v-html="updateLandingHtml(question.description)">
-          <!-- <p itemprop="text" class="post-content" ></p> -->
-        </div>
-
-
       </div>
     </article>
-    <!-- <div>
+    <div>
       <AppAnswerList v-if="!spinner.status && isValid" v-bind:question="question"/>
-    </div> -->
+    </div>
 
-    <!-- <div>
+    <div>
       <AppAnswer v-if="!spinner.status && isValid" v-bind:question="question"/>
-    </div> -->
+    </div>
   </div>
 </template>
 
@@ -183,12 +178,6 @@ export default {
   computed: {
     timestamp() {
       return item => this.$moment(item.createdAt).fromNow();
-    },
-    updateLandingHtml() {
-      return (item) => {
-        item = item.replace(/<br>/g, '');
-        return item;
-      };
     },
   },
 };

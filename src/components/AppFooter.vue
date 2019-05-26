@@ -33,6 +33,7 @@
                    <router-link to="/about">About</router-link>
                 </li> -->
                 <!-- <li>
+                <li>
                   <a href="https://github.com/sumanixinc/sumanix.com/issues/1"  target="_blank">Feedback</a>
                 </li> -->
                 <!-- <li>
