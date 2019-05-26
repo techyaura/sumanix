@@ -113,7 +113,7 @@ const router = new Router({
       ],
     },
     {
-      path: '/addQuestion',
+      path: '/addArticle',
       name: 'addQuestion',
       beforeEnter: requireAuth,
       component: () => import('./views/AskQuestion.vue'),
@@ -130,7 +130,7 @@ const router = new Router({
       beforeEnter: requireAuth,
     },
     {
-      path: '/tags',
+      path: '/tagss',
       name: 'tag',
       component: () => import('./views/Tag.vue'),
       meta: {
@@ -185,7 +185,7 @@ const router = new Router({
       ],
     },
     {
-      path: '/interview-questions',
+      path: '/tags',
       component: Interview,
       children: [
         {

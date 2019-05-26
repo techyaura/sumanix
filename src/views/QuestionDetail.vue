@@ -1,5 +1,5 @@
 <template>
-  <div class="col-md-9 t-question-detail" itemscope itemtype="http://schema.org/QAPage">
+  <div class="col-md-12 t-question-detail" itemscope itemtype="http://schema.org/QAPage">
     <!-- <Spinner
       :status="spinner.status"
       :color="spinner.color"

@@ -3,9 +3,9 @@
     <AppHeader/>
     <section class="container main-content">
       <slot/>
-      <div>
+      <!-- <div>
         <AppSidebar/>
-      </div>
+      </div> -->
     </section>
     <AppFooter/>
   </div>

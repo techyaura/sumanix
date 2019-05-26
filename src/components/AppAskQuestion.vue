@@ -1,7 +1,7 @@
 <template>
   <div class="page-content ask-question t-askquestion">
     <div class="boxedtitle page-title">
-      <h2>Write an Article</h2>
+      <h2>Ask Question</h2>
     </div>
     <p></p>
     <div class="form-style form-style-3" id="question-submit">
