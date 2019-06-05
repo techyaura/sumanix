@@ -1,8 +1,8 @@
-# sumanix-frontend
-#Sumanix: Developer's Platform
+# Q/A PWA
+#A VUE JS Powered PWA
 
 ### Dev Testing URl
-See [Development Demo](https://tquora.herokuapp.com).
+See [Development Demo](https://sumanix.herokuapp.com).
 
 ###Branches Conventions
 ```
