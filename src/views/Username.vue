@@ -40,7 +40,7 @@
              <li>
               <router-link :to="route.question">
                 <i class="icon-tasks"></i>
-                  Articles
+                  Questions
               </router-link>
             </li>
             <!-- <li><a href="#buttons"><i class="icon-link"></i>Change Password</a></li> -->

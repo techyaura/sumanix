@@ -54,7 +54,7 @@
     </div> -->
 
     <div class="widget">
-      <h3 class="widget_title">Popular Articles</h3>
+      <h3 class="widget_title">Popular Questions</h3>
       <Spinner
         :status="spinner.status"
         :color="spinner.color"

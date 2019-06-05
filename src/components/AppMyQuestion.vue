@@ -1,7 +1,7 @@
 <template>
   <div class="page-content t-myquestion">
     <div class="boxedtitle page-title">
-      <h2>Posted Articles ({{count}})</h2>
+      <h2>Posted Questions ({{count}})</h2>
     </div>
     <Spinner
       :status="spinner.status"
