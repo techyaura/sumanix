@@ -3,10 +3,10 @@ const mixin = {
     title(value) {
       let title = value;
       if (!value) {
-        title = 'SumaniX - Connect, Share & Learn';
+        title = 'techyaura-forum - Connect, Share & Learn';
         return title;
       }
-      return `${title} - SumaniX`;
+      return `${title} - techyaura-forum`;
     },
   },
 };

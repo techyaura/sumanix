@@ -7,13 +7,13 @@
             <ul>
               <li class="logoLink">
                 <router-link to="/blogs">
-                  SumaniX
+                  techyaura-blogs
                   <!-- <span class="logo-version-tile">v1.0</span> -->
                   <span class="logo-version-tile">Blogs</span>
                 </router-link>
               </li>
               <li class="anchor-link right-nv-header">
-                <router-link to="/">Back to SumaniX</router-link>
+                <router-link to="/">Back to techyaura-forum</router-link>
               </li>
             </ul>
           </nav>

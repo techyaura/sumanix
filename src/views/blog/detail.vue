@@ -229,7 +229,7 @@
             </h2>
           </div>
           <VueDisqus
-            shortname="https-www-sumanix-com"
+            shortname="https-www-techyaura-com"
             :identifier="blogId"
             v-bind:url="'/' + blogId"
           ></VueDisqus>

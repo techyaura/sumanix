@@ -2,7 +2,7 @@
 #A VUE JS Powered PWA
 
 ### Dev Testing URl
-See [Development Demo](https://sumanix.herokuapp.com).
+See [Development Demo](https://techyaura-forum.herokuapp.com).
 
 ###Branches Conventions
 ```
