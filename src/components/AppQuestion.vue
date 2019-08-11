@@ -185,13 +185,13 @@
 
 <script>
 import { filterMixin, spinnerMixin, breadcrumbMixin } from '../mixins';
-import AppClap from '@/components/AppClap.vue';
+// import AppClap from '@/components/AppClap.vue';
 
 export default {
   name: 'AppQuestion',
   params: ['query'],
   components: {
-    AppClap,
+    // AppClap,
   },
   mixins: [filterMixin, spinnerMixin, breadcrumbMixin],
   data() {

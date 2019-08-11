@@ -14,14 +14,14 @@
 <script>
 import AppFooter from '../components/AppFooter.vue';
 import AppHeader from '../components/AppHeader.vue';
-import AppSidebar from '../components/AppSidebar.vue';
+// import AppSidebar from '../components/AppSidebar.vue';
 
 export default {
   name: 'DefaultLayout',
   components: {
     AppFooter,
     AppHeader,
-    AppSidebar,
+    // AppSidebar,
   },
 };
 </script>
