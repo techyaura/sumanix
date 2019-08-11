@@ -4,7 +4,7 @@
       <input
         type="text"
         id="question_title"
-        placeholder="Search Sumanix"
+        placeholder="Search"
         autocomplete="off"
         v-model="query"
         class="form-control"

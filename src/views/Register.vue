@@ -5,7 +5,7 @@
     <div class="col-md-6">
       <div class="page-content Register">
         <h2>Login Now</h2>
-        <p><strong>SumaniX</strong> is an online community platform for job aspirants & techs developers to learn, share their knowledge, and build their career for getting their dream job apart.</p>
+        <p><strong>techyaura-forum</strong> is an online community platform to learn, share their knowledge, and build their career.</p>
         <router-link class="button color small signup" to="/login">Login</router-link>
       </div>
       <!-- End page-content -->

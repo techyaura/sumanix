@@ -15,7 +15,7 @@
                 <!-- <li>
                   <span>Support :</span>Support Telephone No : (+2)01111011110
                 </li>-->
-                <li>Support Email Account : sumanixinc@gmail.com</li>
+                <li>Support Email Account : techyaura@gmail.com</li>
               </ul>
             </div>
           </div>
@@ -114,7 +114,7 @@
       <section class="container">
         <div class="copyrights f_left">
           Copyright © 2019
-          <a href="javascript:void">SumaniX</a>
+          <a href="https://www.sumanix.com" target="_blank">SumaniX</a>
         </div>
         <div class="social_icons f_right">
           <ul>

@@ -8,7 +8,7 @@
         <h2>Register Now</h2>
         <p>
           Create your
-          <strong>SumaniX</strong> account. It's free and only takes a minute..
+          <strong>techyaura-forum</strong> account. It's free and only takes a minute..
         </p>
         <router-link class="button color small signup" to="/register">Create an account</router-link>
       </div>

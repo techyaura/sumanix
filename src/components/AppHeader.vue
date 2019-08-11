@@ -19,7 +19,7 @@
           <!-- <a class="navbar-brand" href="#">Brand</a> -->
           <router-link to="/" class="navbar-brand" href="javascript:void(0)">
             <!-- SumaniX -->
-            SumaniX <span class="logo-version-tile">Q/A </span>
+            Techyaura-Forum <span class="logo-version-tile">Q/A </span>
             <!-- <span class="logo-version-tile">v1.0</span> -->
           </router-link>
         </div>
