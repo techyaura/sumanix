@@ -93,7 +93,7 @@
           <div class="row">
             <div class="col-md-12 header-button">
               <h2>Connect, Share & Learn</h2>
-              <p>SumaniX comprises of team with years of experience, surpassing technical skills and a bunch of professionalism, these are perfect for delivering high-quality work.</p>
+              <!-- <p>SumaniX comprises of team with years of experience, surpassing technical skills and a bunch of professionalism, these are perfect for delivering high-quality work.</p> -->
               <div class="clearfix"></div>
               <!-- <router-link to="/about" class="color button dark_button medium">About</router-link> -->
               <router-link style="margin: 20px;" to="/register" class="color button dark_button medium">Ask Question</router-link>
