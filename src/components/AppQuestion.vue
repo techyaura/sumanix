@@ -95,8 +95,8 @@
               <div class="question-type-main">
                 <i class="icon-question-sign"></i>Question
               </div>-->
-              <div class="question-author">
-                <!-- <router-link :to="'/@' + item.username[0]" class="question-author-img tooltip-n">
+              <div class="question-author" v-if="item.username.length">
+                <router-link :to="'/@' + item.username[0]" class="question-author-img tooltip-n">
                   <img
                     itemprop="image"
                     width="60"
@@ -105,8 +105,10 @@
                     :alt="item.username[0]"
                     :title="item.username[0]"
                   >
-                </router-link> -->
-                <img src="https://avatars2.githubusercontent.com/u/5227618?s=460&u=f8ed6916c621fa065c22185eebdd14f685ed1b16&v=4"/>
+                </router-link>
+              </div>
+              <div class="question-author" v-if="!item.username.length">
+                <img width="60" height="60" src="https://avatars2.githubusercontent.com/u/5227618?s=460&u=f8ed6916c621fa065c22185eebdd14f685ed1b16&v=4"/>
               </div>
               <div class="question-inner">
                 <div class="clearfix"></div>
