@@ -5,8 +5,8 @@
         <div class="row">
           <div class="col-md-4">
             <div class="widget widget_contact">
-              <h3 class="widget_title">Who We Are ?</h3>
-              <p>We are team of people's working on latest & next generation techs for working independently.</p>
+              <!-- <h3 class="widget_title">Who We Are ?</h3>
+              <p>We are team of people's working on latest & next generation techs for working independently.</p> -->
               <ul>
                 <!-- <li>
                   <span>Address :</span>
@@ -113,8 +113,8 @@
     <footer id="footer-bottom">
       <section class="container">
         <div class="copyrights f_left">
-          Copyright © 2019
-          <a href="https://www.sumanix.com" target="_blank">SumaniX</a>
+          Copyright © 2020
+          <a href="https://github.com/techyaura" target="_blank">@techyaura</a>
         </div>
         <div class="social_icons f_right">
           <ul>

@@ -5,7 +5,7 @@
     <div class="col-md-6">
       <div class="page-content Register">
         <h2>Login Now</h2>
-        <p><strong>techyaura-forum</strong> is an online community platform to learn, share their knowledge, and build their career.</p>
+        <p><strong>Interview-Questions</strong> is an online community platform to learn, share their knowledge, and build their career.</p>
         <router-link class="button color small signup" to="/login">Login</router-link>
       </div>
       <!-- End page-content -->

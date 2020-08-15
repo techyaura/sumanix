@@ -13,7 +13,7 @@
                 </router-link>
               </li>
               <li class="anchor-link right-nv-header">
-                <router-link to="/">Back to techyaura-forum</router-link>
+                <router-link to="/">Back to Interview-Questions</router-link>
               </li>
             </ul>
           </nav>

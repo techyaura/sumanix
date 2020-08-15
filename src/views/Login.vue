@@ -8,7 +8,7 @@
         <h2>Register Now</h2>
         <p>
           Create your
-          <strong>techyaura-forum</strong> account. It's free and only takes a minute..
+          <strong>Interview-Questions</strong> account. It's free and only takes a minute..
         </p>
         <router-link class="button color small signup" to="/register">Create an account</router-link>
       </div>

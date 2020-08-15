@@ -18,7 +18,7 @@
           </button>
           <!-- <a class="navbar-brand" href="#">Brand</a> -->
           <router-link to="/" class="navbar-brand" href="javascript:void(0)">
-            Techyaura-Forum <span class="logo-version-tile">Q/A </span>
+            Interview-Questions <span class="logo-version-tile">Q/A </span>
             <!-- <span class="logo-version-tile">v1.0</span> -->
           </router-link>
         </div>
