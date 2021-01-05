@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@johmun/vue-tags-input": "^2.0.0",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "express": "^4.17.1",
     "izitoast": "^1.4.0",
     "jspdf": "^1.5.3",
